@@ -28,4 +28,4 @@ Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la 
 6.	El servei de MySQL (mysqld) escolta al port 3306. Quina modificació/passos caldrien fer per canviar aquest port a 33306 per exemple? Important: No realitzis els canvis. Només indica els passos que faries.
 
 
-![screenshot1](BBDD/M10-UF2/Activitat1/imgs/Act1-screenshot1.png)
+![screenshot1](./imgs/Act1-screenshot1.PNG)
