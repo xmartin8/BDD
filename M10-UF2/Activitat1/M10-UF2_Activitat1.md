@@ -59,11 +59,33 @@ Per acabar, verifiquem la versió del MySQL
 `mysql --version`
 ![screenshot10](./imgs/Act1-screenshot10.PNG)
 
+Actualitzar MySQL via YUM
+`yum update mysql-server`
+![screenshot15](./imgs/Act1-screenshot15.PNG)
+
+Si hi han noves actualitzacions per MySQL, s'instal·laran automàticament.
 
 ## **Preguntes a respondre** ##
 1. Un cop realitzada la instal·lació realitza una securització de la mateixa. Quin programa realitza aquesta tasca? Realitza una securització de la instal·lació indicant que la contrasenya de root sigui patata.
 
 Per realitzar una securització del MySQL
+`grep 'temporary password' /var/log/mysqld.log`
+![screenshot11](./imgs/Act1-screenshot11.PNG)
+
+Un cop s'ha generat la nova contrasenya temporal, introduim la comanda per fer una securització del MySQL
+`mysql_secure_installation`
+![screenshot12](./imgs/Act1-screenshot12.PNG)
+Pass: *P@ssw0rd*
+![screenshot13](./imgs/Act1-screenshot13.PNG)
+
+Connectar-se al servidor MySQL posant un usuari i contrasenya
+`mysql -u root -p`
+![screenshot14](./imgs/Act1-screenshot14.PNG)
+
+No ens deixa posar la contrasenya *patata* perquè no compleix els requisits de la política de contrasenyes, per tant l'hem de modificar.
+Entrem al mysql i posem `SHOW VARIABLES LIKE 'validate_password%';` perquè ens mostri les variables que hi han que començen en forma de validar la contrasenya.
+![screenshot16](./imgs/Act1-screenshot16.PNG)
+
 
 2. Quines són les instruccions per arrancar / verificar status / apagar servei de la base de dades de Percona Server.
 3. A on es troba i quin nom rep el fitxer de configuració del SGBD Percona Server?
