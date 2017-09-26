@@ -16,6 +16,8 @@ Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la 
 
 ## **Documentació per la instal·lació** ##
 
+![screenshot1](./imgs/Act1-screenshot1.PNG)
+
 ## **Preguntes a respondre** ##
 1. Un cop realitzada la instal·lació realitza una securització de la mateixa. Quin programa realitza aquesta tasca? Realitza una securització de la instal·lació indicant que la contrasenya de root sigui patata.
 2. Quines són les instruccions per arrancar / verificar status / apagar servei de la base de dades de Percona Server.
@@ -26,6 +28,3 @@ Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la 
      Usuari SO-→ asix / patata
      Usuari MySQL → asix / patata
 6.	El servei de MySQL (mysqld) escolta al port 3306. Quina modificació/passos caldrien fer per canviar aquest port a 33306 per exemple? Important: No realitzis els canvis. Només indica els passos que faries.
-
-
-![screenshot1](./imgs/Act1-screenshot1.PNG)
