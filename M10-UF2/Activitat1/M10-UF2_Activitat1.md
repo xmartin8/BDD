@@ -1,6 +1,5 @@
 # **Part I - INSTAL·LACIÓ SGBD MySQL Percona** #
 ![Percona Server for MySql](https://www.percona.com/sites/default/files/ps-logo.png)
-![screenshot1](BBDD/M10-UF2/Activitat1/img/Act1-screenshot1.png)
 
 ## ENUNCIAT ##
 Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la instal·lació d'un SGBD Percona Server mitjançant el gestor de paquets YUM.
@@ -27,3 +26,6 @@ Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la 
      Usuari SO-→ asix / patata
      Usuari MySQL → asix / patata
 6.	El servei de MySQL (mysqld) escolta al port 3306. Quina modificació/passos caldrien fer per canviar aquest port a 33306 per exemple? Important: No realitzis els canvis. Només indica els passos que faries.
+
+
+![screenshot1](BBDD/M10-UF2/Activitat1/img/Act1-screenshot1.png)
