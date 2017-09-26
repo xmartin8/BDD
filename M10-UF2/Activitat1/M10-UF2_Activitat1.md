@@ -1,5 +1,6 @@
 # **Part I - INSTAL·LACIÓ SGBD MySQL Percona** #
 ![Percona Server for MySql](https://www.percona.com/sites/default/files/ps-logo.png)
+![screenshot1](.\img\Act1-screenshot1.png)
 
 ## ENUNCIAT ##
 Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la instal·lació d'un SGBD Percona Server mitjançant el gestor de paquets YUM.
