@@ -15,7 +15,7 @@ Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la 
 <http://www.tecmint.com/install-latest-mysql-on-rhel-centos-and-fedora/>
 
 ## **Documentació per la instal·lació** ##
-
+`hola`
 ![screenshot1](./imgs/Act1-screenshot1.PNG)
 
 ## **Preguntes a respondre** ##
