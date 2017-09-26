@@ -79,7 +79,7 @@ Pass: *P@ssw0rd*
 ![screenshot13](./imgs/Act1-screenshot13.PNG)  
 
 Connectar-se al servidor MySQL posant un usuari i contrasenya  
-`mysql -u root -p`  
+"mysql -u root -p"  
 ![screenshot14](./imgs/Act1-screenshot14.PNG)  
 
 No ens deixa posar la contrasenya *patata* perquè no compleix els requisits de la política de contrasenyes, per tant l'hem de modificar.  
