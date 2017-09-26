@@ -48,8 +48,23 @@ Seguidament instal·lem la última versió de MySQL
 `yum install mysql-community-server`
 ![screenshot8](./imgs/Act1-screenshot8.PNG)
 
+Per començar el MySQL Server, un cop s'ha instal·lat tot
+`service mysqld start`
+
+Per comprovar l'estat del servidor
+`service mysqld status`
+![screenshot9](./imgs/Act1-screenshot9.PNG)
+
+Per acabar, verifiquem la versió del MySQL
+`mysql --version`
+![screenshot10](./imgs/Act1-screenshot10.PNG)
+
+
 ## **Preguntes a respondre** ##
 1. Un cop realitzada la instal·lació realitza una securització de la mateixa. Quin programa realitza aquesta tasca? Realitza una securització de la instal·lació indicant que la contrasenya de root sigui patata.
+
+Per realitzar una securització del MySQL
+
 2. Quines són les instruccions per arrancar / verificar status / apagar servei de la base de dades de Percona Server.
 3. A on es troba i quin nom rep el fitxer de configuració del SGBD Percona Server?
 4. A on es troben físicament els fitxers de dades (per defecte)
