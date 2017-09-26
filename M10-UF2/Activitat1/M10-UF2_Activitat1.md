@@ -15,8 +15,38 @@ Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la 
 <http://www.tecmint.com/install-latest-mysql-on-rhel-centos-and-fedora/>
 
 ## **Documentació per la instal·lació** ##
-`codigo`
+Iniciem sessió:
 ![screenshot1](./imgs/Act1-screenshot1.PNG)
+
+Escribim: `yum install http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm`
+![screenshot2](./imgs/Act1-screenshot2.PNG)
+
+Per veure si ja estan instal·lats els repositoris fem:
+`yum list | grep percona`
+![screenshot3](./imgs/Act1-screenshot3.PNG)
+
+Per instal·lar el servidor fem:
+`yum install Percona-Server-server-57`
+![screenshot4](./imgs/Act1-screenshot4.PNG)
+
+Un cop instal·lat el servidor Percona, l'iniciem.
+`service mysql start`
+
+Per descarregar el repositori YUM del MySQL 5.7
+`wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm`
+![screenshot5](./imgs/Act1-screenshot5.PNG)
+
+Per instal·lar el paquet hem d'escriure:
+`yum localinstall mysql57-community-release-el7-7.noarch.rpm`
+![screenshot6](./imgs/Act1-screenshot6.PNG)
+
+Per verificar que el repositori s'ha instal·lat correctament:
+`yum repolist enabled | grep "mysql.*-community.*"`
+![screenshot7](./imgs/Act1-screenshot7.PNG)
+
+Seguidament instal·lem la última versió de MySQL
+`yum install mysql-community-server`
+![screenshot8](./imgs/Act1-screenshot8.PNG)
 
 ## **Preguntes a respondre** ##
 1. Un cop realitzada la instal·lació realitza una securització de la mateixa. Quin programa realitza aquesta tasca? Realitza una securització de la instal·lació indicant que la contrasenya de root sigui patata.
