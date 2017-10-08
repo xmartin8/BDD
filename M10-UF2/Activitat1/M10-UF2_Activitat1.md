@@ -124,12 +124,12 @@ Es trobem al directori `/var/lib/mysql` per defecte. Es pot saber introduint `se
 
 6.	El servei de MySQL (mysqld) escolta al port 3306. Quina modificació/passos caldrien fer per canviar aquest port a 33306 per exemple? Important: No realitzis els canvis. Només indica els passos que faries.
 
-Per canviar el port, hem d’editar el fitxer `/etc/my.cnf`, que és el Global Mysql Configuration File. Un cop dins, afegim el port 33306, `port=33306`. Guardem els canvis i reiniciem el servidor.
-
-
+Per canviar el port, hem d’editar el fitxer `/etc/my.cnf`, que és el Global Mysql Configuration File. Un cop dins, afegim el port 33306, `port=33306`. Guardem els canvis i reiniciem el servidor.  
+  
+  
 ---
-
-
+  
+  
 # **PART II - INSTAL·LACIÓ SGBD MongoDB (màx. 3 punts)** #
 ![MongoDB](https://victorroblesweb.es/wp-content/uploads/2016/11/mongodb.png)
 
@@ -137,7 +137,7 @@ Per canviar el port, hem d’editar el fitxer `/etc/my.cnf`, que és el Global M
 Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la instal·lació d'un SGBD NoSQL MongoDB (última versió).
 
 ## ENLLAÇOS ##
-**Documentació oficial d’instal·lació  MongoDB (RedHat 7)**
+**Documentació oficial d’instal·lació  MongoDB (RedHat 7)**  
 <https://docs.mongodb.com/master/tutorial/install-mongodb-on-red-hat/>
 
 ## **Documentació per la instal·lació** ##
@@ -153,18 +153,18 @@ Instal·lem els parquest MongoDB i les eines associades
 ![screenshotMDB3](./imgs/Act1mongoscreenshot3.PNG)
 
 Per iniciar el servidor  
-`sudo service mongod start`
+`sudo service mongod start`  
 ![screenshotMDB4](./imgs/Act1mongoscreenshot4.PNG)
 
-Per comprovar que MongoDB ha iniciat correctament hem de mirar el fitxer `/var/log/mongodb/mongod.log`. Ens hem de posicionar a l’última línia que diu `[initandlisten] waiting for connections on port <port>`, on el port és el que està configurat per defecte a `/etc/mongod.conf, 27017`.
+Per comprovar que MongoDB ha iniciat correctament hem de mirar el fitxer `/var/log/mongodb/mongod.log`. Ens hem de posicionar a l’última línia que diu `[initandlisten] waiting for connections on port <port>`, on el port és el que està configurat per defecte a `/etc/mongod.conf, 27017`.  
 ![screenshotMDB5](./imgs/Act1mongoscreenshot5.PNG)
 
 Opcionalement, per asegurar-se de que MongoDB inici després d’un reinici de servidor  
-`sudo chkconfig mongod on`
+`sudo chkconfig mongod on`  
 ![screenshotMDB6](./imgs/Act1mongoscreenshot6.PNG)
 
 Per apagar el servidor  
-`sudo service mongod stop`
+`sudo service mongod stop`  
 ![screenshotMDB7](./imgs/Act1mongoscreenshot7.PNG)
 
 Per reiniciar el servidor  
