@@ -100,12 +100,12 @@ Li donem a **sí** a totes les preguntes fins que acabi.
 
 2. Quines són les instruccions per arrancar / verificar status / apagar servei de la base de dades de Percona Server.
 
-Per arrancar el Percona Server escribim
-`service mysql start`
-Per verificar l'estat del servidor
-`service mysql status`
-Per apagar el servidor
-`service mysql stop`
+Per arrancar el Percona Server escribim  
+`service mysql start`  
+Per verificar l'estat del servidor  
+`service mysql status`  
+Per apagar el servidor  
+`service mysql stop`  
 
 3. A on es troba i quin nom rep el fitxer de configuració del SGBD Percona Server?
 
