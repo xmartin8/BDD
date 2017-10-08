@@ -18,10 +18,10 @@ Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la 
 Iniciem sessió:
 ![screenshot1](./imgs/Act1-screenshot1.PNG)  
 
-Escribim:  `yum install http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm`  
+Escribim per instal·lar el repositori de Percona:  `yum install http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm`  
 ![screenshot2](./imgs/Act1-screenshot2.PNG)  
 
-Per veure si ja estan instal·lats els repositoris fem:  
+Per veure si els repositoris estan disponibles fem:  
 `yum list | grep percona`  
 ![screenshot3](./imgs/Act1-screenshot3.PNG)  
 
@@ -40,7 +40,7 @@ Per instal·lar el paquet hem d'escriure:
 `yum localinstall mysql57-community-release-el7-7.noarch.rpm`  
 ![screenshot6](./imgs/Act1-screenshot6.PNG)  
 
-Per verificar que el repositori s'ha instal·lat correctament:  
+Per verificar que el repositori s'ha afegit correctament:  
 `yum repolist enabled | grep "mysql.*-community.*"`  
 ![screenshot7](./imgs/Act1-screenshot7.PNG)  
 
@@ -68,11 +68,11 @@ Si hi han noves actualitzacions per MySQL, s'instal·laran automàticament.
 ## **Preguntes a respondre** ##
 1. Un cop realitzada la instal·lació realitza una securització de la mateixa. Quin programa realitza aquesta tasca? Realitza una securització de la instal·lació indicant que la contrasenya de root sigui patata.
 
-Per realitzar una securització del MySQL  
+Abans de realitzar una securització del MySQL, Mysql 5.7 o superior generen una contrasenya aleatòria temporal quan s'instal·la  
 `grep 'temporary password' /var/log/mysqld.log`  
 ![screenshot11](./imgs/Act1-screenshot11.PNG)  
 
-Un cop s'ha generat la nova contrasenya temporal, introduim la comanda per fer una securització del MySQL  
+Un cop sabem la contrasenya temporal, introduim la comanda per fer una securització del MySQL  
 `mysql_secure_installation`  
 ![screenshot12](./imgs/Act1-screenshot12.PNG)  
 Pass: *P@ssw0rd*  
@@ -99,10 +99,30 @@ Li donem a **sí** a totes les preguntes fins que acabi.
 
 
 2. Quines són les instruccions per arrancar / verificar status / apagar servei de la base de dades de Percona Server.
+
+Per arrancar el Percona Server escribim:
+`service mysql start`
+Per verificar l'estat del servidor:
+`service mysql status`
+Per apagar el servidor:
+`service mysql stop`
+
 3. A on es troba i quin nom rep el fitxer de configuració del SGBD Percona Server?
+
+El fitxer de configuració del SGBD Percona Server és diu **my.cnf** i es troba a `/etc/my.cnf`.
+![screenshot21](./imgs/Act1-screenshot21.PNG)
+
 4. A on es troben físicament els fitxers de dades (per defecte)
+
+Es trobem al directori `/var/lib/mysql` per defecte. Es pot saber introduint `select @@datadir;`.
+![screenshot22](./imgs/Act1-screenshot22.PNG)
+
 5. Crea un usuari anomenat asix en el sistema operatiu i en SGBD de tal manera que aquest usuari del sistema operatiu no hagi d'introduir l'usuari i password cada vegada que cridem al client mysql?
 * http://dev.mysql.com/doc/refman/5.7/en/password-security-user.html
 * Usuari SO-→ asix / patata
 * Usuari MySQL → asix / patata
 6.	El servei de MySQL (mysqld) escolta al port 3306. Quina modificació/passos caldrien fer per canviar aquest port a 33306 per exemple? Important: No realitzis els canvis. Només indica els passos que faries.
+
+Per canviar el port, hem d’editar el fitxer `/etc/my.cnf`, que és el Global Mysql Configuration File. Un cop dins, afegim el port 33306, `port=33306`. Guardem els canvis i reiniciem el servidor.
+
+
