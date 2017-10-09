@@ -160,7 +160,7 @@ Per canviar el port, hem d’editar el fitxer `/etc/my.cnf`, que és el Global M
   
   
 # **PART II - INSTAL·LACIÓ SGBD MongoDB (màx. 3 punts)** #
-![MongoDB](https://victorroblesweb.es/wp-content/uploads/2016/11/mongodb.png)
+![MongoDB](https://webassets.mongodb.com/_com_assets/cms/mongodb-logo-rgb-j6w271g1xn.jpg)
 
 ## ENUNCIAT ##
 Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la instal·lació d'un SGBD NoSQL MongoDB (última versió).
