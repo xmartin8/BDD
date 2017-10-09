@@ -8,7 +8,7 @@ Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la 
 **Percona Server 5.7 Doc**
 <http://www.percona.com/doc/percona-server/5.7>
 
-**Instal·lació Percona Server 5.7via YUM Repository**
+**Instal·lació Percona Server 5.7via YUM Repository**  
 <http://www.percona.com/doc/percona-server/5.7/installation/yum_repo.html>
 
 **Instal·lació MySQL via YUM Repository**
@@ -18,7 +18,8 @@ Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la 
 Iniciem sessió:
 ![screenshot1](./imgs/Act1-screenshot1.PNG)  
 
-Escribim per instal·lar el repositori de Percona:  `yum install http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm`  
+Escribim per instal·lar el repositori de Percona:  
+`yum install http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm`  
 ![screenshot2](./imgs/Act1-screenshot2.PNG)  
 
 Per veure si els repositoris estan disponibles fem:  
@@ -121,6 +122,34 @@ Es trobem al directori `/var/lib/mysql` per defecte. Es pot saber introduint `se
 * http://dev.mysql.com/doc/refman/5.7/en/password-security-user.html
 * Usuari SO-→ asix / patata
 * Usuari MySQL → asix / patata
+
+Primer de tot, creem l'usuari asix en el sistema operatiu  
+![screenshot23](./imgs/Act1-screenshot23.PNG)
+
+Un cop creat l'usuari, hem de canviar la política de les contrasenyes perque es pugui posar **patata**.  
+Per canviar-ho hem d'anara a `/etc/security` i editar el fitxer `pwquality.cnf`.  
+![screenshot25](./imgs/Act1-screenshot25.PNG)
+
+S'ha de canviar la longitud mínima per una altre.  
+![screenshot26](./imgs/Act1-screenshot26.PNG)
+
+Un cop fet, amb la comanda `passwd` posem que la contrasenya sigui **patata**.  
+![screenshot27](./imgs/Act1-screenshot27.PNG)
+**Nota:** Encara que diguès incorrecte la primera vegada, a la segona ho ha fet.
+![screenshot28](./imgs/Act1-screenshot28.PNG)
+
+Ara que l'usuari asix ja està creat, creem l'usuari pel MYSQL, però abans hem de canviar la política de les contrasenyes del MYSQL amb el `SHOW VARIABLES LIKE 'validate_password%;`. Quan estiguin canviades, creem l'usuari amb el `CREATE USER`.
+![screenshot29](./imgs/Act1-screenshot29.PNG)
+
+Ja tenim l'usuari asix creat al MYSQL, però cada vegada que volem entrar hem de posar l'usuari i contrasenya. Per treure això, hem de crear un fitxer anomenat `.my.cnf` a la carpeta de l'usuari.  
+![screenshot30](./imgs/Act1-screenshot30.PNG)
+
+Dins el fitxer escrivim el següent:  
+![screenshot31](./imgs/Act1-screenshot31.PNG)
+
+Otorguem permissos al fitxer i un cop fet tot això podrem entrar dins el MYSQL només escrivint `mysql`.
+![screenshot32](./imgs/Act1-screenshot32.PNG)
+
 
 6.	El servei de MySQL (mysqld) escolta al port 3306. Quina modificació/passos caldrien fer per canviar aquest port a 33306 per exemple? Important: No realitzis els canvis. Només indica els passos que faries.
 
