@@ -134,8 +134,8 @@ S'ha de canviar la longitud mínima per una altre.
 ![screenshot26](./imgs/Act1-screenshot26.PNG)
 
 Un cop fet, amb la comanda `passwd` posem que la contrasenya sigui **patata**.  
-![screenshot27](./imgs/Act1-screenshot27.PNG)
-**Nota:** Encara que diguès incorrecte la primera vegada, a la segona ho ha fet.
+![screenshot27](./imgs/Act1-screenshot27.PNG)  
+**Nota:** Encara que diguès incorrecte la primera vegada, a la segona ho ha fet.  
 ![screenshot28](./imgs/Act1-screenshot28.PNG)
 
 Ara que l'usuari asix ja està creat, creem l'usuari pel MYSQL, però abans hem de canviar la política de les contrasenyes del MYSQL amb el `SHOW VARIABLES LIKE 'validate_password%;`. Quan estiguin canviades, creem l'usuari amb el `CREATE USER`.
