@@ -229,6 +229,9 @@ Per apagar el servidor
 Per reiniciar el servidor  
 `sudo service mongod restart`
 
+Per que el servidor MongoDB comenci quan s'engega el servidor:  
+`systemctl enable mongod.service`
+
 
 
 
