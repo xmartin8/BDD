@@ -48,7 +48,7 @@ Exemple: (`mysql> SHOW GLOBAL VARIABLES LIKE '%log'`)
 *	Borra el primer binary log. Quina sentència has utilitzat?
 
 *	Utilitza el programa mysqlbinlog per mostrar el fitxer mysql-bin.000002
--	Quin és el seu contingut?
--	Quin número d'event ha sigut el de la creació de la base de dades bar?
+    *	Quin és el seu contingut?
+    *	Quin número d'event ha sigut el de la creació de la base de dades bar?
 
 ## CONFIGURACIÓ DEL SERVIDOR PERCONA SERVER PER REALITZAR CONNEXIONS SEGURES SOBRE SSL. (3 punts) ##
