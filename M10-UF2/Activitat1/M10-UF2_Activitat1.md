@@ -202,14 +202,14 @@ Hem de configurar el SELinux perque els límits dels recursos del sistemes en si
   **Nota:** un problema que es pot tenir és que falli la comanda. Al reiniciar el sistema no hauria d’haver cap problema.
 
 * Una altre és editant el fitxer `/etc/selinux/config`. Canviem la linia de `SELINUX=enforcing` a `SELINUX=disabled`.  
-![screenshotMDB8](./imgs/Act1mongoscreenshot8.PNG)  
-![screenshotMDB9](./imgs/Act1mongoscreenshot9.PNG)
+  ![screenshotMDB8](./imgs/Act1mongoscreenshot8.PNG)  
+  ![screenshotMDB9](./imgs/Act1mongoscreenshot9.PNG)
 
 * L’altre és també  editant el fitxer `/etc/selinux/config`. Canviem la linia de `SELINUX=enforcing` a `SELINUX=permissive`.
 
-El servidor podrà iniciar sense cap problema. 
-**Nota:** un dels problemes que es pot tenir és que la primera vegada que es vulgui entrar falli.  
-![screenshotMDB10](./imgs/Act1mongoscreenshot10.PNG)
+  El servidor podrà iniciar sense cap problema.  
+  **Nota:** un dels problemes que es pot tenir és que la primera vegada que es vulgui entrar falli.  
+  ![screenshotMDB10](./imgs/Act1mongoscreenshot10.PNG)
 
 Per iniciar el servidor  
 `sudo service mongod start`  
