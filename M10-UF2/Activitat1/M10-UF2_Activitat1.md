@@ -181,6 +181,13 @@ Instal·lem els parquest MongoDB i les eines associades
 `sudo yum install -y mongodb-org`
 ![screenshotMDB3](./imgs/Act1mongoscreenshot3.PNG)
 
+Hem de configurar el SELinux perque els límits dels recursos del sistemes en sistemes operatius Unix poden afectar negativament al funcionament. Es pot configurar de 3 maneres diferentes. Una d’elles és editant el fitxer `/etc/selinux/config`. Canviem la linia de `SELINUX=enforcing` a `SELINUX=disabled`.  
+![screenshotMDB8](./imgs/Act1mongoscreenshot8.PNG)  
+![screenshotMDB9](./imgs/Act1mongoscreenshot9.PNG)
+
+El servidor podrà iniciar sense cap problema.  
+![screenshotMDB10](./imgs/Act1mongoscreenshot10.PNG)
+
 Per iniciar el servidor  
 `sudo service mongod start`  
 ![screenshotMDB4](./imgs/Act1mongoscreenshot4.PNG)
