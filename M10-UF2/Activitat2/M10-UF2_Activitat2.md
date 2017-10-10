@@ -1,4 +1,4 @@
-# Sara Caparrós Torres i Patricia López López (ASIX 2 - Curs 2017/18) #
+#### Sara Caparrós Torres i Patricia López López (ASIX 2 - Curs 2017/18) ####
 # CONFIGURACIÓ SGBD
 
 ## ENUNCIAT ##
