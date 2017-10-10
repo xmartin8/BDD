@@ -8,13 +8,13 @@ Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aqu
 
 ## REALITZA LES SEGÜENTS TASQUES DE CONFIGURACIÓ i COMPROVACIÓ DE LOGS (6 punts) ##
 
-1.	Crea un fitxer de configuració a on:
-*	Canvia el port per defecte de connexió al 3011.
-*	Quins són els logs activats per defecte? Com ho has fet per comprovar-ho?
-*	Activa si no ho estan i indica les configuracions necessàries per activar-los. Indica les rutes dels fitxer de log de Binary, Slow Query i General. Quins paràmetres has modificat?
+1.	Crea un fitxer de configuració a on:  
+*	Canvia el port per defecte de connexió al 3011.  
+*	Quins són els logs activats per defecte? Com ho has fet per comprovar-ho?  
+*	Activa si no ho estan i indica les configuracions necessàries per activar-los. Indica les rutes dels fitxer de log de Binary, Slow Query i General. Quins paràmetres has modificat?  
 
-2.	Comprova l'estat de les opcions de log que has utilitzat mitjançant una sessió de mysql client.
-Exemple: (`mysql> SHOW GLOBAL VARIABLES LIKE '%log'`)
+2.	Comprova l'estat de les opcions de log que has utilitzat mitjançant una sessió de mysql client.  
+    Exemple: (`mysql> SHOW GLOBAL VARIABLES LIKE '%log'`)  
 
 3.	Modifica el fitxer de configuració i desactiva els logs de binary, slow query i genral. Nota: Simplament desactiva'ls no borris altres paràmetres com la ruta dels fitxers, etc...
 
