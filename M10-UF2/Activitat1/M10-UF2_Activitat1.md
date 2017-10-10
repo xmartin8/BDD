@@ -1,3 +1,4 @@
+# Sara Caparrós Torres i Patricia López López (ASIX 2 - Curs 2017/18) #
 # **Part I - INSTAL·LACIÓ SGBD MySQL Percona** #
 ![Percona Server for MySql](https://www.percona.com/sites/default/files/ps-logo.png)
 
