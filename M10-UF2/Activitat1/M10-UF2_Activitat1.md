@@ -19,7 +19,7 @@ Partint d'una màquina CentOS 7 minimal proporcionada pel professor realitza la 
 Iniciem sessió:
 ![screenshot1](./imgs/Act1-screenshot1.PNG)  
 
-Escribim per instal·lar el repositori de Percona:  
+Per instal·lar el repositori de Percona s'ha de posar:  
 `yum install http://www.percona.com/downloads/percona-release/redhat/0.1-4/percona-release-0.1-4.noarch.rpm`  
 ![screenshot2](./imgs/Act1-screenshot2.PNG)  
 
