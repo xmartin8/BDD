@@ -182,11 +182,33 @@ Instal·lem els parquest MongoDB i les eines associades
 `sudo yum install -y mongodb-org`
 ![screenshotMDB3](./imgs/Act1mongoscreenshot3.PNG)
 
-Hem de configurar el SELinux perque els límits dels recursos del sistemes en sistemes operatius Unix poden afectar negativament al funcionament. Es pot configurar de 3 maneres diferentes. Una d’elles és editant el fitxer `/etc/selinux/config`. Canviem la linia de `SELINUX=enforcing` a `SELINUX=disabled`.  
+Hem de configurar el SELinux perque els límits dels recursos del sistemes en sistemes operatius Unix poden afectar negativament al funcionament. Es pot configurar de 3 maneres diferentes.  
+
+* Una manera es habilitant els ports amb la comanda `semanage port -a -t mongod_port_t -p tcp 27017`. Però el problema que es troba es que no reconeix la comanda `semanage`.
+![screenshotMDB11](./imgs/Act1mongoscreenshot11.PNG)
+
+Per instal·lar `semanage` hem de posar una serie de comandes.
+
+`yum provides /usr/sbin/semanage`  
+![screenshotMDB12](./imgs/Act1mongoscreenshot12.PNG)
+
+Hem d’instal·lar `policycoreutils-python-2.2.5-11.el7_0.1.x86_64` per aconseguir la comanda `semanage`.  
+`yum install policycoreutils-python`
+![screenshotMDB13](./imgs/Act1mongoscreenshot13.PNG)  
+![screenshotMDB14](./imgs/Act1mongoscreenshot14.PNG)
+
+Un cop instal·at ja es pot utilitzar la comanda `semanage`.  
+`semanage port -a -t mongod_port_t -p tcp 27017`  
+**Nota:** un problema que es pot tenir és que falli la comanda. Al reiniciar el sistema no hauria d’haver cap problema.
+
+* Una altre és editant el fitxer `/etc/selinux/config`. Canviem la linia de `SELINUX=enforcing` a `SELINUX=disabled`.  
 ![screenshotMDB8](./imgs/Act1mongoscreenshot8.PNG)  
 ![screenshotMDB9](./imgs/Act1mongoscreenshot9.PNG)
 
-El servidor podrà iniciar sense cap problema.  
+* L’altre és també  editant el fitxer `/etc/selinux/config`. Canviem la linia de `SELINUX=enforcing` a `SELINUX=permissive`.
+
+El servidor podrà iniciar sense cap problema. 
+**Nota:** un dels problemes que es pot tenir és que la primera vegada que es vulgui entrar falli.  
 ![screenshotMDB10](./imgs/Act1mongoscreenshot10.PNG)
 
 Per iniciar el servidor  
