@@ -18,28 +18,31 @@ Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aqu
 
 2.	Comprova l'estat de les opcions de log que has utilitzat mitjançant una sessió de mysql client.  
         Exemple: (`mysql> SHOW GLOBAL VARIABLES LIKE '%log'`)  
+    ![screenshot_ex1-3](./imgs/Act2_ex2-1.png)  
 
 3.	Modifica el fitxer de configuració i desactiva els logs de binary, slow query i genral. **Nota:** Simplement desactiva'ls no esborris altres paràmetres com la ruta dels fitxers, etc...  
+![screenshot_ex1-3](./imgs/Act2_ex3-1.png)  
 
 4.	Activa els logs en temps d'execució mitjançant la sentència SET GLOBAL. També canvia el destí de log general a una taula (paràmetre `log_output`). Quines són les sentències que has utilitzat? A quina taula registres els logs general?  
+![screenshot_ex1-3](./imgs/Act2_ex4-1.png)  
 
 5.	Carrega la BD Sakila localitzada a la web de  
     1.	Descarrega't el fitxer sakila-schema.sql del Moodle.  
     2.	Carrega la BD dins del MySQL utilitzant la sentència:  
     `mysql> SOURCE <ruta_fitxer>/sakila-schema.sql;`  
-
+![screenshot_ex1-3](./imgs/Act2_ex5-1.png)  
 6.	Compte el número de sentències CREATE TABLE dins del general log mitjançant:  
 		`mysql> SELECT COUNT(*)`  
 				`FROM mysql.general_log`  
 			  `WHERE argument LIKE 'CREATE TABLE%';`  
-
+![screenshot_ex1-3](./imgs/Act2_ex6-1.png)  
 7.	 Executa una query mitjançant la funció SLEEP(11) per tal que es guardi en el log de Slow Query. Mostra el contingut del log demostrant-ho.  
-
+![screenshot_ex1-3](./imgs/Act2_ex7-1.png)  
 8.	Assegura't que el *Binary Log* estigui activat i borra tots els logs anteriors mitjançant la sentència RESET MASTER.  
 *	Crea i borra una base de dades anomenada foo. Utilitza les sentències:  
         `mysql> CREATE DATABASE foo;`  
 		`mysql> DROP DATABASE foo;`  
-
+![screenshot_ex1-3](./imgs/Act2_ex8-1.png)  
 *	Mitjançant la sentència `SHOW BINLOG EVENTS` llista els esdeveniments i comprova les sentències anteriors en quin fitxer de log estan.  
 
 *	Realitza un Rotate log mitjançant la sentència `FLUSH LOGS`  
