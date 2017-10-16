@@ -95,7 +95,7 @@ Captures de pantalla:
 ![screenshot_P2-3](./imgs/Act2_P2-3.png)  
 ![screenshot_P2-4](./imgs/Act2_P2-4.png)  
 
-Seguidament configurem el server. Començem editant el fitxer /etc/my.cnf afegint:  
+Seguidament configurem el server. Començem editant el fitxer **/etc/my.cnf** afegint:  
 ```
 [mysqld]  
 ssl-ca=ca.pem  
@@ -105,15 +105,15 @@ ssl-key=server-key.pem
 ![screenshot_P2-5](./imgs/Act2_P2-5.png)  
 Creem un usuari el SSL estigui requerit:  
 ![screenshot_P2-6](./imgs/Act2_P2-6.png)  
-*usuari: ssluser  *
-*pass: P@ssw0rd  *
+*usuari: ssluser*  
+*pass: P@ssw0rd*  
   
-Per iniciar sessió amb l’usuari que te el SSL requerit (iniciem sessió com sempre, però afegim al final: --ssl-mode=REQUIRED ), sinó et diu que té l’accés denegat.  
+Per iniciar sessió amb l’usuari que te el SSL requerit (iniciem sessió com sempre, però afegim al final: `--ssl-mode=REQUIRED` ), sinó et diu que té l’accés denegat.  
 ![screenshot_P2-7](./imgs/Act2_P2-7.png)  
 Per comprovar que funciona el xifrat, podem fer:  
-    * `\s` (com en aquesta captura)
+    *`\s` (com en aquesta captura)
     ![screenshot_P2-8](./imgs/Act2_P2-8.png)  
-    * `STATUS`  
+    *`STATUS`  
     ![screenshot_P2-9](./imgs/Act2_P2-9.png)  
-    * `SHOW SESSION STATUS LIKE 'Ssl_cipher';`  
+    *`SHOW SESSION STATUS LIKE 'Ssl_cipher';`  
     ![screenshot_P2-10](./imgs/Act2_P2-10.png)  
