@@ -111,9 +111,9 @@ Creem un usuari el SSL estigui requerit:
 Per iniciar sessió amb l’usuari que te el SSL requerit (iniciem sessió com sempre, però afegim al final: `--ssl-mode=REQUIRED` ), sinó et diu que té l’accés denegat.  
 ![screenshot_P2-7](./imgs/Act2_P2-7.png)  
 Per comprovar que funciona el xifrat, podem fer:  
-    *`\s` (com en aquesta captura)
-    ![screenshot_P2-8](./imgs/Act2_P2-8.png)  
-    *`STATUS`  
-    ![screenshot_P2-9](./imgs/Act2_P2-9.png)  
-    *`SHOW SESSION STATUS LIKE 'Ssl_cipher';`  
-    ![screenshot_P2-10](./imgs/Act2_P2-10.png)  
+- `\s`  
+![screenshot_P2-8](./imgs/Act2_P2-8.png)  
+- `STATUS`  
+![screenshot_P2-9](./imgs/Act2_P2-9.png)  
+- `SHOW SESSION STATUS LIKE 'Ssl_cipher';`  
+![screenshot_P2-10](./imgs/Act2_P2-10.png)  
