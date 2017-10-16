@@ -12,37 +12,74 @@ Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aqu
     *	Canvia el port per defecte de connexió al 3011.  
     ![screenshot_ex1-1](./imgs/Act2_ex1-1.png)  
     *	Quins són els logs activats per defecte? Com ho has fet per comprovar-ho?  
-    ![screenshot_ex1-2](./imgs/Act2_ex1-2.png)  
+    ![screenshot_ex1-2.1](./imgs/Act2_ex1-2.png)  
+    ![screenshot_ex1-2.2](./imgs/Act2_ex1-2_2.png)  
+    ![screenshot_ex1-2.3](./imgs/Act2_ex1-2_3.png)  
     *	Activa si no ho estan i indica les configuracions necessàries per activar-los. Indica les rutes dels fitxers de log de Binary, Slow Query i General. Quins paràmetres has modificat?  
-    ![screenshot_ex1-3](./imgs/Act2_ex1-3.png)  
+    ![screenshot_ex1-3.1](./imgs/Act2_ex1-3.png)  
+    ![screenshot_ex1-3.2](./imgs/Act2_ex1-3_2.png)  
+    ![screenshot_ex1-3.3](./imgs/Act2_ex1-3_3.png)  
+    ![screenshot_ex1-3.4](./imgs/Act2_ex1-3_4.png)  
+    ![screenshot_ex1-3.5](./imgs/Act2_ex1-3_5.png)  
+    ![screenshot_ex1-3.6](./imgs/Act2_ex1-3_6.png)  
+    ![screenshot_ex1-3.7](./imgs/Act2_ex1-3_7.png)  
+    ![screenshot_ex1-3.8](./imgs/Act2_ex1-3_8.png)  
+    ![screenshot_ex1-3.9](./imgs/Act2_ex1-3_9.png)  
+    ![screenshot_ex1-3.10](./imgs/Act2_ex1-3_10.png)  
 
 2.	Comprova l'estat de les opcions de log que has utilitzat mitjançant una sessió de mysql client.  
         Exemple: (`mysql> SHOW GLOBAL VARIABLES LIKE '%log'`)  
-    ![screenshot_ex1-3](./imgs/Act2_ex2-1.png)  
+    ![screenshot_ex2-1](./imgs/Act2_ex2-1.png)  
+    ![screenshot_ex2-2](./imgs/Act2_ex2-2.png)  
 
 3.	Modifica el fitxer de configuració i desactiva els logs de binary, slow query i genral. **Nota:** Simplement desactiva'ls no esborris altres paràmetres com la ruta dels fitxers, etc...  
-![screenshot_ex1-3](./imgs/Act2_ex3-1.png)  
+![screenshot_ex3-1](./imgs/Act2_ex3-1.png)  
+![screenshot_ex3-2](./imgs/Act2_ex3-2.png)  
+![screenshot_ex3-3](./imgs/Act2_ex3-3.png)  
 
 4.	Activa els logs en temps d'execució mitjançant la sentència SET GLOBAL. També canvia el destí de log general a una taula (paràmetre `log_output`). Quines són les sentències que has utilitzat? A quina taula registres els logs general?  
-![screenshot_ex1-3](./imgs/Act2_ex4-1.png)  
+![screenshot_ex4-1](./imgs/Act2_ex4-1.png)  
+![screenshot_ex4-2](./imgs/Act2_ex4-2.png)  
+![screenshot_ex4-3](./imgs/Act2_ex4-3.png)  
+![screenshot_ex4-4](./imgs/Act2_ex4-4.png)  
+![screenshot_ex4-5](./imgs/Act2_ex4-5.png)  
+![screenshot_ex4-6](./imgs/Act2_ex4-6.png)  
+![screenshot_ex4-7](./imgs/Act2_ex4-7.png)  
+![screenshot_ex4-8](./imgs/Act2_ex4-8.png)  
 
 5.	Carrega la BD Sakila localitzada a la web de  
     1.	Descarrega't el fitxer sakila-schema.sql del Moodle.  
     2.	Carrega la BD dins del MySQL utilitzant la sentència:  
     `mysql> SOURCE <ruta_fitxer>/sakila-schema.sql;`  
-![screenshot_ex1-3](./imgs/Act2_ex5-1.png)  
+![screenshot_ex5-1](./imgs/Act2_ex5-1.png)  
+![screenshot_ex5-2](./imgs/Act2_ex5-2.png)  
 6.	Compte el número de sentències CREATE TABLE dins del general log mitjançant:  
 		`mysql> SELECT COUNT(*)`  
 				`FROM mysql.general_log`  
 			  `WHERE argument LIKE 'CREATE TABLE%';`  
-![screenshot_ex1-3](./imgs/Act2_ex6-1.png)  
+![screenshot_ex6-1](./imgs/Act2_ex6-1.png)  
 7.	 Executa una query mitjançant la funció SLEEP(11) per tal que es guardi en el log de Slow Query. Mostra el contingut del log demostrant-ho.  
-![screenshot_ex1-3](./imgs/Act2_ex7-1.png)  
+![screenshot_ex7-1](./imgs/Act2_ex7-1.png)  
+![screenshot_ex7-2](./imgs/Act2_ex7-2.png)  
 8.	Assegura't que el *Binary Log* estigui activat i borra tots els logs anteriors mitjançant la sentència RESET MASTER.  
+![screenshot_ex8-1](./imgs/Act2_ex8-1.png)  
+![screenshot_ex8-2](./imgs/Act2_ex8-2.png)  
+![screenshot_ex8-3](./imgs/Act2_ex8-3.png)  
+![screenshot_ex8-4](./imgs/Act2_ex8-4.png)  
+![screenshot_ex8-5](./imgs/Act2_ex8-5.png)  
+![screenshot_ex8-6](./imgs/Act2_ex8-6.png)  
+![screenshot_ex8-7](./imgs/Act2_ex8-7.png)  
+![screenshot_ex8-8](./imgs/Act2_ex8-8.png)  
+![screenshot_ex8-9](./imgs/Act2_ex8-9.png)  
+![screenshot_ex8-10](./imgs/Act2_ex8-10.png)  
+![screenshot_ex8-11](./imgs/Act2_ex8-11.png)  
+![screenshot_ex8-12](./imgs/Act2_ex8-12.png)  
+![screenshot_ex8-13](./imgs/Act2_ex8-13.png)  
+![screenshot_ex8-14](./imgs/Act2_ex8-14.png)  
 *	Crea i borra una base de dades anomenada foo. Utilitza les sentències:  
         `mysql> CREATE DATABASE foo;`  
 		`mysql> DROP DATABASE foo;`  
-![screenshot_ex1-3](./imgs/Act2_ex8-1.png)  
+
 *	Mitjançant la sentència `SHOW BINLOG EVENTS` llista els esdeveniments i comprova les sentències anteriors en quin fitxer de log estan.  
 
 *	Realitza un Rotate log mitjançant la sentència `FLUSH LOGS`  
