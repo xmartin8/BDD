@@ -10,6 +10,7 @@ Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aqu
 
 1.	Crea un fitxer de configuració a on:  
     *	Canvia el port per defecte de connexió al 3011.  
+      En el fitxer de configuració de /etc/my.cnf canviem el port
     ![screenshot_ex1-1](./imgs/Act2_ex1-1.png)  
     *	Quins són els logs activats per defecte? Com ho has fet per comprovar-ho?  
     ![screenshot_ex1-2.1](./imgs/Act2_ex1-2.png)  
