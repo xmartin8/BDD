@@ -6,7 +6,7 @@
 Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aquests canvis en el fitxer de configuració.  
 
 
-## REALITZA LES SEGÜENTS TASQUES DE CONFIGURACIÓ i COMPROVACIÓ DE LOGS (6 punts) ##
+## REALITZA LES SEGÜENTS TASQUES DE CONFIGURACIÓ i COMPROVACIÓ DE LOGS ##
 
 1.	Crea un fitxer de configuració a on:  
     *	Canvia el port per defecte de connexió al 3011.  
@@ -54,4 +54,66 @@ Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aqu
     *	Quin és el seu contingut?  
     *	Quin número d'esdeveniment ha sigut el de la creació de la base de dades bar?  
 
-## CONFIGURACIÓ DEL SERVIDOR PERCONA SERVER PER REALITZAR CONNEXIONS SEGURES SOBRE SSL. (3 punts) ##  
+## CONFIGURACIÓ DEL SERVIDOR PERCONA SERVER PER REALITZAR CONNEXIONS SEGURES SOBRE SSL. ##  
+Primer de tot hem de crear els certificats i les claus SSL.  
+A continuació estan totes les comandes i seguidament estan les captures de pantalla amb les comprovacions.  
+  
+Comandes:  
+```
+\# Creem un entorn net  
+rm -rf newcerts  
+mkdir newcerts && cd newcerts  
+  
+\# Creem el certificat CA  
+openssl genrsa 2048 > ca-key.pem  
+openssl req -new -x509 -nodes -days 3600 \  
+        -key ca-key.pem -out ca.pem  
+
+\# Creem els certificats del server, esborrem la frase de pas (contrasenya) i iniciem sessió  
+\# server-cert.pem = public key, server-key.pem = private key  
+openssl req -newkey rsa:2048 -days 3600 \  
+        -nodes -keyout server-key.pem -out server-req.pem  
+openssl rsa -in server-key.pem -out server-key.pem  
+openssl x509 -req -in server-req.pem -days 3600 \  
+        -CA ca.pem -CAkey ca-key.pem -set_serial 01 -out server-cert.pem  
+  
+\# Creem els certificats del client, esborrem la frase de pas (contrasenya) i iniciem sessió  
+\# client-cert.pem = public key, client-key.pem = private key  
+openssl req -newkey rsa:2048 -days 3600 \  
+        -nodes -keyout client-key.pem -out client-req.pem  
+openssl rsa -in client-key.pem -out client-key.pem  
+openssl x509 -req -in client-req.pem -days 3600 \  
+        -CA ca.pem -CAkey ca-key.pem -set_serial 01 -out client-cert.pem  
+```
+  
+Després de generar els certificats, els verifiquem:  
+`openssl verify -CAfile ca.pem server-cert.pem client-cert.pem`  
+  
+Captures de pantalla:  
+![screenshot_P2-1](./imgs/Act2_P2-1.png)  
+![screenshot_P2-2](./imgs/Act2_P2-2.png)  
+![screenshot_P2-3](./imgs/Act2_P2-3.png)  
+![screenshot_P2-4](./imgs/Act2_P2-4.png)  
+
+Seguidament configurem el server. Començem editant el fitxer /etc/my.cnf afegint:  
+```
+[mysqld]  
+ssl-ca=ca.pem  
+ssl-cert=server-cert.pem  
+ssl-key=server-key.pem  
+```
+![screenshot_P2-5](./imgs/Act2_P2-5.png)  
+Creem un usuari el SSL estigui requerit:  
+![screenshot_P2-6](./imgs/Act2_P2-6.png)  
+*usuari: ssluser  *
+*pass: P@ssw0rd  *
+  
+Per iniciar sessió amb l’usuari que te el SSL requerit (iniciem sessió com sempre, però afegim al final: --ssl-mode=REQUIRED ), sinó et diu que té l’accés denegat.  
+![screenshot_P2-7](./imgs/Act2_P2-7.png)  
+Per comprovar que funciona el xifrat, podem fer:  
+    * `\s` (com en aquesta captura)
+    ![screenshot_P2-8](./imgs/Act2_P2-8.png)  
+    * `STATUS`  
+    ![screenshot_P2-9](./imgs/Act2_P2-9.png)  
+    * `SHOW SESSION STATUS LIKE 'Ssl_cipher';`  
+    ![screenshot_P2-10](./imgs/Act2_P2-10.png)  
