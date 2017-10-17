@@ -121,7 +121,7 @@ Comprovem que la comanda ha funcionat.
 		`mysql> DROP DATABASE foo;`  
 ![screenshot_ex8-4](./imgs/Act2_ex8-4.png)  
 *	Mitjançant la sentència `SHOW BINLOG EVENTS` llista els esdeveniments i comprova les sentències anteriors en quin fitxer de log estan.  
-![screenshot_ex8-5](./imgs/Act2_ex8-5.png) 
+![screenshot_ex8-5](./imgs/Act2_ex8-5.png)  
 Estan al fitxer `mysql_bin.000001` a `/var/log/mysql`.  
 *	Realitza un Rotate log mitjançant la sentència `FLUSH LOGS`  
 ![screenshot_ex8-6](./imgs/Act2_ex8-6.png)  
@@ -135,7 +135,7 @@ Podem agafar el segon fitxer binari i veure el seu contingut amb la comanda `SHO
 
 *	Borra el primer binary log. Quina sentència has utilitzat?  
 Per esborrar un log s’ha d’utilitzar la comanda `PURGE`, on es pot esborrar fins a un log o una sèrie de logs abans d’una data donada. Esborrem el primer fitxer binari.  
-![screenshot_ex8-10](./imgs/Act2_ex8-10.png) 
+![screenshot_ex8-10](./imgs/Act2_ex8-10.png)  
 *	Utilitza el programa `mysqlbinlog` per mostrar el fitxer *mysql-bin.000002*  
     *	Quin és el seu contingut?  
     Mostra les execucions que hem fet al MYSQL, `CREATE TABLE bar;` i `DROP TABLE bar;`.    
