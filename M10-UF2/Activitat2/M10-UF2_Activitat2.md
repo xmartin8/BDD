@@ -42,7 +42,7 @@ Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aqu
     Afegim al fitxer `/etc/my.cnf`:  
     ![screenshot_ex1-3.8](./imgs/Act2_ex1-3_8.png)  
     Reiniciem el servidor amb `service mysql restart`.  
-    El nostre fitxer `my.cnf` quedaria així.
+    El nostre fitxer `my.cnf` quedaria així.  
     ![screenshot_ex1-3.9](./imgs/Act2_ex1-3_9.png)  
     Si anem a `/var/log/mysql` veurem els fitxers de logs creats.
     ![screenshot_ex1-3.10](./imgs/Act2_ex1-3_10.png)  
