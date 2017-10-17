@@ -15,7 +15,7 @@ Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aqu
     *	Quins són els logs activats per defecte? Com ho has fet per comprovar-ho?  
     Podem veure alguns logs dintre del MYSQl amb la comanda `SHOW VARIABLES LIKE 'log%;`.  
     ![screenshot_ex1-2.1](./imgs/Act2_ex1-2.png)  
-    Dintre del fitxer `/etc/percona-server.cnf.d/mysqld.cnf`trobem el log d'errors.  
+    Dintre del fitxer `/etc/percona-server.cnf.d/mysqld.cnf` trobem el log d'errors.  
     ![screenshot_ex1-2.2](./imgs/Act2_ex1-2_2.png)  
     En `/var/log` el podem trobar.  
     ![screenshot_ex1-2.3](./imgs/Act2_ex1-2_3.png)  
@@ -54,7 +54,7 @@ Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aqu
     ![screenshot_ex2-2](./imgs/Act2_ex2-2.png)  
     Els 3 logs que hem implementat estan activats.
 
-3.	Modifica el fitxer de configuració i desactiva els logs de binary, slow query i genral. **Nota:** Simplement desactiva'ls no esborris altres paràmetres com la ruta dels fitxers, etc...  
+3.	Modifica el fitxer de configuració i desactiva els logs de binary, slow query i general. **Nota:** Simplement desactiva'ls, no esborris altres paràmetres com la ruta dels fitxers, etc...  
 Posem a 0 el `general_log` i `slow_query_log`.  
 Per desactivar el binari afegim un `skip-` davant de `log_bin = mysql-bin`.  
 ![screenshot_ex3-1](./imgs/Act2_ex3-1.png)  
@@ -73,12 +73,12 @@ Comprovem que s'hagin desactivat.
 ![screenshot_ex4-3](./imgs/Act2_ex4-3.png)  
 Log_bin:  
 ![screenshot_ex4-4](./imgs/Act2_ex4-4.png)  
-En el binari ens dona un error perque la variable `log_bin` és només de lectura.  
+En el binari ens dóna un error perquè la variable `log_bin` és només de lectura.  
 Segons la documentació de [MYSQL](https://dev.mysql.com/doc/refman/5.5/en/replication-options-binary-log.html#option_mysqld_log-bin), es pot canviar l’efecte de `log_bin` canviant un altre variable, `sql_log_bin`.  
 `SET SQL_LOB_BIN = ‘x’;`  
-Activarà o desactivarà tots els events binaris de teva sessió.  
+Activarà o desactivarà tots els esdeveniments binaris de teva sessió.  
 `SET GLOBAL SQL_LOG_BIN = ‘x’;`
-Activarà o desactivarà tots els events binaris de totes les sessions.  
+Activarà o desactivarà tots els esdeveniments binaris de totes les sessions.  
 ![screenshot_ex4-5](./imgs/Act2_ex4-5.png)  
 ![screenshot_ex4-6](./imgs/Act2_ex4-6.png)  
 Per canviar el destí del `general_log` a una taula escrivim:  
@@ -110,23 +110,12 @@ Mostrem el contingut del log `/var/log/mysql/slowquery.log`.
 **NOTA:** el slow query ha d’estar activat  
 
 8.	Assegura't que el *Binary Log* estigui activat i borra tots els logs anteriors mitjançant la sentència RESET MASTER.  
-Ens assegurem de que el log binari estigui activat.  
+Ens assegurem que el log binari estigui activat.  
 ![screenshot_ex8-1](./imgs/Act2_ex8-1.png)  
-Borrem tots els logs binaris amb la comanda `RESET MASTER`.  
+Esborrem tots els logs binaris amb la comanda `RESET MASTER`.  
 ![screenshot_ex8-2](./imgs/Act2_ex8-2.png)  
 Comprovem que la comanda ha funcionat.  
-![screenshot_ex8-3](./imgs/Act2_ex8-3.png)  
-
-
-
-
- 
-
-
- 
- 
- 
- 
+![screenshot_ex8-3](./imgs/Act2_ex8-3.png)   
 *	Crea i borra una base de dades anomenada foo. Utilitza les sentències:  
         `mysql> CREATE DATABASE foo;`  
 		`mysql> DROP DATABASE foo;`  
@@ -145,7 +134,7 @@ Podem agafar el segon fitxer binari i veure el seu contingut amb la comanda `SHO
 ![screenshot_ex8-9](./imgs/Act2_ex8-9.png) 
 
 *	Borra el primer binary log. Quina sentència has utilitzat?  
-Per esborrar un log s’ha d’utilitzar la comanda `PURGE`, on es pot esborrar fins a un log o una serie de logs abans d’una data donada. Esborrem el primer fitxer binari.  
+Per esborrar un log s’ha d’utilitzar la comanda `PURGE`, on es pot esborrar fins a un log o una sèrie de logs abans d’una data donada. Esborrem el primer fitxer binari.  
 ![screenshot_ex8-10](./imgs/Act2_ex8-10.png) 
 *	Utilitza el programa `mysqlbinlog` per mostrar el fitxer *mysql-bin.000002*  
     *	Quin és el seu contingut?  
@@ -197,7 +186,7 @@ Captures de pantalla:
 ![screenshot_P2-3](./imgs/Act2_P2-3.png)  
 ![screenshot_P2-4](./imgs/Act2_P2-4.png)  
 
-Seguidament configurem el server. Començem editant el fitxer **/etc/my.cnf** afegint:  
+Seguidament configurem el server. Comencem editant el fitxer **/etc/my.cnf** afegint:  
 ```
 [mysqld]  
 ssl-ca=ca.pem  
