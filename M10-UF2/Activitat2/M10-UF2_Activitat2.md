@@ -129,7 +129,7 @@ Estan al fitxer `mysql_bin.000001` a `/var/log/mysql`.
 ![screenshot_ex8-7](./imgs/Act2_ex8-7.png)  
 *	Llista tots els fitxers de log i els últims canvis mitjançant la sentència SHOW. Quina sentència has utilitzat? Mostra'n el resultat.  
 Podem veure tots els fitxers de log amb `SHOW MASTER LOGS`   
-![screenshot_ex8-8](./imgs/Act2_ex8-8.png) 
+![screenshot_ex8-8](./imgs/Act2_ex8-8.png)  
 Podem agafar el segon fitxer binari i veure el seu contingut amb la comanda `SHOW BINLOG EVENTS IN ‘mysql_bin.000002’;`.  
 ![screenshot_ex8-9](./imgs/Act2_ex8-9.png) 
 
