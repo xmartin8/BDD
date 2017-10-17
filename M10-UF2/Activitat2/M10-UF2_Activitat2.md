@@ -21,25 +21,25 @@ Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aqu
     ![screenshot_ex1-2.3](./imgs/Act2_ex1-2_3.png)  
     *	Activa si no ho estan i indica les configuracions necessàries per activar-los. Indica les rutes dels fitxers de log de Binary, Slow Query i General. Quins paràmetres has modificat?  
     **General log**  
-    Editem el fitxer `/etc/my.cnf`.
+    Editem el fitxer `/etc/my.cnf`.  
     ![screenshot_ex1-3.1](./imgs/Act2_ex1-3.png)  
     Creem una carpeta a `/var/log`.
     ![screenshot_ex1-3.2](./imgs/Act2_ex1-3_2.png)  
     Canviem els permisos de propietari `chown mysql:mysql /var/log/mysql`.
     ![screenshot_ex1-3.3](./imgs/Act2_ex1-3_3.png)  
     Un cop fet reiniciem el servidor `service mysql restart`.  
-    Podem comprovar si fa bé el logs, per exemple amb un `select`.
+    Podem comprovar si fa bé el logs, per exemple amb un `select`.  
     ![screenshot_ex1-3.4](./imgs/Act2_ex1-3_4.png)  
     Mirem el fitxer `/var/log/mysql/mysql_general.log`.
     ![screenshot_ex1-3.5](./imgs/Act2_ex1-3_5.png)  
     **Binary log**  
-    Afegim al fitxer `/etc/my.cnf`:  
+    Afegim al fitxer `/etc/my.cnf`:   
     ![screenshot_ex1-3.6](./imgs/Act2_ex1-3_6.png)  
     Reiniciem el servidor amb `service mysql restart`.  
     Podem veure com s'han creat els fitxers a `/var/log/mysql`.  
     ![screenshot_ex1-3.7](./imgs/Act2_ex1-3_7.png)  
     **Slow query log**  
-    Afegim al fitxer `/etc/my.cnf`:
+    Afegim al fitxer `/etc/my.cnf`:  
     ![screenshot_ex1-3.8](./imgs/Act2_ex1-3_8.png)  
     Reiniciem el servidor amb `service mysql restart`.  
     El nostre fitxer `my.cnf` quedaria així.
@@ -50,7 +50,7 @@ Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aqu
 2.	Comprova l'estat de les opcions de log que has utilitzat mitjançant una sessió de mysql client.  
         Exemple: (`mysql> SHOW GLOBAL VARIABLES LIKE '%log'`)  
     ![screenshot_ex2-1](./imgs/Act2_ex2-1.png)  
-    Per veure el log del binari escrivim `SHOW VARIABLES LIKE ‘log_bin’;`.
+    Per veure el log del binari escrivim `SHOW VARIABLES LIKE ‘log_bin’;`.  
     ![screenshot_ex2-2](./imgs/Act2_ex2-2.png)  
     Els 3 logs que hem implementat estan activats.
 
