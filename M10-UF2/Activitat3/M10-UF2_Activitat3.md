@@ -8,6 +8,16 @@ Partint d'una màquina CentOS 7 amb el Percona Server 5.7 instal·lat realitza e
 Activitat 1. REALITZA I/O RESPON ELS SEGÜENTS APARTATS (1 punts)
 
 1.	Indica quins són els motors d’emmagatzematge que pots utilitzar (quins estan actius)? Mostra al comanda utilitzada i el resultat d’aquesta.
+
+* texto
+
+| Valor | Significat |
+| ---------- | ---------- |
+| `YES`   | L’emmagatzematge està suportat i actiu  |
+| `DEFAULT`   | Com el `YES`, a més és l’emmagatzematge per defecte  |
+| `NO`   | L’emmagatzematge no està suportat  |
+| `DISABLED`   | L’emmagatzematge està suportat i pero no està actiu |
+
 2.	Com puc saber quin és el motor d’emmagatzematge per defecte. Mostra com canviar aquest paràmetre de tal manera que les noves taules que creem a la BD per defecte utilitzin el motor MyISAM?
 3.	Com podem saber quin és el motor d'emmagatzematge per defecte?
 4.	Explica els passos per instal·lar i activar l'ENGINE MyRocks. MyRocks és un motor d'emmagatzematge per MySQL basat en RocksDB (SGBD incrustat de tipus clau-valor).
@@ -72,10 +82,3 @@ Activitat 7. Storage Engine CSV (1 punt)
 1.	Documenta i posa exemple de com utilitzar ENGINE CSV.
 2.	Cal documentar els passos que has hagut de realitzar per preparar l'exemple: configuracions, instruccions DML, DDL, etc....
 3.	Checkpoint: Mostra al professor la configuració que has hagut de realitzar i el seu funcionament.
-
-| Valor | Significat |
-| ---------- | ---------- |
-| `YES`   | L’emmagatzematge està suportat i actiu  |
-| `DEFAULT`   | Com el `YES`, a més és l’emmagatzematge per defecte  |
-| `NO`   | L’emmagatzematge no està suportat  |
-| `DISABLED`   | L’emmagatzematge està suportat i pero no està actiu |
