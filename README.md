@@ -6,3 +6,5 @@ Totes les activitats dels diferents mòduls de BBDD
 **Creació:** Sara i Patricia  
 [Activitat2](https://github.com/saracaparros/BBDD/blob/master/M10-UF2/Activitat2/M10-UF2_Activitat2.md)
 **Creació:** Sara i Patricia  
+[Activitat3](https://github.com/saracaparros/BBDD/blob/master/M10-UF2/Activitat3/M10-UF2_Activitat3.md)
+**Creació:** Sara i Patricia  
