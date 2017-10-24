@@ -72,3 +72,10 @@ Activitat 7. Storage Engine CSV (1 punt)
 1.	Documenta i posa exemple de com utilitzar ENGINE CSV.
 2.	Cal documentar els passos que has hagut de realitzar per preparar l'exemple: configuracions, instruccions DML, DDL, etc....
 3.	Checkpoint: Mostra al professor la configuració que has hagut de realitzar i el seu funcionament.
+
+| Valor | Significat |
+| ---------- | ---------- |
+| `YES`   | L’emmagatzematge està suportat i actiu  |
+| `DEFAULT`   | Com el `YES`, a més és l’emmagatzematge per defecte  |
+| `NO`   | L’emmagatzematge no està suportat  |
+| `DISABLED`   | L’emmagatzematge està suportat i pero no està actiu |
