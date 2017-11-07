@@ -28,11 +28,11 @@ El camp **Support** indica el següent:
 2.	Com puc saber quin és el motor d’emmagatzematge per defecte. Mostra com canviar aquest paràmetre de tal manera que les noves taules que creem a la BD per defecte utilitzin el motor MyISAM?  
   
 El motor d’emmagatzematge per defecte és el InnoDB  
-![screenshot_ex1-1](./imgs/Act1_ex2-p1.png)  
+![screenshot_ex2-1](./imgs/Act1_ex2-p1.png)  
 Per canviar el valor per defecte editem el fitxer de configuració **/etc/my.cnf**  
-![screenshot_ex1-1](./imgs/Act1_ex2-p2.png)  
+![screenshot_ex2-2](./imgs/Act1_ex2-p2.png)  
 `Service mysql restart` i comprovem que s’hagi canviat  
-![screenshot_ex1-1](./imgs/Act1_ex2-p3.png)  
+![screenshot_ex2-3](./imgs/Act1_ex2-p3.png)  
   
 3.	Com podem saber quin és el motor d'emmagatzematge per defecte?  
   
@@ -44,13 +44,13 @@ Amb la comanda `SHOW ENGINES\G` mirant el camp **Support**, ha de ser `DEFAULT`.
 
 Instal·lem Percona MyRocks:  
 `sudo yum install Percona-Server-rocksdb-57.x86_64`  
-![screenshot_ex1-1](./imgs/Act1_ex4-p1.png)  
-![screenshot_ex1-1](./imgs/Act1_ex4-p2.png)  
+![screenshot_ex4-1](./imgs/Act1_ex4-p1.png)  
+![screenshot_ex4-2](./imgs/Act1_ex4-p2.png)  
 Executem l’script `ps-admin` com a usuari root o amb sudo, i donar credencials d’usuari root de MySQL per habilitar el motor d’emmagatzematge RocksDB (My-Rocks).  
 `sudo ps-admin --enable-rocksdb -u root –ppatata`  
-![screenshot_ex1-1](./imgs/Act1_ex4-p3.png)  
+![screenshot_ex4-3](./imgs/Act1_ex4-p3.png)  
 Comprovem que està instal·lat  
-![screenshot_ex1-1](./imgs/Act1_ex4-p4.png)  
+![screenshot_ex4-4](./imgs/Act1_ex4-p4.png)  
   
 ```
 CREATE DATABASE proves;
@@ -64,8 +64,8 @@ CREATE TABLE equips (
 ) ENGINE=Rocksdb;
 ```
   
-![screenshot_ex1-1](./imgs/Act1_ex4-p5.png)  
-![screenshot_ex1-1](./imgs/Act1_ex4-p6.png)  
+![screenshot_ex4-5](./imgs/Act1_ex4-p5.png)  
+![screenshot_ex4-6](./imgs/Act1_ex4-p6.png)  
   
 5.	Importa la BD Sakila com a taules MyISAM. Fes els canvis necessaris per importar la BD Sakila perquè totes les taules siguin de tipus MyISAM.  
 Mira quins són els fitxers físics que ha creat, quan ocupen i quines són les seves extensions. Mostra'n una captura de pantalla i indica què conté cada fitxer.  
@@ -87,7 +87,7 @@ SELECT table_name, engine
 FROM information_schema.TABLES  
 WHERE TABLE_SCHEMA='sakila';  
 ```
-![screenshot_ex1-1](./imgs/Act1_ex5-p1.png)  
+![screenshot_ex5-1](./imgs/Act1_ex5-p1.png)  
   
 Una altre manera és un cop importada (sense haver modificat l’ENGINE) es pot canviar cada taula amb:  
 `ALTER TABLE nom_taula ENGINE = MYISAM;`  
@@ -99,15 +99,15 @@ Al haver creat la base de dades amb MyIsam, MyIam crea 3 fitxers que es guarden 
 * Index file (.MYI): Guarda els índexs de la taula
 
 Aquest fitxers es troben a **/var/lib/mysq/sakila**  
-![screenshot_ex1-1](./imgs/Act1_ex5-p2.png)  
+![screenshot_ex5-2](./imgs/Act1_ex5-p2.png)  
   
 per exemple si mirem el contingut del fitxer **address.frm**:  
-![screenshot_ex1-1](./imgs/Act1_ex5-p3.png)  
+![screenshot_ex5-3](./imgs/Act1_ex5-p3.png)  
   
 El contingut del fitxer **address.MYD** i **address.MYI** no ens deixa veure-ho.  
   
 Podem veure quant ocupen amb un `ls -l`  
-![screenshot_ex1-1](./imgs/Act1_ex5-p4.png)  
+![screenshot_ex5-4](./imgs/Act1_ex5-p4.png)  
   
 ## Activitat 2. INNODB part I. REALITZA ELS SEGÜENTS APARTATS. ##
 
