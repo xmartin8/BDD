@@ -90,7 +90,7 @@ WHERE TABLE_SCHEMA='sakila';
 ![screenshot_ex1-1](./imgs/Act1_ex5-p1.png)  
   
 Una altre manera és un cop importada (sense haver modificat l’ENGINE) es pot canviar cada taula amb:  
-`ALTER TABLE nom_taula ENGINE = MYISAM;`
+`ALTER TABLE nom_taula ENGINE = MYISAM;`  
 L’únic problema són les Foreign Keys, que no deixen modificar-ho correctament.  
   
 Al haver creat la base de dades amb MyIsam, MyIam crea 3 fitxers que es guarden física-ment per cada taula:  
@@ -109,8 +109,6 @@ El contingut del fitxer **address.MYD** i **address.MYI** no ens deixa veure-ho.
 Podem veure quant ocupen amb un `ls -l`  
 ![screenshot_ex1-1](./imgs/Act1_ex5-p4.png)  
   
-
-
 ## Activitat 2. INNODB part I. REALITZA ELS SEGÜENTS APARTATS. ##
 
 1.	Importa la BD Sakila com a taules InnoDB.  
