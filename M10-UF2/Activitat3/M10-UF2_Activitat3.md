@@ -81,5 +81,31 @@ Tingues en compte els permisos a nivell de BD i de SO així com temes de seguret
 
 ## Activitat 7. Storage Engine CSV ##  
 1.	Documenta i posa exemple de com utilitzar ENGINE CSV.  
+Aquest engine guarda les dades en fitxers de text utilitzant una coma per separar cada paràmetre.  
+Aquesta és una forma d’exportar les dades d’una taula molt ràpidament, i que es pot obrir amb un Excel, un Calc, etc. i fins i tot és un format que és molt senzill per “posar-ho maco” amb PowerShell o C#...
 2.	Cal documentar els passos que has hagut de realitzar per preparar l'exemple: configuracions, instruccions DML, DDL, etc...  
-3.	**Checkpoint:** Mostra al professor la configuració que has hagut de realitzar i el seu funcionament.  
+```
+USE proves;  
+CREATE TABLE test (  
+    i	INT		NOT NULL,  
+    c	CHAR(10)	NOT NULL  
+) ENGINE=csv;  
+INSERT INTO test VALUES (1,’record one’),(2,’record two’);  
+SELECT * FROM test;  
+
+| i | c |
+| ---------- | ---------- |
+| 1 | record one |
+| 2 | record two |
+```
+
+Dintre d’aquest estan tots els arxius, i està el test.csv  
+
+```
+[root@asix2 proves]# cd /var/lib/mysql/proves  
+[root@asix2 proves]# ls  
+db.opt	equips.frm	test.CSM	test.CSV	test.frm  
+[root@asix2 proves]# cat test.CSV  
+1,”record one”  
+2,”record two”  
+```
