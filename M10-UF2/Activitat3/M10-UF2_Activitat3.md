@@ -92,12 +92,12 @@ CREATE TABLE test (
 ) ENGINE=csv;  
 INSERT INTO test VALUES (1,’record one’),(2,’record two’);  
 SELECT * FROM test;  
-
+```
 | i | c |
 | ---------- | ---------- |
 | 1 | record one |
 | 2 | record two |
-```
+
 
 Dintre d’aquest estan tots els arxius, i està el test.csv  
 
