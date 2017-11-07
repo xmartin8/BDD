@@ -151,7 +151,9 @@ Podem veure quant ocupen amb un `ls -l`
 ## Activitat 6. Implementar BD Distribuïdes.  ##
 
 Com s'ha vist a classe MySQL proporciona el motor d'emmagatzemament FEDERATED que té com a funció permetre l'accés remot a bases de dades MySQL en un servidor local sense utilitzar tècniques de replicació ni clustering.  
-
+  
+![screenshot_ex1-1](./imgs/Act1_ex6.png)  
+  
 1.	Prepara un Servidor Percona Server amb la BD de Sakila  
 2.	Prepara un segon servidor Percona Server a on hi hauran un conjunt de taules FEDERADES al primer servdor.  
 3.	Per realitzar aquest link entre les dues BD podem fer-ho de dues maneres:  
