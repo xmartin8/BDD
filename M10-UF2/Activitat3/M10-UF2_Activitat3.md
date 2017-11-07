@@ -39,7 +39,34 @@ Per canviar el valor per defecte editem el fitxer de configuració **/etc/my.cnf
 Amb la comanda `SHOW ENGINES\G` mirant el camp **Support**, ha de ser `DEFAULT`.  
   
 4.	Explica els passos per instal·lar i activar l'*ENGINE MyRocks*. MyRocks és un motor d'emmagatzematge per MySQL basat en RocksDB (SGBD incrustat de tipus clau-valor).  
+  
+[Documentació MyRocks](https://www.percona.com/doc/percona-server/LATEST/myrocks/install.html)  
 
+Instal·lem Percona MyRocks:  
+sudo yum install Percona-Server-rocksdb-57.x86_64  
+![screenshot_ex1-1](./imgs/Act1_ex4-p1.png)  
+![screenshot_ex1-1](./imgs/Act1_ex4-p2.png)  
+Executem l’script `ps-admin` com a usuari root o amb sudo, i donar credencials d’usuari root de MySQL per habilitar el motor d’emmagatzematge RocksDB (My-Rocks).  
+sudo ps-admin --enable-rocksdb -u root –ppatata  
+![screenshot_ex1-1](./imgs/Act1_ex4-p3.png)  
+Comprovem que està instal·lat  
+![screenshot_ex1-1](./imgs/Act1_ex4-p4.png)  
+  
+```
+CREATE DATABASE proves;
+USE proves;
+CREATE TABLE equips (
+	equip_id	SMALLINT UNSIGNED PRIMARY KEY,
+	nom		VARCHAR(30) NOT NULL,
+	esponsor	VARCHAR(20) NOT NULL,
+	director	VARCHAR(20) NOT NULL,
+	pressupost	DECIMAL(11,3)
+) ENGINE=Rocksdb;
+```
+  
+![screenshot_ex1-1](./imgs/Act1_ex4-p5.png)  
+![screenshot_ex1-1](./imgs/Act1_ex4-p6.png)  
+  
 5.	Importa la BD Sakila com a taules MyISAM. Fes els canvis necessaris per importar la BD Sakila perquè totes les taules siguin de tipus MyISAM.  
 Mira quins són els fitxers físics que ha creat, quan ocupen i quines són les seves extensions. Mostra'n una captura de pantalla i indica què conté cada fitxer.  
 
