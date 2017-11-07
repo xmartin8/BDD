@@ -26,6 +26,15 @@ El camp **Support** indica el següent:
 | `DISABLED`   | L’emmagatzematge està suportat i pero no està actiu |
   
 2.	Com puc saber quin és el motor d’emmagatzematge per defecte. Mostra com canviar aquest paràmetre de tal manera que les noves taules que creem a la BD per defecte utilitzin el motor MyISAM?  
+  
+El motor d’emmagatzematge per defecte és el InnoDB  
+![screenshot_ex1-1](./imgs/Act1_ex2-p1.png)  
+Per canviar el valor per defecte editem el fitxer de configuració **/etc/my.cnf**  
+![screenshot_ex1-1](./imgs/Act1_ex2-p2.png)  
+`Service mysql restart`  
+Comprovem que s’hagi canviat  
+![screenshot_ex1-1](./imgs/Act1_ex2-p3.png)  
+  
 3.	Com podem saber quin és el motor d'emmagatzematge per defecte?  
 4.	Explica els passos per instal·lar i activar l'*ENGINE MyRocks*. MyRocks és un motor d'emmagatzematge per MySQL basat en RocksDB (SGBD incrustat de tipus clau-valor).  
 **Checkpoint:** Mostra al professor que està instal·lat i posa un exemple de com funciona.  
