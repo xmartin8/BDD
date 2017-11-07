@@ -43,11 +43,11 @@ Amb la comanda `SHOW ENGINES\G` mirant el camp **Support**, ha de ser `DEFAULT`.
 [Documentació MyRocks](https://www.percona.com/doc/percona-server/LATEST/myrocks/install.html)  
 
 Instal·lem Percona MyRocks:  
-sudo yum install Percona-Server-rocksdb-57.x86_64  
+`sudo yum install Percona-Server-rocksdb-57.x86_64`  
 ![screenshot_ex1-1](./imgs/Act1_ex4-p1.png)  
 ![screenshot_ex1-1](./imgs/Act1_ex4-p2.png)  
 Executem l’script `ps-admin` com a usuari root o amb sudo, i donar credencials d’usuari root de MySQL per habilitar el motor d’emmagatzematge RocksDB (My-Rocks).  
-sudo ps-admin --enable-rocksdb -u root –ppatata  
+`sudo ps-admin --enable-rocksdb -u root –ppatata`  
 ![screenshot_ex1-1](./imgs/Act1_ex4-p3.png)  
 Comprovem que està instal·lat  
 ![screenshot_ex1-1](./imgs/Act1_ex4-p4.png)  
