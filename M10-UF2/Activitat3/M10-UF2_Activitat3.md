@@ -80,9 +80,11 @@ Tingues en compte els permisos a nivell de BD i de SO així com temes de seguret
 4.	**Checkpoint:** Mostra al professor la configuració que has hagut de realitzar i el seu funcionament.  
 
 ## Activitat 7. Storage Engine CSV ##  
-**1.**	Documenta i posa exemple de com utilitzar ENGINE CSV.  
+2. Documenta i posa exemple de com utilitzar ENGINE CSV.  
+  
 Aquest engine guarda les dades en fitxers de text utilitzant una coma per separar cada paràmetre.  
 Aquesta és una forma d’exportar les dades d’una taula molt ràpidament, i que es pot obrir amb un Excel, un Calc, etc. i fins i tot és un format que és molt senzill per “posar-ho maco” amb PowerShell o C#...
+  
 2.	Cal documentar els passos que has hagut de realitzar per preparar l'exemple: configuracions, instruccions DML, DDL, etc...  
 ```
 USE proves;  
