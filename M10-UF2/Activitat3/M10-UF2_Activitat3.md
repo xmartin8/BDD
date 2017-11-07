@@ -9,16 +9,22 @@ Partint d'una màquina CentOS 7 amb el Percona Server 5.7 instal·lat realitza e
 ## Activitat 1. REALITZA I/O RESPON ELS SEGÜENTS APARTATS ##
 
 1.	Indica quins són els motors d’emmagatzematge que pots utilitzar (quins estan actius)? Mostra al comanda utilitzada i el resultat d’aquesta.  
+  
+Amb la comanda `SHOW ENGINES` podem veure quins motors d’emmagatzematge te-nim.  
+Per veure els camps ordenats podem posar `SHOW EGINES\G;`  
 
-*texto*
+![screenshot_ex1-1](./imgs/Act1_ex1-p1.png)  
+![screenshot_ex1-2](./imgs/Act1_ex1-p2.png)  
 
+El camp **Support** indica el següent:
+  
 | Valor | Significat |
 | ---------- | ---------- |
 | `YES`   | L’emmagatzematge està suportat i actiu  |
 | `DEFAULT`   | Com el `YES`, a més és l’emmagatzematge per defecte  |
 | `NO`   | L’emmagatzematge no està suportat  |
 | `DISABLED`   | L’emmagatzematge està suportat i pero no està actiu |
-
+  
 2.	Com puc saber quin és el motor d’emmagatzematge per defecte. Mostra com canviar aquest paràmetre de tal manera que les noves taules que creem a la BD per defecte utilitzin el motor MyISAM?  
 3.	Com podem saber quin és el motor d'emmagatzematge per defecte?  
 4.	Explica els passos per instal·lar i activar l'*ENGINE MyRocks*. MyRocks és un motor d'emmagatzematge per MySQL basat en RocksDB (SGBD incrustat de tipus clau-valor).  
