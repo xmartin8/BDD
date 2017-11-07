@@ -69,6 +69,46 @@ CREATE TABLE equips (
   
 5.	Importa la BD Sakila com a taules MyISAM. Fes els canvis necessaris per importar la BD Sakila perquè totes les taules siguin de tipus MyISAM.  
 Mira quins són els fitxers físics que ha creat, quan ocupen i quines són les seves extensions. Mostra'n una captura de pantalla i indica què conté cada fitxer.  
+  
+Per canviar les taules a MyISAM, editem el fitxer sakila-schema.sql i modifiquem els EN-GINE posant MyISAM.  
+```
+CREATE TABLE actor (  
+actor_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,  
+first_name VARCHAR(45) NOT NULL,  
+last_name VARCHAR(45) NOT NULL,  
+last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  
+PRIMARY KEY  (actor_id),  
+KEY idx_actor_last_name (last_name)  
+)ENGINE=MyISAM DEFAULT CHARSET=utf8;  
+```
+Per veure el sistema d’emmagatzament més senzill, ho farem amb aquesta comanda:  
+```
+SELECT table_name, engine  
+FROM information_schema.TABLES  
+WHERE TABLE_SCHEMA='sakila';  
+```
+![screenshot_ex1-1](./imgs/Act1_ex5-p1.png)  
+  
+Una altre manera és un cop importada (sense haver modificat l’ENGINE) es pot canviar cada taula amb:  
+`ALTER TABLE nom_taula ENGINE = MYISAM;`
+L’únic problema són les Foreign Keys, que no deixen modificar-ho correctament.  
+  
+Al haver creat la base de dades amb MyIsam, MyIam crea 3 fitxers que es guarden física-ment per cada taula:  
+* Format file (.frm): Guarda la definició de l'estructura de la taula
+* Data file (.MYD): Guarda el contingut de la taula (files/dades)
+* Index file (.MYI): Guarda els índexs de la taula
+
+Aquest fitxers es troben a **/var/lib/mysq/sakila**  
+![screenshot_ex1-1](./imgs/Act1_ex5-p2.png)  
+  
+per exemple si mirem el contingut del fitxer **address.frm**:  
+![screenshot_ex1-1](./imgs/Act1_ex5-p3.png)  
+  
+El contingut del fitxer **address.MYD** i **address.MYI** no ens deixa veure-ho.  
+  
+Podem veure quant ocupen amb un `ls -l`  
+![screenshot_ex1-1](./imgs/Act1_ex5-p4.png)  
+  
 
 
 ## Activitat 2. INNODB part I. REALITZA ELS SEGÜENTS APARTATS. ##
