@@ -225,11 +225,32 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 ## Activitat 5. REDOLOG. REALITZA ELS SEGÜENTS APARTATS. ##
 
 1.	Com podem comprovar (Innodb Log Checkpointing):  
+
+	[Documentació REDOLOG](https://www.percona.com/blog/2012/02/17/the-relationship-between-innodb-log-checkpointing-and-dirty-buffer-pool-pages/)  
+	
+	Utilitzem la comanda `SHOW ENGINES INNODB STATUS\G;` i busquem la secció `LOG`.  
+	![screenshot_ex5-1](./imgs/Act2_ex5-p1.png)  
+
 	* LSN (Log Sequence Number)  
+	
+	El LSN és el log sequence number, el número 1216054.   
+		
 	* L'últim LSN actualitzat a disc  
+	
+	L’últim LSN actualitzat a disk és el 1216054.  
+			
 	* Quin és l'últim LSN que se li ha fet Checkpoint  
-2.	Proposa un exemple a on es vegi l'ús del redolog  
+	
+	L’últim LSN que se li ha fet checkpoint és el 1216054.
+	 
 3.	Com podem mirar el número de pàgines modificades (dirty pages)? I el número total de pàgines?  
+
+	Utilitzem la comanda `SHOW ENGINES INNODB STATUS\G;` i busquem la secció `BUFFER POOL AND MEMORY`.  
+	![screenshot_ex5-1](./imgs/Act2_ex5-p1.png)  
+	
+	El número de pàgines modificades ens ho dona el paràmetre `Modified db pages`, que en aquest cas en tenim 0.  
+	Per veure el total de les pàgines que en tenim, el paràmetre `Databses pages` ens diu 157.  
+	
 4.	**Checkpoint:** Mostra al professor els canvis realitzats i que la BD continua funcionant.  
 
 ## Activitat 6. Implementar BD Distribuïdes.  ##
