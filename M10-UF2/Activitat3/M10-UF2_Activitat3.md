@@ -112,15 +112,99 @@ Podem veure quant ocupen amb un `ls -l`
 ## Activitat 2. INNODB part I. REALITZA ELS SEGÜENTS APARTATS. ##
 
 1.	Importa la BD Sakila com a taules InnoDB.  
+
+Importem la base de dades amb un `SOURCE`.  
+![screenshot_ex2-1-1](./imgs/Act2_ex1-p1.png)  
+
+![screenshot_ex2-1-2](./imgs/Act2_ex1-p2.png)  
+
 2.	Quin/quins són els fitxers de dades? A on es troben i quin és la seva mida?  
+
+Els fitxers que crea InnoDB es troben a `/var/lib/mysql/sakila` i són els fitxers amb extensió:  
+* .ibd (integrated backup): conté dades i indexs de cada taula (només quan està activitat el `Innodb_file_per_table` , que guarda cada taula en un fitxer).  
+* .ibdata1 (integrated backup data part 1): conté el diccionari de dades i l’historial de transaccions per totes les taules.  
+* .frm (format): d’escriu el format de les taules, nclosos els camps i estructura de cada taula.  
+
+Si `Innodb_file_per_table`  està activat, podem veure el següent:  
+![screenshot_ex2-2-1](./imgs/Act2_ex2-p1.png)  
+
+Si `Innodb_file_per_table` està desactivat, podem veure el següent:  
+![screenshot_ex2-2-2](./imgs/Act2_ex2-p2.png)  
+
 3.	Canvia la configuració del MySQL perquè:  
 	* Canviar la localització dels fitxers del tablespace de sistema per defecte a /discs-mysql/  
+	
+	[Documentació Tecmint](https://www.tecmint.com/change-default-mysql-mariadb-data-directory-in-linux/)  
+	
+	Primer creem el nou directori i li otorguem permisos.  
+	`mkdir /discs-mysql`  
+	`chown -R mysql:mysql /discs-mysql`
+	  
+	Parem el servei mysql.
+	`service mysqld stop`  
+	
+	Copiem els fitxers de mysql al nou directori.
+	`cp -R -p /var/lib/mysql/* /discs-mysql`  
+	![screenshot_ex2-1-1](./imgs/Act2_ex3-1-p1.png)  
+	
+	Editem el fitxer `/etc/my.cnf` per afegir el nou directori.  
+	![screenshot_ex2-1-2](./imgs/Act2_ex3-1-p2.png)  
+	
+	Afegim la seguretat SELinux al nou directori abans de engenar de nou el mysql.  
+	`semanage fcontext -a -t mysqld_db_t "/discs-mysql(/.*)?"`  
+	`restorecon -R /discs-mysql`  
+	
+	Engeguem el servei mysql.
+	`service mysqld start`  
+	
+	Mirem si el directori ha canviat entrant al mysql i fent un `SELECT @@datadir;`  
+	![screenshot_ex2-1-3](./imgs/Act2_ex3-1-p3.png)  
+
+	
 	* Tinguem dos fitxers corresponents al tablespace de sistema.  
-	* Tots dos han de tenir la mateixa mida inicial (1MB)  
+	
+	[Documentació InnoDB](https://dev.mysql.com/doc/refman/5.7/en/innodb-init-startup-configuration.html)  
+	
+	Si anem al nou directori que hem creat veurem que només en tenim un system tablespace.  
+	Volem tenir-ne 2.  
+	![screenshot_ex3-2-1](./imgs/Act2_ex3-2-p1.png)  
+	
+	Fem un `service mysqld stop`.  
+	Amb la comanda `rm -rf /discs-mysql/ib*`borrem el ibdata.  
+	Editem el fitxer `/etc/my.cnf`.  
+	![screenshot_ex3-2-2](./imgs/Act2_ex3-2-p2.png)  
+
+	`service mysqld start`.  
+	
+	* Tots dos han de tenir la mateixa mida inicial (5MB)  
+	
+	Amb `innodb_data_file_path = ibdata1:5M;ibdata2:5M:autoextend` al `/etc/my.cnf` li podem dir la mida inicial.  
+	
 	* El tablespace ha de creixer de 1MB en 1MB.  
+	
+	Amb `innodb_autoextend_increment = 1M `el tablespace creixerà de 1MB en 1MB.  
+	
+	Ens ha creat els dos fitxers `ibdata`.  
+	![screenshot_ex3-2-3](./imgs/Act2_ex3-2-p3.png)  
+	
 	* Situa aquests fitxers (de manera relativa a la localització per defecte) en una nova localització simulant el següent:  
-		* /discs-mysql/disk1/primer fitxer de dades → simularà un disc dur  
+		* /discs-mysql/disk1/primer fitxer de dades → simularà un disc dur.   
 		* /discs-mysql/disk2/segon fitxer de dades → simularà un segon disc dur.  
+
+	Primer creem els dos fitxers, afegint-lis els mateixos permisos que té el mysql i dient-li que mysql sigui el propietari.  
+	![screenshot_ex3-5-1](./imgs/Act2_ex3-5-p1.png)  
+	
+	![screenshot_ex3-5-2](./imgs/Act2_ex3-5-p2.png)  
+	
+	Abans de canviar res, aturem el servei `service mysqld stop`.  
+	Eliminem els ibdata que tenim `rm -rf /discs-mysql/ib*`.  
+	Entrem a l'arxiu `/etc/my.cnf` i afegim el directoris disk1 i disk2.  
+	![screenshot_ex3-5-3](./imgs/Act2_ex3-5-p3.png)  
+	
+	Tornem a engegar el servei `service mysqld start`.  
+	Comprovem que els fitxers ibdata estiguin al directori que hem assignat.  
+	![screenshot_ex3-5-4](./imgs/Act2_ex3-5-p4.png)  
+	
 4.	**Checkpoint:** Mostra al professor els canvis realitzats i que la BD continua funcionant.  
 
 
