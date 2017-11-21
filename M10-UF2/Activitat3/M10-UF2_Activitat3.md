@@ -380,55 +380,54 @@ Deshabilitem la seguretat SELinux:
 ![screenshot_ex6-3](./imgs/Act1_ex6-p3.png)  
 	1.	Opció1: especificar TOTA la cadena de connexió a CONNECTION  
 	
-	Creem un link especificant tota la cadena de connexió a CONNECTION.  
+Creem un link especificant tota la cadena de connexió a CONNECTION.  
 	
-	Creem una taula federada en el servidor 2:
+Creem una taula federada en el servidor 2:
 	
-	![screenshot_ex6-4](./imgs/Act1_ex6-p4.png)  
-	La ip correspon a la del servidor 1.  
-
+![screenshot_ex6-4](./imgs/Act1_ex6-p4.png)  
+La ip correspon a la del servidor 1.  
 	2.	Opció2: especificar una connexió a un server a CONNECTION que prèviament s'ha creat mitjançant CREATE SERVER  
-	
-	`CREATE SERVER primer  
-	FOREIGN DATA WRAPPER mysql  
-	OPTIONS (USER 'perepe', HOST '192.168.1.141', PORT 3306, DATABASE 'sakila');`  	
-	
+
+`CREATE SERVER primer  
+FOREIGN DATA WRAPPER mysql  
+OPTIONS (USER 'perepe', HOST '192.168.1.141', PORT 3306, DATABASE 'sakila');`  	
 	3.	Posa un exemple de 2 taules de cada opció.  
 Tingues en compte els permisos a nivell de BD i de SO així com temes de seguretat com firewalls, etc...  
-	Exemple opció 1:  
-	
-	Si inserim dades en el servidor 1 a la taula category:  
-	![screenshot_ex6-5](./imgs/Act1_ex6-p5.png)  
-	
-	Com que en el servidor 2 hem creat una taula federada, hauria d’agafar les mateixes dades:  
-	![screenshot_ex6-6](./imgs/Act1_ex6-p6.png)   
-	Això és pot ser per un problema de permissos, en cara que hem fet totes les possibles solucions.  
-	
-	Exemple opció 2:  
-	Creem una taula al servidor 2:  
-	
-	`CREATE TABLE language (  
-	language_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,  
-	name CHAR(20) NOT NULL,  
-	last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  
-	PRIMARY KEY (language_id)  
-	)  
-	ENGINE=FEDERATED  
-	CONNECTION='primer/language';`  
-	
-	El paràmetre `CONNECTION`correspón al nom que rep el `SERVER` que hem creat més la taula.
-	
-	Hauriem de fer un `INSERT` a aquesta taula de servidor 2, i si ens anéssim al servidor 1, hauriem de poder veure aquest `insert` amb un `select`.  
 
+Exemple opció 1:  
+
+Si inserim dades en el servidor 1 a la taula category:  
+![screenshot_ex6-5](./imgs/Act1_ex6-p5.png)  
+
+Com que en el servidor 2 hem creat una taula federada, hauria d’agafar les mateixes dades:  
+![screenshot_ex6-6](./imgs/Act1_ex6-p6.png)   
+Això és pot ser per un problema de permissos, en cara que hem fet totes les possibles solucions.  
+
+Exemple opció 2:  
+Creem una taula al servidor 2:  
+
+`CREATE TABLE language (  
+language_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,  
+name CHAR(20) NOT NULL,  
+last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  
+PRIMARY KEY (language_id)  
+)  
+ENGINE=FEDERATED  
+CONNECTION='primer/language';`  
+
+El paràmetre `CONNECTION`correspón al nom que rep el `SERVER` que hem creat més la taula.
+
+Hauriem de fer un `INSERT` a aquesta taula de servidor 2, i si ens anéssim al servidor 1, hauriem de poder veure aquest `insert` amb un `select`.  
 	4.	Detalla quines són els passos i comandes que has hagut de realitzar en cada màquina.  
 	
-	Als dos servidors he hagut de permetre el port per no tenir-ne problemes amb el firewall. A més al servidor 1 hem creat un usuari amb tots els privilegis i hem desabilitat la seguretat SELinux.  
-	
-	Per crear les taules federades hem hagut d'especificar al paràmetre `ENGINE` que es tratava d'una taula federada. A més, al paràmetre `CONNECTION` l'hem especificat de dues maneres:  
-	* La primera especificant una cadena de connexió: `CONNECTION='mysql://root:patata@192.168.1.41:3306/sakila/category';`  
-	* La segona especificant una connexió a un server a `CONNECTION` que prèviament s'ha creat mitjançant `CREATE SERVER`:  
-	`(USER 'perepe', HOST '192.168.1.141', PORT 3306, DATABASE 'sakila')` (per establir la connexió en el `CREATE SERVER`)  
-	`CONNECTION='primer/language';` (en la sentència `CREATE TABLE` hem afegit la connexió del `CREATE SERVER` i la taula federada.  	
+Als dos servidors he hagut de permetre el port per no tenir-ne problemes amb el firewall. A més al servidor 1 hem creat un usuari amb tots els privilegis i hem desabilitat la seguretat SELinux.  
+
+Per crear les taules federades hem hagut d'especificar al paràmetre `ENGINE` que es tratava d'una taula federada. A més, al paràmetre `CONNECTION` l'hem especificat de dues maneres:  
+* La primera especificant una cadena de connexió: `CONNECTION='mysql://root:patata@192.168.1.41:3306/sakila/category';`  
+* La segona especificant una connexió a un server a `CONNECTION` que prèviament s'ha creat mitjançant `CREATE SERVER`:  
+`(USER 'perepe', HOST '192.168.1.141', PORT 3306, DATABASE 'sakila')` (per establir la connexió en el `CREATE SERVER`)  
+`CONNECTION='primer/language';` (en la sentència `CREATE TABLE` hem afegit la connexió del `CREATE SERVER` i la taula federada.  
+
 4.	**Checkpoint:** Mostra al professor la configuració que has hagut de realitzar i el seu funcionament.  
 
 ## Activitat 7. Storage Engine CSV ##  
