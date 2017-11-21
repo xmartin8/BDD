@@ -23,7 +23,7 @@ El camp **Support** indica el següent:
 | `YES`   | L’emmagatzematge està suportat i actiu  |
 | `DEFAULT`   | Com el `YES`, a més és l’emmagatzematge per defecte  |
 | `NO`   | L’emmagatzematge no està suportat  |
-| `DISABLED`   | L’emmagatzematge està suportat i pero no està actiu |
+| `DISABLED`   | L’emmagatzematge està suportat però no està actiu |
   
 2.	Com puc saber quin és el motor d’emmagatzematge per defecte. Mostra com canviar aquest paràmetre de tal manera que les noves taules que creem a la BD per defecte utilitzin el motor MyISAM?  
   
@@ -121,9 +121,9 @@ Importem la base de dades amb un `SOURCE`.
 2.	Quin/quins són els fitxers de dades? A on es troben i quin és la seva mida?  
 
 Els fitxers que crea InnoDB es troben a `/var/lib/mysql/sakila` i són els fitxers amb extensió:  
-* .ibd (integrated backup): conté dades i indexs de cada taula (només quan està activitat el `Innodb_file_per_table` , que guarda cada taula en un fitxer).  
+* .ibd (integrated backup): conté dades i índexs de cada taula (només quan està activitat el `Innodb_file_per_table` , que guarda cada taula en un fitxer).  
 * .ibdata1 (integrated backup data part 1): conté el diccionari de dades i l’historial de transaccions per totes les taules.  
-* .frm (format): d’escriu el format de les taules, nclosos els camps i estructura de cada taula.  
+* .frm (format): descriu el format de les taules, inclosos els camps i estructura de cada taula.  
 
 Si `Innodb_file_per_table`  està activat, podem veure el següent:  
 ![screenshot_ex2-2-1](./imgs/Act2_ex2-p1.png)  
@@ -136,7 +136,7 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 	
 	[Documentació Tecmint](https://www.tecmint.com/change-default-mysql-mariadb-data-directory-in-linux/)  
 	
-	Primer creem el nou directori i li otorguem permisos.  
+	Primer creem el nou directori i li atorguem permisos.  
 	`mkdir /discs-mysql`  
 	`chown -R mysql:mysql /discs-mysql`
 	  
@@ -150,7 +150,7 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 	Editem el fitxer `/etc/my.cnf` per afegir el nou directori.  
 	![screenshot_ex2-1-2](./imgs/Act2_ex3-1-p2.png)  
 	
-	Afegim la seguretat SELinux al nou directori abans de engenar de nou el mysql.  
+	Afegim la seguretat SELinux al nou directori abans de engegar de nou el mysql.  
 	`semanage fcontext -a -t mysqld_db_t "/discs-mysql(/.*)?"`  
 	`restorecon -R /discs-mysql`  
 	
@@ -191,7 +191,7 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 		* /discs-mysql/disk1/primer fitxer de dades → simularà un disc dur.   
 		* /discs-mysql/disk2/segon fitxer de dades → simularà un segon disc dur.  
 
-	Primer creem els dos fitxers, afegint-lis els mateixos permisos que té el mysql i dient-li que mysql sigui el propietari.  
+	Primer creem els dos fitxers, afegint-li els mateixos permisos que té el mysql i dient-li que mysql sigui el propietari.  
 	![screenshot_ex3-5-1](./imgs/Act2_ex3-5-p1.png)  
 	
 	![screenshot_ex3-5-2](./imgs/Act2_ex3-5-p2.png)  
@@ -231,7 +231,7 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 	`semanage fcontext -a -t mysqld_db_t "/tspaces(/.*)?"`.  
 	`restorecon -R /tspaces`.  
 	
-	Encenem el servei amb un `service mysqld start`.  
+	Engeguem el servei amb un `service mysqld start`.  
 	Mirem si el directori ha canviat entrant al MYSQL i fent un `SELECT @@datadir;`  
 	![screenshot_ex3-5](./imgs/Act3_ex1-p5.png)  	
 
