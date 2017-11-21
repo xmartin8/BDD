@@ -241,10 +241,77 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 
 ## Activitat 4. INNODB part III. REALITZA ELS SEGÜENTS APARTATS. ##
 
-1.	Crea un tablespace anomenat **'ts1'** situat a `/discs-mysql/disc1/` i col·loca les taules *actor*, *address* i *category* de la BD Sakila.  
-2.	Crea un altre tablespace anomenat **'ts2'** situat a `/discs-mysql/disc2/` i col·loca-hi la resta de taules.  
+1.	Crea un tablespace anomenat **'ts1'** situat a `/discs-mysql/disk1/` i col·loca les taules *actor*, *address* i *category* de la BD Sakila.  
+
+Abans de tot, perque funcioni bé desfem el que haviem fet a l’activitat 3.  
+![screenshot_ex4-1-1](./imgs/Act4_ex1-p1.png)  
+I fem un `service mysqld restart` per aplicar els canvis.  
+
+Ens posicionem a la base de dades sakila:  
+`use sakila;`  
+
+Creem el tablespace a `/discs-mysql/disk1`.  
+`CREATE TABLESPACE ts1 ADD DATAFILE '/discs-mysql/disk1/ts1.ibd' ENGINE=InnoDB;`  
+![screenshot_ex4-1-2](./imgs/Act4_ex1-p2.png)  
+
+Amb les sentencies `ALTER TABLE` afegim les taules que ens demana:  
+
+`ALTER TABLE actor TABLESPACE ts1;`  
+`ALTER TABLE address TABLESPACE ts1;`  
+`ALTER TABLE category TABLESPACE ts1;`  
+
+![screenshot_ex4-1-3](./imgs/Act4_ex1-p3.png)  
+
+2.	Crea un altre tablespace anomenat **'ts2'** situat a `/discs-mysql/disk2/` i col·loca-hi la resta de taules.  
+
+Creem el tablespace a `/discs-mysql/disk2`.  
+`CREATE TABLESPACE ts2 ADD DATAFILE '/discs-mysql/disk2/ts2.ibd' ENGINE=InnoDB;`  
+![screenshot_ex4-2-1](./imgs/Act4_ex2-p1.png)  
+
+Amb les sentencies `ALTER TABLE` afegim les taules que ens demana:  
+
+`ALTER TABLE city TABLESPACE ts2;`  
+`ALTER TABLE country TABLESPACE ts2;`  
+`ALTER TABLE customer TABLESPACE ts2;`  
+![screenshot_ex4-2-2](./imgs/Act4_ex2-p2.png)  
+
+`ALTER TABLE film TABLESPACE ts2;`  
+`ALTER TABLE film_actor TABLESPACE ts2;`  
+`ALTER TABLE film_category TABLESPACE ts2;`  
+`ALTER TABLE film_text TABLESPACE ts2;`  
+`ALTER TABLE inventory TABLESPACE ts2;`  
+![screenshot_ex4-2-3](./imgs/Act4_ex2-p3.png)  
+
+`ALTER TABLE language TABLESPACE ts2;`  
+![screenshot_ex4-2-4](./imgs/Act4_ex2-p4.png)  
+
+`ALTER TABLE payment TABLESPACE ts2;`  
+`ALTER TABLE rental TABLESPACE ts2;`  
+![screenshot_ex4-2-5](./imgs/Act4_ex2-p5.png)  
+
+`ALTER TABLE staff TABLESPACE ts2;`  
+![screenshot_ex4-2-6](./imgs/Act4_ex2-p6.png)  
+
+`ALTER TABLE store TABLESPACE ts2;`  
+![screenshot_ex4-2-7](./imgs/Act4_ex2-p7.png)  
+
 3.	Comprova que pots realitzar operacions DML a les taules dels dos tablespaces.  
+
+Intentem fer operacions `DML` a les taules del tablesapace.  
+
+Al tablespace `ts1`:  
+`INSERT INTO actor(first_name, last_name)  
+VALUES("patricia","lopez");`  
+![screenshot_ex4-3-1](./imgs/Act4_ex3-p1.png)  
+
+Al tablespace `ts2`:  
+![screenshot_ex4-3-2](./imgs/Act4_ex3-p2.png)  
+
 4.	Quines comandes i configuracions has realitzat per fer els dos apartats anteriors?  
+
+Hem utilitzat les comandes `CREATE TABLESPACE I ALTER TABLE` per crear 2 tablespaces, un a `/discs-mysql/disk1` i l’altre a `/discs-mysql/disk2`. Amb les diferents sentències `ALTER TABLE` hem pogut afegir algunes taules als tablespaces.  
+Per intentar fer operaciones `DML`, hem utilitazat la sentència `INSERT INTO` per afegir dades a una taula.  
+
 5.	**Checkpoint:** Mostra al professor els canvis realitzats i que la BD continua funcionant  
 
 ## Activitat 5. REDOLOG. REALITZA ELS SEGÜENTS APARTATS. ##
