@@ -355,6 +355,7 @@ Com s'ha vist a classe MySQL proporciona el motor d'emmagatzemament FEDERATED qu
 ![screenshot_ex6](./imgs/Act1_ex6.png)  
 
 [Documentació FEDERATED Storage Engine](https://dev.mysql.com/doc/refman/5.7/en/federated-storage-engine.html)  
+[Documentació MYSQL CREATE TABLE FEDERATED](https://dev.mysql.com/doc/refman/5.7/en/federated-create-server.html)  
   
 1.	Prepara un Servidor Percona Server amb la BD de Sakila  
   
@@ -377,7 +378,6 @@ Creem un usuari al servidor 1 i li atorguem tots els privilegis:
 
 Deshabilitem la seguretat SELinux:  
 ![screenshot_ex6-3](./imgs/Act1_ex6-p3.png)  
-
 	1.	Opció1: especificar TOTA la cadena de connexió a CONNECTION  
 	
 	Creem un link especificant tota la cadena de connexió a CONNECTION.  
@@ -395,7 +395,6 @@ Deshabilitem la seguretat SELinux:
 	
 	3.	Posa un exemple de 2 taules de cada opció.  
 Tingues en compte els permisos a nivell de BD i de SO així com temes de seguretat com firewalls, etc...  
-
 	Exemple opció 1:  
 	
 	Si inserim dades en el servidor 1 a la taula category:  
