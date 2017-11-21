@@ -212,7 +212,32 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 
 1.	Partint de l'esquema anterior configura el Percona Server perquè cada taula generi el seu propi tablespace en una carpeta anomenada ***tspaces*** *(aquesta pot estar situada a on vulgueu)*.  
 	1.	Indica quins són els canvis de configuració que has realitzat.  
+	[Documentació MYSQL Innodb_file_per_table](https://dev.mysql.com/doc/refman/5.5/en/innodb-multiple-tablespaces.html)  
+	
+	El paràmetre `innodb_file_per_table` ha d'estar activat per generar tablespaces `.ibd`.  
+	![screenshot_ex3-1](./imgs/Act3_ex1-p1.png)  
+	
+	Fem un `service mysqld stop`.  
+	![screenshot_ex3-2](./imgs/Act3_ex1-p2.png)  
+	![screenshot_ex3-3](./imgs/Act3_ex1-p3.png)  
+	
+	Editem el fitxer `/etc/my.cnf` i canviem el `data_dir` per el nou directori `/tspaces`. També comentem el que hem fet en l’anterior exercici.  
+	![screenshot_ex3-4](./imgs/Act3_ex1-p4.png)  
+	
+	Copiem els fitxers al nou directori `cp -R -p /var/lib/mysql/* /tspaces`.  
+	Afegim la seguretat SELinux al nou directori abans de engenar de nou el mysql.  
+	`semanage fcontext -a -t mysqld_db_t "/tspaces(/.*)?"`.  
+	`restorecon -R /tspaces`.  
+	
+	Encenem el servei amb un `service mysqld start`.  
+	Mirem si el directori ha canviat entrant al MYSQL i fent un `SELECT @@datadir;`  
+	![screenshot_ex3-5](./imgs/Act3_ex1-p5.png)  	
+
+
 	2.	Després del canvi què ha passat amb els fitxers que contenien les dades de la BD de Sakila? Fes les captures necesàries per complementar la resposta.  
+	
+	Els fitxers han canviat de directori, ara es generaran a `/tspaces`.  
+	
 
 ## Activitat 4. INNODB part III. REALITZA ELS SEGÜENTS APARTATS. ##
 
