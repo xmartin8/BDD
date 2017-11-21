@@ -353,6 +353,8 @@ Per intentar fer operaciones `DML`, hem utilitazat la sentència `INSERT INTO` p
 Com s'ha vist a classe MySQL proporciona el motor d'emmagatzemament FEDERATED que té com a funció permetre l'accés remot a bases de dades MySQL en un servidor local sense utilitzar tècniques de replicació ni clustering.  
   
 ![screenshot_ex6](./imgs/Act1_ex6.png)  
+
+[Documentació FEDERATED Storage Engine](https://dev.mysql.com/doc/refman/5.7/en/federated-storage-engine.html)  
   
 1.	Prepara un Servidor Percona Server amb la BD de Sakila  
   
