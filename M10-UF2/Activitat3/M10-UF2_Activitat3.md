@@ -218,6 +218,8 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 	![screenshot_ex3-1](./imgs/Act3_ex1-p1.png)  
 	
 	Fem un `service mysqld stop`.  
+	
+	Creem el nou directori i li otorguem permissos.  
 	![screenshot_ex3-2](./imgs/Act3_ex1-p2.png)  
 	![screenshot_ex3-3](./imgs/Act3_ex1-p3.png)  
 	
@@ -305,6 +307,7 @@ VALUES("patricia","lopez");`
 ![screenshot_ex4-3-1](./imgs/Act4_ex3-p1.png)  
 
 Al tablespace `ts2`:  
+`INSERT INTO language(name) VALUES("ca");`  
 ![screenshot_ex4-3-2](./imgs/Act4_ex3-p2.png)  
 
 4.	Quines comandes i configuracions has realitzat per fer els dos apartats anteriors?  
