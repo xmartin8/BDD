@@ -152,10 +152,17 @@ Podem veure quant ocupen amb un `ls -l`
 
 Com s'ha vist a classe MySQL proporciona el motor d'emmagatzemament FEDERATED que té com a funció permetre l'accés remot a bases de dades MySQL en un servidor local sense utilitzar tècniques de replicació ni clustering.  
   
-![screenshot_ex1-1](./imgs/Act1_ex6.png)  
+![screenshot_ex6](./imgs/Act1_ex6.png)  
   
 1.	Prepara un Servidor Percona Server amb la BD de Sakila  
-2.	Prepara un segon servidor Percona Server a on hi hauran un conjunt de taules FEDERADES al primer servdor.  
+  
+```
+mysql -u root -ppatata
+source ./sakila-schema.sql
+```
+![screenshot_ex6-1](./imgs/Act1_ex6-p1.png)  
+  
+2.	Prepara un segon servidor Percona Server a on hi hauran un conjunt de taules FEDERADES al primer servidor.  
 3.	Per realitzar aquest link entre les dues BD podem fer-ho de dues maneres:  
 	1.	Opció1: especificar TOTA la cadena de connexió a CONNECTION  
 	2.	Opció2: especificar una connexió a un server a CONNECTION que prèviament s'ha creat mitjançant CREATE SERVER  
