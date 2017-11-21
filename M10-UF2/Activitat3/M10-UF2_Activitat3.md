@@ -378,7 +378,8 @@ Creem un usuari al servidor 1 i li atorguem tots els privilegis:
 
 Deshabilitem la seguretat SELinux:  
 ![screenshot_ex6-3](./imgs/Act1_ex6-p3.png)  
-	1.	Opció1: especificar TOTA la cadena de connexió a CONNECTION  
+
+1.	Opció1: especificar TOTA la cadena de connexió a CONNECTION  
 	
 Creem un link especificant tota la cadena de connexió a CONNECTION.  
 	
@@ -386,12 +387,14 @@ Creem una taula federada en el servidor 2:
 	
 ![screenshot_ex6-4](./imgs/Act1_ex6-p4.png)  
 La ip correspon a la del servidor 1.  
-	2.	Opció2: especificar una connexió a un server a CONNECTION que prèviament s'ha creat mitjançant CREATE SERVER  
+
+2.	Opció2: especificar una connexió a un server a CONNECTION que prèviament s'ha creat mitjançant CREATE SERVER  
 
 `CREATE SERVER primer  
 FOREIGN DATA WRAPPER mysql  
-OPTIONS (USER 'perepe', HOST '192.168.1.141', PORT 3306, DATABASE 'sakila');`  	
-	3.	Posa un exemple de 2 taules de cada opció.  
+OPTIONS (USER 'perepe', HOST '192.168.1.141', PORT 3306, DATABASE 'sakila');`
+
+3.	Posa un exemple de 2 taules de cada opció.  
 Tingues en compte els permisos a nivell de BD i de SO així com temes de seguretat com firewalls, etc...  
 
 Exemple opció 1:  
@@ -418,7 +421,8 @@ CONNECTION='primer/language';`
 El paràmetre `CONNECTION`correspón al nom que rep el `SERVER` que hem creat més la taula.
 
 Hauriem de fer un `INSERT` a aquesta taula de servidor 2, i si ens anéssim al servidor 1, hauriem de poder veure aquest `insert` amb un `select`.  
-	4.	Detalla quines són els passos i comandes que has hagut de realitzar en cada màquina.  
+
+4.	Detalla quines són els passos i comandes que has hagut de realitzar en cada màquina.  
 	
 Als dos servidors he hagut de permetre el port per no tenir-ne problemes amb el firewall. A més al servidor 1 hem creat un usuari amb tots els privilegis i hem desabilitat la seguretat SELinux.  
 
