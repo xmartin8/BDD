@@ -377,7 +377,7 @@ Creem un usuari al servidor 1 i li atorguem tots els privilegis:
 ![screenshot_ex6-3](./imgs/Act1_ex6-p3.png)  
 
 Deshabilitem la seguretat SELinux:  
-![screenshot_ex6-3](./imgs/Act1_ex6-p3.png)  
+![screenshot_ex6-4](./imgs/Act1_ex6-p4.png)  
 
 1.	Opció1: especificar TOTA la cadena de connexió a CONNECTION  
 	
@@ -385,7 +385,7 @@ Creem un link especificant tota la cadena de connexió a CONNECTION.
 	
 Creem una taula federada en el servidor 2:
 	
-![screenshot_ex6-4](./imgs/Act1_ex6-p4.png)  
+![screenshot_ex6-5](./imgs/Act1_ex6-p5.png)  
 La ip correspon a la del servidor 1.  
 
 2.	Opció2: especificar una connexió a un server a CONNECTION que prèviament s'ha creat mitjançant CREATE SERVER  
@@ -400,10 +400,10 @@ Tingues en compte els permisos a nivell de BD i de SO així com temes de seguret
 Exemple opció 1:  
 
 Si inserim dades en el servidor 1 a la taula category:  
-![screenshot_ex6-5](./imgs/Act1_ex6-p5.png)  
+![screenshot_ex6-6](./imgs/Act1_ex6-p6.png)  
 
 Com que en el servidor 2 hem creat una taula federada, hauria d’agafar les mateixes dades:  
-![screenshot_ex6-6](./imgs/Act1_ex6-p6.png)   
+![screenshot_ex6-7](./imgs/Act1_ex6-p7.png)   
 Això és pot ser per un problema de permissos, en cara que hem fet totes les possibles solucions.  
 
 Exemple opció 2:  
