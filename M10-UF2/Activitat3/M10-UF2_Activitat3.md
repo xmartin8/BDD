@@ -246,7 +246,7 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 3.	Com podem mirar el número de pàgines modificades (dirty pages)? I el número total de pàgines?  
 
 	Utilitzem la comanda `SHOW ENGINES INNODB STATUS\G;` i busquem la secció `BUFFER POOL AND MEMORY`.  
-	![screenshot_ex5-1](./imgs/Act5_ex3-p1.png)  
+	![screenshot_ex5-3](./imgs/Act5_ex3-p1.png)  
 	
 	El número de pàgines modificades ens ho dona el paràmetre `Modified db pages`, que en aquest cas en tenim 0.  
 	Per veure el total de les pàgines que en tenim, el paràmetre `Databses pages` ens diu 157.  
@@ -268,6 +268,8 @@ source ./sakila-schema.sql
 ![screenshot_ex6-1](./imgs/Act1_ex6-p1.png)  
   
 2.	Prepara un segon servidor Percona Server a on hi hauran un conjunt de taules FEDERADES al primer servidor.  
+[Documentació Federated](https://dev.mysql.com/doc/refman/5.7/en/federated-storage-engine.html)  
+
 3.	Per realitzar aquest link entre les dues BD podem fer-ho de dues maneres:  
 	1.	Opció1: especificar TOTA la cadena de connexió a CONNECTION  
 	2.	Opció2: especificar una connexió a un server a CONNECTION que prèviament s'ha creat mitjançant CREATE SERVER  
