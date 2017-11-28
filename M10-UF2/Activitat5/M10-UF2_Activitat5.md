@@ -9,10 +9,7 @@ Cal que que al realitzar un INSERT en el master veiem les dades a l'esclau al ca
 ### CONFIGURACIÓ MASTER
 
 * Realitza una còpia del fitxer de configuració del MySQL /etc/my.conf → /etc/my.conf.bkp  
-![Screenshot part1-1][1]  
-[1]: imgs/1-1.png
-![Screenshot part1-2][2] 
-[2]: imgs/1-2.png
+![Screenshot part1-1][1]  ![Screenshot part1-2][2]  
 * Modifica el fitxer `/etc/my.conf` i activa el paràmetre `log-bin` (tal i com vàreu fer a M02).  
     * Amb el nom: `<PRIMER LLETRA DEL NOM + 1r COGNOM>rep`  
     * Exemple: `log-bin=rventurarep`  
@@ -91,8 +88,8 @@ Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary 
 * Què fa la comanda `RESET MASTER` en el cas de no utilitzar GTID i utilitzar-lo?  
 * Mira’t alguna de les taules (`SHOW TABLES LIKE 'repl%'`) del `PERFORMANCE_SCHEMA`;    
 
-
-
+[1]: imgs/1-1.png
+[2]: imgs/1-2.png
 [3]: imgs/1-3.png
 [4]: imgs/1-4.png
 [5]: imgs/1-5.png
