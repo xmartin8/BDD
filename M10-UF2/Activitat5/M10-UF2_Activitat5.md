@@ -8,7 +8,7 @@ Cal que que al realitzar un INSERT en el master veiem les dades a l'esclau al ca
 
 ### CONFIGURACIÓ MASTER
 
-* Realitza una còpia del fitxer de configuració del MySQL /etc/my.conf --> /etc/my.conf.bkp
+* Realitza una còpia del fitxer de configuració del MySQL /etc/my.conf → /etc/my.conf.bkp
 * Modifica el fitxer /etc/my.conf i activa el paràmetrelog-bin (tal i com vàreu fer a M02).
 * Amb el nom: <PRIMER LLETRA DEL NOM + 1r COGNOM>rep
 * Exemple: log-bin=rventurarep
