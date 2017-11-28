@@ -9,6 +9,8 @@ Cal que que al realitzar un INSERT en el master veiem les dades a l'esclau al ca
 ### CONFIGURACIÓ MASTER
 
 * Realitza una còpia del fitxer de configuració del MySQL /etc/my.conf → /etc/my.conf.bkp  
+![Screenshot part1-1][1]  
+![Screenshot part1-2][2] 
 * Modifica el fitxer `/etc/my.conf` i activa el paràmetre `log-bin` (tal i com vàreu fer a M02).  
     * Amb el nom: `<PRIMER LLETRA DEL NOM + 1r COGNOM>rep`  
     * Exemple: `log-bin=rventurarep`  
@@ -86,3 +88,34 @@ Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary 
 * Quin significat té l’opció `MASTER_CONNECT_RETRY` en la comanda `CHANGE MASTER TO`?  
 * Què fa la comanda `RESET MASTER` en el cas de no utilitzar GTID i utilitzar-lo?  
 * Mira’t alguna de les taules (`SHOW TABLES LIKE 'repl%'`) del `PERFORMANCE_SCHEMA`;    
+
+
+\hola
+[1]: imgs/1-1.png
+[2]: imgs/1-2.png
+[3]: imgs/1-3.png
+[4]: imgs/1-4.png
+[5]: imgs/1-5.png
+[6]: imgs/1-6.png
+[7]: imgs/1-7.png
+[8]: imgs/1-8.png
+[9]: imgs/1-9.png
+[10]: imgs/1-10.png
+[11]: imgs/1-11.png
+[12]: imgs/1-12.png
+[13]: imgs/1-13.png
+[14]: imgs/1-14.png
+[15]: imgs/1-15.png
+[16]: imgs/1-16.png
+[17]: imgs/1-17.png
+[18]: imgs/1-18.png
+[19]: imgs/1-19.png
+[20]: imgs/1-20.png
+[21]: imgs/1-21.png
+[22]: imgs/1-22.png
+[23]: imgs/1-23.png
+[24]: imgs/1-24.png
+[25]: imgs/1-25.png
+[26]: imgs/1-26.png
+[27a]: imgs/1-27a.png
+[27b]: imgs/1-27b.png
