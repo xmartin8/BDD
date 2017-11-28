@@ -33,49 +33,52 @@ Cal que que al realitzar un INSERT en el master veiem les dades a l'esclau al ca
 
 ### CONFIGURACIÓ SLAVE i MASTER
 
-•	Realitza una còpia de la màquina virtual a on tinguis SGBD MySQL. Aquesta nova màquina serà que farà d'eslau.
-•	Esbrina quina IP tenen cadascuna de les màquines (master, slave).
-•	Crea un backup de la BD a la màquina master utilitzant:
-◦	$> mysqldump –-user=root –-password=vostrepwd -–master-data=2 sakila > /tmp/master_backup.sql
-•	Edita el fitxer master_backup.sql i busca la línia que comenci per --CHANGE MASTER TO.... i busca els valors MASTER_LOG_FILE i MASTER_LOG_POS.
-•	SLAVE
-◦	Para el servei de MySQL.
-◦	Modifica el fitxer de configuració /etc/my.conf
-▪	Comenta els paràmetres log-bin i binlog_format. D'aquesta manera desactivarem el sistema de log-bin.
-▪	Assigna un valor al paràmetre  server-id (diferent que el del Master)
-▪	Torna engegar el servei MySQL.
-•	MASTER
-◦	Afegeix l'usuari slave amb la IP de la màquina slave
-▪	mysql> CREATE USER 'slave'@'IP-SERVIDOR-SLAVE'
--> IDENTIFIED BY 'patata';
-◦	Afegix el permís de REPLICATION SLAVE a l'usuari que acabes de crear.
-▪	mysql> GRANT REPLICATION SLAVE ON *.*
--> TO 'slave'@'IP-SERVIDOR-SLAVE';
-▪	mysql> FLUSH PRIVILEGES;
-•	A la màquina SLAVE executa la següent comanda ajudant-te de les dades del pas 3 i 4:
-◦	mysql> CHANGE MASTER TO
--> MASTER_HOST = '<ip-servidor-master>',
--> MASTER_USER = 'slave',
--> MASTER_PASSWORD = 'patata',
--> MASTER_PORT = '3306',
--> MASTER_LOG_FILE = '<PRIMER LLETRA DEL NOM + 1r COGNOM>rep.000002',
--> MASTER_LOG_POS = <valor trobat en el pas 4>,
--> MASTER_CONNECT_RETRY = 10; 
+* Realitza una còpia de la màquina virtual a on tinguis SGBD MySQL. Aquesta nova màquina serà que farà d'eslau.
+* Esbrina quina IP tenen cadascuna de les màquines (master, slave).
+* Crea un backup de la BD a la màquina master utilitzant:
+    `$> mysqldump –-user=root –-password=vostrepwd -–master-data=2 sakila > /tmp/master_backup.sql`
+* Edita el fitxer master_backup.sql i busca la línia que comenci per --CHANGE MASTER TO.... i busca els valors MASTER_LOG_FILE i MASTER_LOG_POS.
+* SLAVE
+    * Para el servei de MySQL.
+    * Modifica el fitxer de configuració /etc/my.conf
+        * Comenta els paràmetres log-bin i binlog_format. D'aquesta manera desactivarem el sistema de log-bin.
+        * Assigna un valor al paràmetre  server-id (diferent que el del Master)
+        * Torna engegar el servei MySQL.
+* MASTER
+    * Afegeix l'usuari slave amb la IP de la màquina slave
+        ```
+        mysql> CREATE USER 'slave'@'IP-SERVIDOR-SLAVE'
+        -> IDENTIFIED BY 'patata';
+        ```
+    * Afegix el permís de REPLICATION SLAVE a l'usuari que acabes de crear.
+        ```
+        mysql> GRANT REPLICATION SLAVE ON *.*
+        -> TO 'slave'@'IP-SERVIDOR-SLAVE';
+        mysql> FLUSH PRIVILEGES;
+        ```
+* A la màquina SLAVE executa la següent comanda ajudant-te de les dades del pas 3 i 4:  
+        ```
+        mysql> CHANGE MASTER TO
+        -> MASTER_HOST = '<ip-servidor-master>',
+        -> MASTER_USER = 'slave',
+        -> MASTER_PASSWORD = 'patata',
+        -> MASTER_PORT = '3306',
+        -> MASTER_LOG_FILE = '<PRIMER LLETRA DEL NOM + 1r COGNOM>rep.000002',
+        -> MASTER_LOG_POS = <valor trobat en el pas 4>,
+        -> MASTER_CONNECT_RETRY = 10; 
+        ```
+
 ## REPLICACIÓ via GTID (4 punts)
-
-Es vol muntar un entorn SGBD MySQL Percona amb rèplica similar a l’anterior, però aquesta vegada es vol realitzar mitjançant GTID.
-
-Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary log.
+Es vol muntar un entorn SGBD MySQL Percona amb rèplica similar a l’anterior, però aquesta vegada es vol realitzar mitjançant GTID.  
+Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary log.  
 
 ## PUNTS OPCIONALS (màx. 6 punts)
-* Entorn amb replicació semisíncrona amb master passiu ( 3 punts)
-* Entorn amb múltiples orígens ( 2 punts)
-* Topologia de Slave Relay via BlackHole ( 2 punts)
-* Instal·la i explica com funciona alguna d’aquestes eines (Percona Toolkit) ( 2 punts, 1 punt per eina):
-    * pt-table-checksum
-        * https://www.percona.com/doc/percona-toolkit/2.1/pt-table-checksum.html
-    * pt-table-sync
-        * https://www.percona.com/doc/percona-toolkit/2.1/pt-table-sync.html
+* Entorn amb replicació semisíncrona amb master passiu (3 punts)
+* Entorn amb múltiples orígens (2 punts)
+* Topologia de Slave Relay via BlackHole (2 punts)
+* Instal·la i explica com funciona alguna d’aquestes eines (Percona Toolkit) (2 punts, 1 punt per eina):
+    * [pt-table-checksum](https://www.percona.com/doc/percona-toolkit/2.1/pt-table-checksum.html)
+    * [pt-table-sync](https://www.percona.com/doc/percona-toolkit/2.1/pt-table-sync.html)
 
 ## Respon a les següents preguntes en el cas de Binlog i GTID:
 * Si iniciem una transacció en el master a on hi ha una sèrie d’operacions DML (INSERT, UPDATE o DELETE) . Aquestes es guarden en el binlog?
