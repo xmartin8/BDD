@@ -366,12 +366,8 @@ source ./sakila-schema.sql
 ![screenshot_ex6-1](./imgs/Act1_ex6-p1.png)  
   
 2.	Prepara un segon servidor Percona Server a on hi hauran un conjunt de taules FEDERADES al primer servidor.  
-<<<<<<< HEAD
-[Documentació Federated](https://dev.mysql.com/doc/refman/5.7/en/federated-storage-engine.html)  
-=======
 
 ![screenshot_ex6-2](./imgs/Act1_ex6-p2.png)  
->>>>>>> 84bb8736aaa3c8998c272ae01330a2c9db6e6379
 
 3.	Per realitzar aquest link entre les dues BD podem fer-ho de dues maneres:  
 
