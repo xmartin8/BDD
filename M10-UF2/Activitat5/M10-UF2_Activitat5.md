@@ -8,26 +8,26 @@ Cal que que al realitzar un INSERT en el master veiem les dades a l'esclau al ca
 
 ### CONFIGURACIÓ MASTER
 
-* Realitza una còpia del fitxer de configuració del MySQL /etc/my.conf → /etc/my.conf.bkp
-* Modifica el fitxer `/etc/my.conf` i activa el paràmetre `log-bin` (tal i com vàreu fer a M02).
-    * Amb el nom: `<PRIMER LLETRA DEL NOM + 1r COGNOM>rep`
-    * Exemple: `log-bin=rventurarep`
-* Verifica que el paràmetre `server-id` té un valor numèric (per defecte és 1).
-* Verifica que tots els paràmetres de InnoDB estiguin descomentats
-* Canvia el paràmetre `innodb_log_buffer` a `10M`
-* Canvia o afegeix el paràmetre `innodb_log_files_in_group` a `2`
-* Para el servei de MySQL
-* Borra tots ***els fitxers de log*** InnoDB del directory `/var/lib/mysql`
-* Engega el servei de MySQL.
-* Quants fitxers comencen amb el nom `<PRIMER LLETRA DEL NOM + 1r COGNOM>` rep dins el directori `/var/lib/mysql`? Digues quins són
-* Realitza un instrucció DML, per exemple INSERT,UPDATE o DELETE
-* Obre un altre terminal i utilitzant l'eina **mysqlbinlog** mira el contingut del fitxer `<PRIMER LLETRA DEL NOM + 1r COGNOM>rep.000001`
-    `mysqlbinlog <PRIMER LLETRA DEL NOM + 1r COGNOM>rep.000001`
-    * Quin és el seu contingut?
-* Fes un FLUSH DELS LOGS utilitzant la comanda **FLUSH LOGS** dins del MySQL
-    `mysql> FLUSH LOGS;`
-* Realitza una comprovació dels logs com a master mitjançant **SHOW MASTER LOGS**
-    `mysql> SHOW MASTER LOGS;`
+* Realitza una còpia del fitxer de configuració del MySQL /etc/my.conf → /etc/my.conf.bkp  
+* Modifica el fitxer `/etc/my.conf` i activa el paràmetre `log-bin` (tal i com vàreu fer a M02).  
+    * Amb el nom: `<PRIMER LLETRA DEL NOM + 1r COGNOM>rep`  
+    * Exemple: `log-bin=rventurarep`  
+* Verifica que el paràmetre `server-id` té un valor numèric (per defecte és 1).  
+* Verifica que tots els paràmetres de InnoDB estiguin descomentats  
+* Canvia el paràmetre `innodb_log_buffer` a `10M`  
+* Canvia o afegeix el paràmetre `innodb_log_files_in_group` a `2`  
+* Para el servei de MySQL  
+* Borra tots ***els fitxers de log*** InnoDB del directory `/var/lib/mysql`  
+* Engega el servei de MySQL.  
+* Quants fitxers comencen amb el nom `<PRIMER LLETRA DEL NOM + 1r COGNOM>` rep dins el directori `/var/lib/mysql`? Digues quins són  
+* Realitza un instrucció DML, per exemple INSERT,UPDATE o DELETE  
+* Obre un altre terminal i utilitzant l'eina **mysqlbinlog** mira el contingut del fitxer `<PRIMER LLETRA DEL NOM + 1r COGNOM>rep.000001`  
+    `mysqlbinlog <PRIMER LLETRA DEL NOM + 1r COGNOM>rep.000001`  
+    * Quin és el seu contingut?  
+* Fes un FLUSH DELS LOGS utilitzant la comanda **FLUSH LOGS** dins del MySQL  
+    `mysql> FLUSH LOGS;`  
+* Realitza una comprovació dels logs com a master mitjançant **SHOW MASTER LOGS**  
+    `mysql> SHOW MASTER LOGS;`  
 
 
 
