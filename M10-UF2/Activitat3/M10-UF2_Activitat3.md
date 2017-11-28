@@ -23,7 +23,7 @@ El camp **Support** indica el següent:
 | `YES`   | L’emmagatzematge està suportat i actiu  |
 | `DEFAULT`   | Com el `YES`, a més és l’emmagatzematge per defecte  |
 | `NO`   | L’emmagatzematge no està suportat  |
-| `DISABLED`   | L’emmagatzematge està suportat i pero no està actiu |
+| `DISABLED`   | L’emmagatzematge està suportat però no està actiu |
   
 2.	Com puc saber quin és el motor d’emmagatzematge per defecte. Mostra com canviar aquest paràmetre de tal manera que les noves taules que creem a la BD per defecte utilitzin el motor MyISAM?  
   
@@ -121,9 +121,9 @@ Importem la base de dades amb un `SOURCE`.
 2.	Quin/quins són els fitxers de dades? A on es troben i quin és la seva mida?  
 
 Els fitxers que crea InnoDB es troben a `/var/lib/mysql/sakila` i són els fitxers amb extensió:  
-* .ibd (integrated backup): conté dades i indexs de cada taula (només quan està activitat el `Innodb_file_per_table` , que guarda cada taula en un fitxer).  
+* .ibd (integrated backup): conté dades i índexs de cada taula (només quan està activitat el `Innodb_file_per_table` , que guarda cada taula en un fitxer).  
 * .ibdata1 (integrated backup data part 1): conté el diccionari de dades i l’historial de transaccions per totes les taules.  
-* .frm (format): d’escriu el format de les taules, nclosos els camps i estructura de cada taula.  
+* .frm (format): descriu el format de les taules, inclosos els camps i estructura de cada taula.  
 
 Si `Innodb_file_per_table`  està activat, podem veure el següent:  
 ![screenshot_ex2-2-1](./imgs/Act2_ex2-p1.png)  
@@ -136,7 +136,7 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 	
 	[Documentació Tecmint](https://www.tecmint.com/change-default-mysql-mariadb-data-directory-in-linux/)  
 	
-	Primer creem el nou directori i li otorguem permisos.  
+	Primer creem el nou directori i li atorguem permisos.  
 	`mkdir /discs-mysql`  
 	`chown -R mysql:mysql /discs-mysql`
 	  
@@ -150,7 +150,7 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 	Editem el fitxer `/etc/my.cnf` per afegir el nou directori.  
 	![screenshot_ex2-1-2](./imgs/Act2_ex3-1-p2.png)  
 	
-	Afegim la seguretat SELinux al nou directori abans de engenar de nou el mysql.  
+	Afegim la seguretat SELinux al nou directori abans de engegar de nou el mysql.  
 	`semanage fcontext -a -t mysqld_db_t "/discs-mysql(/.*)?"`  
 	`restorecon -R /discs-mysql`  
 	
@@ -191,7 +191,7 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 		* /discs-mysql/disk1/primer fitxer de dades → simularà un disc dur.   
 		* /discs-mysql/disk2/segon fitxer de dades → simularà un segon disc dur.  
 
-	Primer creem els dos fitxers, afegint-lis els mateixos permisos que té el mysql i dient-li que mysql sigui el propietari.  
+	Primer creem els dos fitxers, afegint-li els mateixos permisos que té el mysql i dient-li que mysql sigui el propietari.  
 	![screenshot_ex3-5-1](./imgs/Act2_ex3-5-p1.png)  
 	
 	![screenshot_ex3-5-2](./imgs/Act2_ex3-5-p2.png)  
@@ -212,14 +212,109 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 
 1.	Partint de l'esquema anterior configura el Percona Server perquè cada taula generi el seu propi tablespace en una carpeta anomenada ***tspaces*** *(aquesta pot estar situada a on vulgueu)*.  
 	1.	Indica quins són els canvis de configuració que has realitzat.  
+	[Documentació MYSQL Innodb_file_per_table](https://dev.mysql.com/doc/refman/5.5/en/innodb-multiple-tablespaces.html)  
+	
+	El paràmetre `innodb_file_per_table` ha d'estar activat per generar tablespaces `.ibd`.  
+	![screenshot_ex3-1](./imgs/Act3_ex1-p1.png)  
+	
+	Fem un `service mysqld stop`.  
+	
+	Creem el nou directori i li otorguem permissos.  
+	![screenshot_ex3-2](./imgs/Act3_ex1-p2.png)  
+	![screenshot_ex3-3](./imgs/Act3_ex1-p3.png)  
+	
+	Editem el fitxer `/etc/my.cnf` i canviem el `data_dir` per el nou directori `/tspaces`. També comentem el que hem fet en l’anterior exercici.  
+	![screenshot_ex3-4](./imgs/Act3_ex1-p4.png)  
+	
+	Copiem els fitxers al nou directori `cp -R -p /var/lib/mysql/* /tspaces`.  
+	Afegim la seguretat SELinux al nou directori abans de engenar de nou el mysql.  
+	`semanage fcontext -a -t mysqld_db_t "/tspaces(/.*)?"`.  
+	`restorecon -R /tspaces`.  
+	
+	Engeguem el servei amb un `service mysqld start`.  
+	Mirem si el directori ha canviat entrant al MYSQL i fent un `SELECT @@datadir;`  
+	![screenshot_ex3-5](./imgs/Act3_ex1-p5.png)  	
+
+
 	2.	Després del canvi què ha passat amb els fitxers que contenien les dades de la BD de Sakila? Fes les captures necesàries per complementar la resposta.  
+	
+	Els fitxers han canviat de directori, ara es generaran a `/tspaces`.  
+	
 
 ## Activitat 4. INNODB part III. REALITZA ELS SEGÜENTS APARTATS. ##
 
-1.	Crea un tablespace anomenat **'ts1'** situat a `/discs-mysql/disc1/` i col·loca les taules *actor*, *address* i *category* de la BD Sakila.  
-2.	Crea un altre tablespace anomenat **'ts2'** situat a `/discs-mysql/disc2/` i col·loca-hi la resta de taules.  
+1.	Crea un tablespace anomenat **'ts1'** situat a `/discs-mysql/disk1/` i col·loca les taules *actor*, *address* i *category* de la BD Sakila.  
+
+Abans de tot, perque funcioni bé desfem el que haviem fet a l’activitat 3.  
+![screenshot_ex4-1-1](./imgs/Act4_ex1-p1.png)  
+I fem un `service mysqld restart` per aplicar els canvis.  
+
+Ens posicionem a la base de dades sakila:  
+`use sakila;`  
+
+Creem el tablespace a `/discs-mysql/disk1`.  
+`CREATE TABLESPACE ts1 ADD DATAFILE '/discs-mysql/disk1/ts1.ibd' ENGINE=InnoDB;`  
+![screenshot_ex4-1-2](./imgs/Act4_ex1-p2.png)  
+
+Amb les sentencies `ALTER TABLE` afegim les taules que ens demana:  
+
+`ALTER TABLE actor TABLESPACE ts1;`  
+`ALTER TABLE address TABLESPACE ts1;`  
+`ALTER TABLE category TABLESPACE ts1;`  
+
+![screenshot_ex4-1-3](./imgs/Act4_ex1-p3.png)  
+
+2.	Crea un altre tablespace anomenat **'ts2'** situat a `/discs-mysql/disk2/` i col·loca-hi la resta de taules.  
+
+Creem el tablespace a `/discs-mysql/disk2`.  
+`CREATE TABLESPACE ts2 ADD DATAFILE '/discs-mysql/disk2/ts2.ibd' ENGINE=InnoDB;`  
+![screenshot_ex4-2-1](./imgs/Act4_ex2-p1.png)  
+
+Amb les sentencies `ALTER TABLE` afegim les taules que ens demana:  
+
+`ALTER TABLE city TABLESPACE ts2;`  
+`ALTER TABLE country TABLESPACE ts2;`  
+`ALTER TABLE customer TABLESPACE ts2;`  
+![screenshot_ex4-2-2](./imgs/Act4_ex2-p2.png)  
+
+`ALTER TABLE film TABLESPACE ts2;`  
+`ALTER TABLE film_actor TABLESPACE ts2;`  
+`ALTER TABLE film_category TABLESPACE ts2;`  
+`ALTER TABLE film_text TABLESPACE ts2;`  
+`ALTER TABLE inventory TABLESPACE ts2;`  
+![screenshot_ex4-2-3](./imgs/Act4_ex2-p3.png)  
+
+`ALTER TABLE language TABLESPACE ts2;`  
+![screenshot_ex4-2-4](./imgs/Act4_ex2-p4.png)  
+
+`ALTER TABLE payment TABLESPACE ts2;`  
+`ALTER TABLE rental TABLESPACE ts2;`  
+![screenshot_ex4-2-5](./imgs/Act4_ex2-p5.png)  
+
+`ALTER TABLE staff TABLESPACE ts2;`  
+![screenshot_ex4-2-6](./imgs/Act4_ex2-p6.png)  
+
+`ALTER TABLE store TABLESPACE ts2;`  
+![screenshot_ex4-2-7](./imgs/Act4_ex2-p7.png)  
+
 3.	Comprova que pots realitzar operacions DML a les taules dels dos tablespaces.  
+
+Intentem fer operacions `DML` a les taules del tablesapace.  
+
+Al tablespace `ts1`:  
+`INSERT INTO actor(first_name, last_name)  
+VALUES("patricia","lopez");`  
+![screenshot_ex4-3-1](./imgs/Act4_ex3-p1.png)  
+
+Al tablespace `ts2`:  
+`INSERT INTO language(name) VALUES("ca");`  
+![screenshot_ex4-3-2](./imgs/Act4_ex3-p2.png)  
+
 4.	Quines comandes i configuracions has realitzat per fer els dos apartats anteriors?  
+
+Hem utilitzat les comandes `CREATE TABLESPACE I ALTER TABLE` per crear 2 tablespaces, un a `/discs-mysql/disk1` i l’altre a `/discs-mysql/disk2`. Amb les diferents sentències `ALTER TABLE` hem pogut afegir algunes taules als tablespaces.  
+Per intentar fer operaciones `DML`, hem utilitazat la sentència `INSERT INTO` per afegir dades a una taula.  
+
 5.	**Checkpoint:** Mostra al professor els canvis realitzats i que la BD continua funcionant  
 
 ## Activitat 5. REDOLOG. REALITZA ELS SEGÜENTS APARTATS. ##
@@ -258,6 +353,9 @@ Si `Innodb_file_per_table` està desactivat, podem veure el següent:
 Com s'ha vist a classe MySQL proporciona el motor d'emmagatzemament FEDERATED que té com a funció permetre l'accés remot a bases de dades MySQL en un servidor local sense utilitzar tècniques de replicació ni clustering.  
   
 ![screenshot_ex6](./imgs/Act1_ex6.png)  
+
+[Documentació FEDERATED Storage Engine](https://dev.mysql.com/doc/refman/5.7/en/federated-storage-engine.html)  
+[Documentació MYSQL CREATE TABLE FEDERATED](https://dev.mysql.com/doc/refman/5.7/en/federated-create-server.html)  
   
 1.	Prepara un Servidor Percona Server amb la BD de Sakila  
   
@@ -268,14 +366,76 @@ source ./sakila-schema.sql
 ![screenshot_ex6-1](./imgs/Act1_ex6-p1.png)  
   
 2.	Prepara un segon servidor Percona Server a on hi hauran un conjunt de taules FEDERADES al primer servidor.  
+<<<<<<< HEAD
 [Documentació Federated](https://dev.mysql.com/doc/refman/5.7/en/federated-storage-engine.html)  
+=======
+
+![screenshot_ex6-2](./imgs/Act1_ex6-p2.png)  
+>>>>>>> 84bb8736aaa3c8998c272ae01330a2c9db6e6379
 
 3.	Per realitzar aquest link entre les dues BD podem fer-ho de dues maneres:  
-	1.	Opció1: especificar TOTA la cadena de connexió a CONNECTION  
-	2.	Opció2: especificar una connexió a un server a CONNECTION que prèviament s'ha creat mitjançant CREATE SERVER  
-	3.	Posa un exemple de 2 taules de cada opció.  
+
+Abans de tot, permitim al firewall el port 3306/tcp, on podem trobar informació a [Documentació Instal·lació CENTOS](https://devops.profitbricks.com/tutorials/install-mysql-on-centos-7/#firewall-rules) en la secció Firewall Rules.  
+
+Creem un usuari al servidor 1 i li atorguem tots els privilegis:  
+![screenshot_ex6-3](./imgs/Act1_ex6-p3.png)  
+
+Deshabilitem la seguretat SELinux:  
+![screenshot_ex6-4](./imgs/Act1_ex6-p4.png)  
+
+1.	Opció1: especificar TOTA la cadena de connexió a CONNECTION  
+	
+Creem un link especificant tota la cadena de connexió a CONNECTION.  
+	
+Creem una taula federada en el servidor 2:
+	
+![screenshot_ex6-5](./imgs/Act1_ex6-p5.png)  
+La ip correspon a la del servidor 1.  
+
+2.	Opció2: especificar una connexió a un server a CONNECTION que prèviament s'ha creat mitjançant CREATE SERVER  
+
+`CREATE SERVER primer  
+FOREIGN DATA WRAPPER mysql  
+OPTIONS (USER 'perepe', HOST '192.168.1.141', PORT 3306, DATABASE 'sakila');`
+
+3.	Posa un exemple de 2 taules de cada opció.  
 Tingues en compte els permisos a nivell de BD i de SO així com temes de seguretat com firewalls, etc...  
-	4.	Detalla quines són els passos i comandes que has hagut de realitzar en cada màquina.  
+
+Exemple opció 1:  
+
+Si inserim dades en el servidor 1 a la taula category:  
+![screenshot_ex6-6](./imgs/Act1_ex6-p6.png)  
+
+Com que en el servidor 2 hem creat una taula federada, hauria d’agafar les mateixes dades:  
+![screenshot_ex6-7](./imgs/Act1_ex6-p7.png)   
+Això és pot ser per un problema de permissos, en cara que hem fet totes les possibles solucions.  
+
+Exemple opció 2:  
+Creem una taula al servidor 2:  
+
+`CREATE TABLE language (  
+language_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,  
+name CHAR(20) NOT NULL,  
+last_update TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  
+PRIMARY KEY (language_id)  
+)  
+ENGINE=FEDERATED  
+CONNECTION='primer/language';`  
+
+El paràmetre `CONNECTION`correspón al nom que rep el `SERVER` que hem creat més la taula.
+
+Hauriem de fer un `INSERT` a aquesta taula de servidor 2, i si ens anéssim al servidor 1, hauriem de poder veure aquest `insert` amb un `select`.  
+
+4.	Detalla quines són els passos i comandes que has hagut de realitzar en cada màquina.  
+	
+Als dos servidors he hagut de permetre el port per no tenir-ne problemes amb el firewall. A més al servidor 1 hem creat un usuari amb tots els privilegis i hem desabilitat la seguretat SELinux.  
+
+Per crear les taules federades hem hagut d'especificar al paràmetre `ENGINE` que es tratava d'una taula federada. A més, al paràmetre `CONNECTION` l'hem especificat de dues maneres:  
+* La primera especificant una cadena de connexió: `CONNECTION='mysql://root:patata@192.168.1.41:3306/sakila/category';`  
+* La segona especificant una connexió a un server a `CONNECTION` que prèviament s'ha creat mitjançant `CREATE SERVER`:  
+`(USER 'perepe', HOST '192.168.1.141', PORT 3306, DATABASE 'sakila')` (per establir la connexió en el `CREATE SERVER`)  
+`CONNECTION='primer/language';` (en la sentència `CREATE TABLE` hem afegit la connexió del `CREATE SERVER` i la taula federada.  
+
 4.	**Checkpoint:** Mostra al professor la configuració que has hagut de realitzar i el seu funcionament.  
 
 ## Activitat 7. Storage Engine CSV ##  
