@@ -68,14 +68,14 @@ Es vol muntar un entorn SGBD MySQL Percona amb rèplica similar a l’anterior, 
 Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary log.
 
 ## PUNTS OPCIONALS (màx. 6 punts)
-•	Entorn amb replicació semisíncrona amb master passiu ( 3 punts)
-•	Entorn amb múltiples orígens ( 2 punts)
-•	Topologia de Slave Relay via BlackHole ( 2 punts)
-•	Instal·la i explica com funciona alguna d’aquestes eines (Percona Toolkit) ( 2 punts, 1 punt per eina):
-◦	pt-table-checksum
-▪	https://www.percona.com/doc/percona-toolkit/2.1/pt-table-checksum.html
-◦	pt-table-sync
-▪	https://www.percona.com/doc/percona-toolkit/2.1/pt-table-sync.html
+* Entorn amb replicació semisíncrona amb master passiu ( 3 punts)
+* Entorn amb múltiples orígens ( 2 punts)
+* Topologia de Slave Relay via BlackHole ( 2 punts)
+* Instal·la i explica com funciona alguna d’aquestes eines (Percona Toolkit) ( 2 punts, 1 punt per eina):
+    * pt-table-checksum
+        * https://www.percona.com/doc/percona-toolkit/2.1/pt-table-checksum.html
+    * pt-table-sync
+        * https://www.percona.com/doc/percona-toolkit/2.1/pt-table-sync.html
 
 ## Respon a les següents preguntes en el cas de Binlog i GTID:
 * Si iniciem una transacció en el master a on hi ha una sèrie d’operacions DML (INSERT, UPDATE o DELETE) . Aquestes es guarden en el binlog?
