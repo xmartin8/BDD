@@ -111,8 +111,7 @@ Si des del master fem un **insert** a una taula, al slave haurà de sortir:
 En el slave sortirà també aquest insert:  
 ![Screenshot part1-25][25]  
 ![Screenshot part1-26][26]  
-![Screenshot part1-27a][27a]  
-![Screenshot part1-27b][27b]  
+
 
 ## REPLICACIÓ via GTID (4 punts)
 Es vol muntar un entorn SGBD MySQL Percona amb rèplica similar a l’anterior, però aquesta vegada es vol realitzar mitjançant GTID.  
@@ -130,6 +129,8 @@ Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary 
 * Si iniciem una transacció en el master a on hi ha una sèrie d’operacions DML (INSERT, UPDATE o DELETE) . Aquestes es guarden en el binlog?  
    Si.  
 * Comprova mitjançant SHOW SLAVE STATUS, quins valors et dóna?  
+![Screenshot part1-27a][27a]  
+![Screenshot part1-27b][27b]  
 * Quin significat té l’opció `MASTER_CONNECT_RETRY` en la comanda `CHANGE MASTER TO`?  
 * Què fa la comanda `RESET MASTER` en el cas de no utilitzar GTID i utilitzar-lo?  
 * Mira’t alguna de les taules (`SHOW TABLES LIKE 'repl%'`) del `PERFORMANCE_SCHEMA`;    
