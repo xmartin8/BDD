@@ -58,10 +58,12 @@ S'ha creat un altre log, el *scaplorep.000006*.
 
 * Realitza una còpia de la màquina virtual a on tinguis SGBD MySQL. Aquesta nova màquina serà que farà d'eslau.  
 * Esbrina quina IP tenen cadascuna de les màquines (master, slave).  
+
 | Server | IP | Color Terminal |  
 | ---------- | ---------- | ---------- |  
-| Master   | 10.92.254.44 | Negro |  
-| Slave   | 10.92.254.129 | Blanco |  
+| Master   | 10.92.254.44  | Negro  |  
+| Slave   | 10.92.254.129  | Blanco  |  
+
 * Crea un backup de la BD a la màquina master utilitzant:  
     `$> mysqldump –u root –p -–master-data=2 sakila > /tmp/master_backup.sql`  
 ![Screenshot part1-15][15]  
