@@ -9,27 +9,48 @@ Cal que que al realitzar un INSERT en el master veiem les dades a l'esclau al ca
 ### CONFIGURACIÓ MASTER
 
 * Realitza una còpia del fitxer de configuració del MySQL /etc/my.conf → /etc/my.conf.bkp  
+Fem la cópia del fitxer `/ect/my.cnf`.  
 ![Screenshot part1-1][1]  
 ![Screenshot part1-2][2]  
 * Modifica el fitxer `/etc/my.conf` i activa el paràmetre `log-bin` (tal i com vàreu fer a M02).  
     * Amb el nom: `<PRIMER LLETRA DEL NOM + 1r COGNOM>rep`  
     * Exemple: `log-bin=rventurarep`  
+![Screenshot part1-3][3]  
+El nom correspón a la primera lletra del nom més dues lletres del cognom.  
 * Verifica que el paràmetre `server-id` té un valor numèric (per defecte és 1).  
+Verifiquem el paràmetre `server-id`.  
+![Screenshot part1-4][4]  
 * Verifica que tots els paràmetres de InnoDB estiguin descomentats  
 * Canvia el paràmetre `innodb_log_buffer` a `10M`  
+![Screenshot part1-5][5]  
+![Screenshot part1-6][6]  
 * Canvia o afegeix el paràmetre `innodb_log_files_in_group` a `2`  
+![Screenshot part1-7][7]  
+![Screenshot part1-8][8]  
 * Para el servei de MySQL  
+`service mysqld stop`.  
 * Borra tots ***els fitxers de log*** InnoDB del directory `/var/lib/mysql`  
+![Screenshot part1-9][9]  
 * Engega el servei de MySQL.  
+`service mysqld start`.  
 * Quants fitxers comencen amb el nom `<PRIMER LLETRA DEL NOM + 1r COGNOM>` rep dins el directori `/var/lib/mysql`? Digues quins són  
+![Screenshot part1-10][10]  
+Tenim 6 fitxers:  
+Els *scaplorep.000001-5* i *scaplorep.index*.  
 * Realitza un instrucció DML, per exemple INSERT,UPDATE o DELETE  
+![Screenshot part1-11][11]  
 * Obre un altre terminal i utilitzant l'eina **mysqlbinlog** mira el contingut del fitxer `<PRIMER LLETRA DEL NOM + 1r COGNOM>rep.000001`  
     `mysqlbinlog <PRIMER LLETRA DEL NOM + 1r COGNOM>rep.000001`  
     * Quin és el seu contingut?  
+![Screenshot part1-12][12]  
+És un fitxer binlog on podem veure quan ha iniciat sessió.  
 * Fes un FLUSH DELS LOGS utilitzant la comanda **FLUSH LOGS** dins del MySQL  
     `mysql> FLUSH LOGS;`  
+![Screenshot part1-13][13]  
 * Realitza una comprovació dels logs com a master mitjançant **SHOW MASTER LOGS**  
     `mysql> SHOW MASTER LOGS;`  
+![Screenshot part1-14][14]  
+S'ha creat un altre log, el *scaplorep.000006*.  
 
 
 
@@ -37,27 +58,39 @@ Cal que que al realitzar un INSERT en el master veiem les dades a l'esclau al ca
 
 * Realitza una còpia de la màquina virtual a on tinguis SGBD MySQL. Aquesta nova màquina serà que farà d'eslau.  
 * Esbrina quina IP tenen cadascuna de les màquines (master, slave).  
+| Server | IP | Color Terminal |
+| :---------- | :----------: | :---------- |
+| Master   | 10.92.254.44 | Negro |
+| Slave   | 10.92.254.129 | Blanco |
 * Crea un backup de la BD a la màquina master utilitzant:  
-    `$> mysqldump –-user=root –-password=vostrepwd -–master-data=2 sakila > /tmp/master_backup.sql`  
+    `$> mysqldump –u root –p -–master-data=2 sakila > /tmp/master_backup.sql`  
+![Screenshot part1-15][15]  
+![Screenshot part1-16][16]  
 * Edita el fitxer master_backup.sql i busca la línia que comenci per --CHANGE MASTER TO.... i busca els valors MASTER_LOG_FILE i MASTER_LOG_POS.  
-* SLAVE  
+![Screenshot part1-17][17]  
+* **SLAVE**  
     * Para el servei de MySQL.  
+    ![Screenshot part1-18][18]  
     * Modifica el fitxer de configuració /etc/my.conf  
         * Comenta els paràmetres log-bin i binlog_format. D'aquesta manera desactivarem el sistema de log-bin.  
         * Assigna un valor al paràmetre  server-id (diferent que el del Master)  
-        * Torna engegar el servei MySQL.  
-* MASTER  
+        ![Screenshot part1-19][19]  
+        * Torna engegar el servei MySQL. 
+        ![Screenshot part1-20][20]  
+* **MASTER**  
     * Afegeix l'usuari slave amb la IP de la màquina slave  
         ```
         mysql> CREATE USER 'slave'@'IP-SERVIDOR-SLAVE'  
         -> IDENTIFIED BY 'patata';  
         ```
+    ![Screenshot part1-22][22]  
     * Afegix el permís de REPLICATION SLAVE a l'usuari que acabes de crear.  
         ```
         mysql> GRANT REPLICATION SLAVE ON *.*  
         -> TO 'slave'@'IP-SERVIDOR-SLAVE';  
         mysql> FLUSH PRIVILEGES;  
         ```
+     ![Screenshot part1-23][23]  
 * A la màquina SLAVE executa la següent comanda ajudant-te de les dades del pas 3 i 4:  
     ```
     mysql> CHANGE MASTER TO  
@@ -69,6 +102,15 @@ Cal que que al realitzar un INSERT en el master veiem les dades a l'esclau al ca
     -> MASTER_LOG_POS = <valor trobat en el pas 4>,  
     -> MASTER_CONNECT_RETRY = 10;  
     ```
+![Screenshot part1-21][21]  
+
+Si des del master fem un **insert** a una taula, al slave haurà de sortir:  
+![Screenshot part1-24][24]  
+En el slave sortirà també aquest insert:  
+![Screenshot part1-25][25]  
+![Screenshot part1-26][26]  
+![Screenshot part1-27a][27a]  
+![Screenshot part1-27b][27b]  
 
 ## REPLICACIÓ via GTID (4 punts)
 Es vol muntar un entorn SGBD MySQL Percona amb rèplica similar a l’anterior, però aquesta vegada es vol realitzar mitjançant GTID.  
@@ -84,6 +126,7 @@ Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary 
 
 ## Respon a les següents preguntes en el cas de Binlog i GTID:
 * Si iniciem una transacció en el master a on hi ha una sèrie d’operacions DML (INSERT, UPDATE o DELETE) . Aquestes es guarden en el binlog?  
+   Si.  
 * Comprova mitjançant SHOW SLAVE STATUS, quins valors et dóna?  
 * Quin significat té l’opció `MASTER_CONNECT_RETRY` en la comanda `CHANGE MASTER TO`?  
 * Què fa la comanda `RESET MASTER` en el cas de no utilitzar GTID i utilitzar-lo?  
