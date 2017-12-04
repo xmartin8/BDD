@@ -2,7 +2,7 @@
 # ACTIVITAT REPLICACIÓ #
 
 ## REPLICACIÓ via Binlog (3 punts)
-**MASTER fons negre; SLAVE fons blanc!**
+**MASTER fons negre; SLAVE fons blanc!**  
 Es vol muntar entorn SGBD MySQL Percona amb rèplica. Es vol tenir un MySQL master a on s'aniran enviant totes les instruccions SQL d'inserció, modificació i esborrat. Es vol tenir un MySQL  esclau del master anteriorment esmentat.  
 Cal que que al realitzar un INSERT en el master veiem les dades a l'esclau al cap d'un instant de temps.
 
@@ -59,9 +59,9 @@ S'ha creat un altre log, el *scaplorep.000006*.
 * Realitza una còpia de la màquina virtual a on tinguis SGBD MySQL. Aquesta nova màquina serà que farà d'eslau.  
 * Esbrina quina IP tenen cadascuna de les màquines (master, slave).  
 | Server | IP | Color Terminal |
-| :---------- | :----------: | :---------- |
-| Master   | 10.92.254.44 | Negro |
-| Slave   | 10.92.254.129 | Blanco |
+| :---------- | :----------: | :---------- |  
+| Master   | 10.92.254.44 | Negro |  
+| Slave   | 10.92.254.129 | Blanco |  
 * Crea un backup de la BD a la màquina master utilitzant:  
     `$> mysqldump –u root –p -–master-data=2 sakila > /tmp/master_backup.sql`  
 ![Screenshot part1-15][15]  
