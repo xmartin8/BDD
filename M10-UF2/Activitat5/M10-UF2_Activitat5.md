@@ -60,7 +60,7 @@ S'ha creat un altre log, el *scaplorep.000006*.
 * Esbrina quina IP tenen cadascuna de les màquines (master, slave).  
 
 | Server | IP | Color Terminal |  
-| ---------- | ---------- | ---------- |  
+| :---------- | :----------: | :----------: |  
 | Master   | 10.92.254.44  | Negro  |  
 | Slave   | 10.92.254.129  | Blanco  |  
 
