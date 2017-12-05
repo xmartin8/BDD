@@ -117,6 +117,32 @@ En el slave sortirà també aquest insert:
 ## REPLICACIÓ via GTID (4 punts)
 Es vol muntar un entorn SGBD MySQL Percona amb rèplica similar a l’anterior, però aquesta vegada es vol realitzar mitjançant GTID.  
 Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary log.  
+[Documentació GTID](https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-howto.html)  
+[Documentació2 GTID](https://dev.mysql.com/doc/refman/5.7/en/replication-mode-change-online-enable-gtids.html)  
+Fer que els servidor només siguin de lectura. `SET @@global.read_only = ON;`  
+![Screenshot part2-1][30]  
+![Screenshot part2-2][31]  
+Aturar els dos servidors amb mysqladmin. `mysqladmin -uroot -p shutdown`  
+![Screenshot part2-3][32]  
+![Screenshot part2-4][33]  
+Modifiquem el fitxer `/etc/my.cnf` i afegim això al fitxer:  
+```
+gtid-mode=ON
+enforce-gtid-consistency = true
+```
+![Screenshot part2-5][34]  
+![Screenshot part2-6][35]  
+Reiniciem els serveis dels dos servidors.  
+
+**SLAVE:**
+![Screenshot part2-7][36]  
+![Screenshot part2-8][37]  
+En els dos servidors s’ha de fer:  
+![Screenshot part2-9][38]  
+
+Si dona molts problemes, desactivar el firewall:  
+`service firewalld stop;`  
+
 
 ## PUNTS OPCIONALS (màx. 6 punts)
 * Entorn amb replicació semisíncrona amb master passiu (3 punts)  
@@ -210,3 +236,12 @@ Elimina tots els fitxers binaris que estan dintre del fitxer index, deixa el fit
 [27b]: imgs/1-27b.png
 [28]: imgs/1-28.png
 [29]: imgs/1-29.png
+[30]: imgs/2-1.png
+[31]: imgs/2-2.png
+[32]: imgs/2-3.png
+[33]: imgs/2-4.png
+[34]: imgs/2-5.png
+[35]: imgs/2-6.png
+[36]: imgs/2-7.png
+[37]: imgs/2-8.png
+[38]: imgs/2-9.png
