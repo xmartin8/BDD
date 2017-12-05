@@ -148,12 +148,7 @@ Si dona molts problemes, desactivar el firewall:
 * Entorn amb replicació semisíncrona amb master passiu (3 punts)  
 * Entorn amb múltiples orígens (2 punts)  
 [Documentació MultiSource](https://dev.mysql.com/doc/refman/5.7/en/replication-multi-source.html)  
-Per esborrar tots els canals: `reset slave all`  
-| Server | IP | Color Terminal |  
-| :---------- | :----------: | :---------- |  
-| Master1   | 10.92.254.44  | Negre  |  
-| Master2   | 10.92.255.35  | Blanc  |  
-| Slave   | 10.92.255.30  | Marró  |  
+Per esborrar tots els canals: `reset slave all;`  
 
 | Server | IP | Color Terminal |  
 | :---------- | :----------: | :----------: |  
