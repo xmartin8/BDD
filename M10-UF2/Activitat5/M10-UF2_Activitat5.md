@@ -155,6 +155,12 @@ Per esborrar tots els canals: `reset slave all`
 | Master2   | 10.92.255.35  | Blanc  |  
 | Slave   | 10.92.255.30  | Marró  |  
 
+| Server | IP | Color Terminal |  
+| :---------- | :----------: | :----------: |  
+| Master1   | 10.92.254.44  | Negre  |  
+| Master2   | 10.92.255.35  | Blanc  |  
+| Slave   | 10.92.255.30  | Marró  |  
+
 ### Slave
 Parem el servei i modifiquem el fitxer `/etc/my.cnf`  
 ![Screenshot part3-1][39]  
