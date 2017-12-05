@@ -66,6 +66,7 @@ S'ha creat un altre log, el *scaplorep.000006*.
 
 * Crea un backup de la BD a la màquina master utilitzant:  
     `$> mysqldump –u root –p -–master-data=2 sakila > /tmp/master_backup.sql`  
+[Documentació Backups](http://librosweb.es/tutorial/como-hacer-copias-de-seguridad-de-una-base-de-datos-mysql/)  
 ![Screenshot part1-15][15]  
 ![Screenshot part1-16][16]  
 * Edita el fitxer master_backup.sql i busca la línia que comenci per --CHANGE MASTER TO.... i busca els valors MASTER_LOG_FILE i MASTER_LOG_POS.  
