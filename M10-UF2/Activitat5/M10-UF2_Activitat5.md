@@ -161,6 +161,12 @@ Si dona molts problemes, desactivar el firewall:
 ![Screenshot part1-27a][27a]  
 ![Screenshot part1-27b][27b]  
 
+| Paràmetre | Explicació |
+| :---------- | :---------- |
+| **Slave_IO_State:**   | Indica l’estat del slave.  |
+| patata   | patata  |
+| patata   | patata  |
+
 **Slave_IO_State:** Indica l’estat del slave.  
 **Master_Host:** el master anfitrió el qual s’està connectant el slave.  
 **Master_user:** El nom d'usuari del compte utilitzat per connectar-se al master.  
