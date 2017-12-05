@@ -134,7 +134,7 @@ enforce-gtid-consistency = true
 ![Screenshot part2-6][35]  
 Reiniciem els serveis dels dos servidors.  
 
-**SLAVE:**
+**SLAVE:**  
 ![Screenshot part2-7][36]  
 ![Screenshot part2-8][37]  
 En els dos servidors s’ha de fer:  
@@ -148,40 +148,44 @@ Si dona molts problemes, desactivar el firewall:
 * Entorn amb replicació semisíncrona amb master passiu (3 punts)  
 * Entorn amb múltiples orígens (2 punts)  
 [Documentació MultiSource](https://dev.mysql.com/doc/refman/5.7/en/replication-multi-source.html)  
-Per esborrar tots els canals: `reset slave all`
+Per esborrar tots els canals: `reset slave all`  
 | Server | IP | Color Terminal |
 | :---------- | :----------: | :---------- |
-| Master1   | 10.92.254.44 | Negre |
-| Master2   | 10.92.255.35 | Blanc |
-| Slave   | 10.92.255.30 | Marró |
+| Master1   | 10.92.254.44  | Negre  |
+| Master2   | 10.92.255.35  | Blanc  |
+| Slave   | 10.92.255.30  | Marró  |
 
 ### Slave
-parar el servei
+Parem el servei i modifiquem el fitxer `/etc/my.cnf`  
 ![Screenshot part3-1][39]  
-service mysqld restart
+`service mysqld restart`  
+Modifiquem la replicació de l'esclau que està utiltizant el repositori *file* per utilitzar el repositori *table*.  
 ![Screenshot part3-2][40]  
+Afegim la replicació GTID amb diferents canals, per poder afegir més d'un master.  
 ```
-CHANGE MASTER TO
-MASTER_HOST = '10.92.254.44',
-MASTER_USER = 'slave',
-MASTER_PASSWORD = 'patata',
-MASTER_PORT = 3306,
-MASTER_AUTO_POSITION = 1
-FOR CHANNEL 'master1';
-CHANGE MASTER TO
-MASTER_HOST = '10.92.255.35',
-MASTER_USER = 'slave',
-MASTER_PASSWORD = 'patata',
-MASTER_PORT = 3306,
-MASTER_AUTO_POSITION = 1
-FOR CHANNEL 'master2';
+CHANGE MASTER TO  
+MASTER_HOST = '10.92.254.44',  
+MASTER_USER = 'slave',  
+MASTER_PASSWORD = 'patata',  
+MASTER_PORT = 3306,  
+MASTER_AUTO_POSITION = 1  
+FOR CHANNEL 'master1';  
+  
+CHANGE MASTER TO  
+MASTER_HOST = '10.92.255.35',  
+MASTER_USER = 'slave',  
+MASTER_PASSWORD = 'patata',  
+MASTER_PORT = 3306,  
+MASTER_AUTO_POSITION = 1  
+FOR CHANNEL 'master2';  
 ```
 ![Screenshot part3-3][41]  
-masters:
+### Masters  
+Configuració del fitxer `/etc/my.cnf`  
 ![Screenshot part3-4][42]  
 ![Screenshot part3-5][43]  
 
-Modificar els autoincrement a un dels masters
+S'ha de modificar els autoincrement a un dels masters, i veiem que funciona i està connectat  
 ![Screenshot part3-6][44]  
 ![Screenshot part3-7][45]  
 
