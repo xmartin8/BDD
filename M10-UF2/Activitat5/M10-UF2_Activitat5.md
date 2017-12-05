@@ -130,7 +130,7 @@ Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary 
    Si.  
 * Comprova mitjançant SHOW SLAVE STATUS, quins valors et dóna?  
 
-[DOcumentació SHOW SLAVE STATUS](https://dev.mysql.com/doc/refman/5.7/en/show-slave-status.html)  
+[Documentació SHOW SLAVE STATUS](https://dev.mysql.com/doc/refman/5.7/en/show-slave-status.html)  
 ![Screenshot part1-27a][27a]  
 ![Screenshot part1-27b][27b]  
 
@@ -176,7 +176,7 @@ Elimina tots els fitxers binaris que estan dintre del fitxer index, deixa el fit
 
 * Mira’t alguna de les taules (`SHOW TABLES LIKE 'repl%'`) del `PERFORMANCE_SCHEMA`;    
 
-![Screenshot part1-28][28] 
+![Screenshot part1-28][28]  
 ![Screenshot part1-29][29] 
 
 [1]: imgs/1-1.png
