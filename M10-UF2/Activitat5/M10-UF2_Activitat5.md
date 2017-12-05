@@ -129,11 +129,55 @@ Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary 
 * Si iniciem una transacció en el master a on hi ha una sèrie d’operacions DML (INSERT, UPDATE o DELETE) . Aquestes es guarden en el binlog?  
    Si.  
 * Comprova mitjançant SHOW SLAVE STATUS, quins valors et dóna?  
+
+[DOcumentació SHOW SLAVE STATUS](https://dev.mysql.com/doc/refman/5.7/en/show-slave-status.html)  
 ![Screenshot part1-27a][27a]  
 ![Screenshot part1-27b][27b]  
+
+**Slave_IO_State:** Indica l’estat del slave.  
+**Master_Host:** el master anfitrió el qual s’està connectant el slave.  
+**Master_user:** El nom d'usuari del compte utilitzat per connectar-se al master.  
+**Master_Port:** EL port utilitzat per connectar-se al master.  
+**Connect_Retry:** EL número de connexions que el slave intenta connectar-se al master.  
+**Master_Log_File:** El nom del fitxer binari del master que està llegint el slave.  
+**Read_Master_Log_Pos:** La posició del fitxer binari del master.  
+**Relay_Log_File:** El nom del fitxer de registre del relé des del qual la seqüència de SQL està llegint i executant actualment.  
+**Relay_Log_Pos:** La posició en el fitxer de registre de relleu actual fins al qual la seqüència de SQL s'ha llegit i executat.  
+**Relay_Master_Log_File:** El nom del fitxer binari master que conté l'esdeveniment més recent executat per la cadena SQL.  
+**Slave_IO_Running:** Indica si s’ha connectat correctament al master.  
+**Slave_SQL_Running:** Si s'inicia la cadena SQL.  
+**Last_Errno:** Mostra si hi ha hagut algun errror.  
+**Skip_Counter:** El valor actual de la variable del sistema `sql_slave_skip_counter`.   
+**Exec_Master_Log_Pos:** La posició en el fitxer binari master actual al qual s'ha llegit i executat el fil SQL, marcant l'inici de la propera transacció o esdeveniment que es processarà.  
+**Relay_Log_Space:** La mida total combinada de tots els fitxers de registre relleus existents.  
+**Until_Log_Pos:** L’última posició en el fitxer binari master que el slave llegirà.  
+**Master_SSL_Allowed:** Defineix si es pot una connexió SSL al master.  
+**Seconds_Behind_Master:** Mostra si hi ha algun esdeveniment que s’està processant actualment al slave.  
+**Master_SSL_Verify_Server_Cert:** Defineix si es pot una connexió SSL al master.  
+**Last_SQL_Errno:** El número d'error i el missatge d'error de l'error més recent que va provocar que el fil de SQL s'aturés.   
+**Master_Server_Id:** El valor del paràmetre `server_id` del master.  
+**Master_UUID:** El valor del paràmetre `server_uuid` del master.  
+**Master_Info_File:** La localització del fitxer `master.info`.  
+**SQL_Delay:** El nombre de segons que el slave ha de retardar el master.  
+**SQL_Remaining_Delay:** Quan `Slave_SQL_Running_State` està esperant fins a `MASTER_DELAY` segons després de l'esdeveniment executat principal, aquest camp conté el nombre de segments de retard que queden.  
+**Slave_SQL_Running_State:** L'estat del fil de SQL.  
+**Master_Retry_Count:** El nombre de vegades que el slave pot intentar tornar a connectar amb el master en cas d'una connexió perduda.   
+**Auto_Position:** 1 si s'utilitza l'autoposicionament; en cas contrari 0.  
+
 * Quin significat té l’opció `MASTER_CONNECT_RETRY` en la comanda `CHANGE MASTER TO`?  
+
+[Documentació variables de replicació](https://dev.mysql.com/doc/refman/5.7/en/replication-options-slave.html)  
+Es tracta del número de vegades que el slave intenta conectar-se al master abans de donar-se per vençut. S’intentarà connectar de nou segons l’interval establert al paràmetre. El valor predeterminat és 86400. El valor 0 significa infinit, el slave s’intentarà connectar sempre.  
+
 * Què fa la comanda `RESET MASTER` en el cas de no utilitzar GTID i utilitzar-lo?  
+
+[Documentació RESET MASTER](https://dev.mysql.com/doc/refman/5.7/en/reset-master.html)  
+Elimina tots els fitxers binaris que estan dintre del fitxer index, deixa el fitxer index buit i en crea un de nou.  
+
 * Mira’t alguna de les taules (`SHOW TABLES LIKE 'repl%'`) del `PERFORMANCE_SCHEMA`;    
+
+![Screenshot part1-28][28] 
+![Screenshot part1-29][29] 
 
 [1]: imgs/1-1.png
 [2]: imgs/1-2.png
@@ -163,3 +207,5 @@ Un cop la rèplica funciona, Mostra l’exemple del contingut del fitxer binary 
 [26]: imgs/1-26.png
 [27a]: imgs/1-27a.png
 [27b]: imgs/1-27b.png
+[28]: imgs/1-28.png
+[29]: imgs/1-29.png
