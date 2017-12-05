@@ -147,6 +147,44 @@ Si dona molts problemes, desactivar el firewall:
 ## PUNTS OPCIONALS (màx. 6 punts)
 * Entorn amb replicació semisíncrona amb master passiu (3 punts)  
 * Entorn amb múltiples orígens (2 punts)  
+[Documentació MultiSource](https://dev.mysql.com/doc/refman/5.7/en/replication-multi-source.html)  
+Per esborrar tots els canals: `reset slave all`
+| Server | IP | Color Terminal |
+| :---------- | :----------: | :---------- |
+| Master1   | 10.92.254.44 | Negre |
+| Master2   | 10.92.255.35 | Blanc |
+| Slave   | 10.92.255.30 | Marró |
+
+### Slave
+parar el servei
+![Screenshot part3-1][39]  
+service mysqld restart
+![Screenshot part3-2][40]  
+```
+CHANGE MASTER TO
+MASTER_HOST = '10.92.254.44',
+MASTER_USER = 'slave',
+MASTER_PASSWORD = 'patata',
+MASTER_PORT = 3306,
+MASTER_AUTO_POSITION = 1
+FOR CHANNEL 'master1';
+CHANGE MASTER TO
+MASTER_HOST = '10.92.255.35',
+MASTER_USER = 'slave',
+MASTER_PASSWORD = 'patata',
+MASTER_PORT = 3306,
+MASTER_AUTO_POSITION = 1
+FOR CHANNEL 'master2';
+```
+![Screenshot part3-3][41]  
+masters:
+![Screenshot part3-4][42]  
+![Screenshot part3-5][43]  
+
+Modificar els autoincrement a un dels masters
+![Screenshot part3-6][44]  
+![Screenshot part3-7][45]  
+
 * Topologia de Slave Relay via BlackHole (2 punts)  
 * Instal·la i explica com funciona alguna d’aquestes eines (Percona Toolkit) (2 punts, 1 punt per eina):  
     * [pt-table-checksum](https://www.percona.com/doc/percona-toolkit/2.1/pt-table-checksum.html)  
@@ -247,3 +285,10 @@ Elimina tots els fitxers binaris que estan dintre del fitxer index, deixa el fit
 [36]: imgs/2-7.png
 [37]: imgs/2-8.png
 [38]: imgs/2-9.png
+[39]: imgs/3-1.png
+[40]: imgs/3-2.png
+[41]: imgs/3-3.png
+[42]: imgs/3-4.png
+[43]: imgs/3-5.png
+[44]: imgs/3-6.png
+[45]: imgs/3-7.png
