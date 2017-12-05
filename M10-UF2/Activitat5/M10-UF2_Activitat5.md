@@ -61,8 +61,8 @@ S'ha creat un altre log, el *scaplorep.000006*.
 
 | Server | IP | Color Terminal |  
 | :---------- | :----------: | :----------: |  
-| Master   | 10.92.254.44  | Negro  |  
-| Slave   | 10.92.254.129  | Blanco  |  
+| Master   | 10.92.254.44  | Negre  |  
+| Slave   | 10.92.254.129  | Blanc  |  
 
 * Crea un backup de la BD a la màquina master utilitzant:  
     `$> mysqldump –u root –p -–master-data=2 sakila > /tmp/master_backup.sql`  
