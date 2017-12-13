@@ -9,7 +9,7 @@
 Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aquests canvis en el fitxer de configuració.  
 
 
-## REALITZA LES SEGÜENTS TASQUES DE CONFIGURACIÓ i COMPROVACIÓ DE LOGS{#apartat1} 
+## REALITZA LES SEGÜENTS TASQUES DE CONFIGURACIÓ i COMPROVACIÓ DE LOGS {#apartat1} 
 
 1.	Crea un fitxer de configuració a on:  
     *	Canvia el port per defecte de connexió al 3011.  
