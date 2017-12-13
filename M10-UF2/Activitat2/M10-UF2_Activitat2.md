@@ -3,7 +3,7 @@
 **Index**
 * [Configuració i comprovació de logs](#apartat1)
 * [Connexions segures sobre SSL amb Percona Server](#apartat2)
-* [Prova](#PROBADDS)
+* [Prova](#probadds)
 
 ## ENUNCIAT ##
 
