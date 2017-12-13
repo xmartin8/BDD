@@ -1,7 +1,7 @@
 **Sara Caparrós Torres i Patricia López López (ASIX 2 - Curs 2017/18)**
 # CONFIGURACIÓ SGBD
 **Index**
-* [Configuració i comprovació de logs](#apartat1)
+* [Configuració i comprovació de logs](#configuració-i-comprovació-de-logs)
 * [Connexions segures sobre SSL amb Percona Server](#apartat2)
 * [Prova](#probadds)
 
