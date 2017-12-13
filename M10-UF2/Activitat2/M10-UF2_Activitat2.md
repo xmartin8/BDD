@@ -3,6 +3,7 @@
 **Index**
 * [Configuració i comprovació de logs](#apartat1)
 * [Connexions segures sobre SSL amb Percona Server](#apartat2)
+* [Prova] (#PROBADDS)
 
 ## ENUNCIAT ##
 
@@ -212,3 +213,5 @@ Per comprovar que funciona el xifrat, podem fer:
 ![screenshot_P2-9](./imgs/Act2_P2-9.png)  
 - `SHOW SESSION STATUS LIKE 'Ssl_cipher';`  
 ![screenshot_P2-10](./imgs/Act2_P2-10.png)  
+
+## PROBADDS 
