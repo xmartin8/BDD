@@ -1,15 +1,16 @@
 **Sara Caparrós Torres i Patricia López López (ASIX 2 - Curs 2017/18)**
 # CONFIGURACIÓ SGBD
 **Index**
-[Configuració i comprovació de logs](#apartat1)
-[Connexions segures sobre SSL amb Percona Server](#apartat2)
+* [Configuració i comprovació de logs](#apartat1)
+* [Connexions segures sobre SSL amb Percona Server](#apartat2)
 
 ## ENUNCIAT ##
 
 Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aquests canvis en el fitxer de configuració.  
 
 
-## REALITZA LES SEGÜENTS TASQUES DE CONFIGURACIÓ i COMPROVACIÓ DE LOGS {apartat1}  
+## REALITZA LES SEGÜENTS TASQUES DE CONFIGURACIÓ i COMPROVACIÓ DE LOGS 
+{apartat1}  
 
 1.	Crea un fitxer de configuració a on:  
     *	Canvia el port per defecte de connexió al 3011.  
@@ -148,7 +149,8 @@ Per esborrar un log s’ha d’utilitzar la comanda `PURGE`, on es pot esborrar 
     El número d’esdeveniment de la creació de la base de dades bar ha sigut el 219.  
     ![screenshot_ex8-14](./imgs/Act2_ex8-14.png) 
 
-## CONFIGURACIÓ DEL SERVIDOR PERCONA SERVER PER REALITZAR CONNEXIONS SEGURES SOBRE SSL. {apartat2}  
+## CONFIGURACIÓ DEL SERVIDOR PERCONA SERVER PER REALITZAR CONNEXIONS SEGURES SOBRE SSL. 
+{apartat2}  
 Primer de tot hem de crear els certificats i les claus SSL.  
 A continuació estan totes les comandes i seguidament estan les captures de pantalla amb les comprovacions.  
   
