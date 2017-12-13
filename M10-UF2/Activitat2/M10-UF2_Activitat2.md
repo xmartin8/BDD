@@ -1,7 +1,7 @@
 **Sara Caparrós Torres i Patricia López López (ASIX 2 - Curs 2017/18)**
 # CONFIGURACIÓ SGBD
 **Index**
-* [Configuració i comprovació de logs](#configuració-i-comprovació-de-logs)
+* [Configuració i comprovació de logs](#realitza-les-següents-tasques-de-configuració-i-comprovació-de-logs)
 * [Connexions segures sobre SSL amb Percona Server](#apartat2)
 * [Prova](#probadds)
 
@@ -10,7 +10,7 @@
 Partint del SGBD Percona Server instal·lat en l'activitat anterior realitza aquests canvis en el fitxer de configuració.  
 
 
-## REALITZA LES SEGÜENTS TASQUES DE CONFIGURACIÓ i COMPROVACIÓ DE LOGS {#apartat1}  
+## REALITZA LES SEGÜENTS TASQUES DE CONFIGURACIÓ i COMPROVACIÓ DE LOGS
 
 1.	Crea un fitxer de configuració a on:  
     *	Canvia el port per defecte de connexió al 3011.  
