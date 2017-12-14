@@ -1,5 +1,13 @@
 **Sara Caparrós Torres i Patricia López López (ASIX 2 - Curs 2017/18)**
 # ACTIVITAT Storage Engines MySQL #
+**Index**
+* [Activitat 1](#activitat-1-realitza-io-respon-els-seg%C3%9Cents-apartats)
+* [Activitat 2](#activitat-2-innodb-part-i-realitza-els-seg%C3%9Cents-apartats)
+* [Activitat 3](#activitat-3-innodb-part-ii-realitza-els-seg%C3%9Cents-apartats)
+* [Activitat 4](#activitat-4-innodb-part-iii-realitza-els-seg%C3%9Cents-apartats)
+* [Activitat 5](#activitat-5-redolog-realitza-els-seg%C3%9Cents-apartats)
+* [Activitat 6](#activitat-6-implementar-bd-distribu%C3%AFdes)
+* [Activitat 7](#activitat-7-storage-engine-csv)
 
 ## ENUNCIAT ##
 
