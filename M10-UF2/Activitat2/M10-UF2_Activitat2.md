@@ -2,8 +2,7 @@
 # CONFIGURACIÓ SGBD
 **Index**
 * [Configuració i comprovació de logs](#realitza-les-seg%C3%9Cents-tasques-de-configuraci%C3%93-i-comprovaci%C3%93-de-logs)
-* [Connexions segures sobre SSL amb Percona Server](#apartat2)
-* [Prova](#probadds)
+* [Connexions segures sobre SSL amb Percona Server](#configuraci%C3%93-del-servidor-percona-server-per-realitzar-connexions-segures-sobre-ssl)
 
 ## ENUNCIAT ##
 
@@ -213,5 +212,3 @@ Per comprovar que funciona el xifrat, podem fer:
 ![screenshot_P2-9](./imgs/Act2_P2-9.png)  
 - `SHOW SESSION STATUS LIKE 'Ssl_cipher';`  
 ![screenshot_P2-10](./imgs/Act2_P2-10.png)  
-
-## PROBADDS 
