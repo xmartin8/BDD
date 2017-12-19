@@ -7,7 +7,7 @@
 
 
 # CLUSTERING
-
+![Logo PerconaXDB cluster][2]
 Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clustering  mitjançant Percona XtraDB Cluster.  
 **Documentació a on podeu trobar certa informació:**  
 https://www.percona.com/software/mysql-database/percona-xtradb-cluster  
@@ -16,8 +16,6 @@ https://www.percona.com/doc/percona-xtradb-cluster/5.5/howtos/centos_howto.html
 
 ## CONFIGURACIÓ MYSQL CLUSTER
 Esquema d'instal·lació d'un MySQL Cluster amb  4 màquines virtuals amb 0,5/1 GB de RAM i CentOS Desactiva el firewall o permet la connexió als ports 3306, 4444, 4567, 4568  
-
-
 
 IPs de cada Node (X són els 2 últim dígits del DNI d'un dels components del grup.):  
 *	Node 1: nodeid = 1, hostname=percona1, IP=192.168.X.71
@@ -32,9 +30,8 @@ Explica El Bootstrapping the cluster i el concepte split-brain
 Realitza la documentació de la instal·lació i configuració que has hagut de dur a terme per pereparar un Percona XtraDB Cluster. Mostra al professor la funcionalitat del Cluster.
 Intenta de provar una parada d'una màquina i veure com es recupera de la parada.
 
- 
-
 # CLUSTERING  MySQL
+![Logo MySQL][1]
 
 Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clustering  mitjançant MySQL
 
@@ -52,6 +49,7 @@ Pots saber quines particions hi ha en una taula concreta?
 Realitza la documentació de la instal·lació i configuració que has hagut de dur a terme per pereparar el Clúster. Mostra al professor la funcionalitat del Cluster.
 Intenta de provar una parada d'una màquina i veure com es recupera de la parada.
 
+
 # Balancejador / Proxy
 Hi ha moltes eines que poden actuar de balancejadors o proxys per estar entre la nostra aplicació i un backend de MySQLs (Nodes).
 
@@ -62,3 +60,6 @@ Escull un dels més coneguts (ProxySQL, HAProxy, MySQL Router,...), proposa una 
 ## ENTREGA
 Realitza la documentació de l'arquitectura escollida, de la instal·lació i configuració que has hagut de dur a terme. Mostra al professor la seva funcionalitat
 
+
+[1]: imgs/MySQL.png
+[2]: imgs/pxdbc-logo.png
