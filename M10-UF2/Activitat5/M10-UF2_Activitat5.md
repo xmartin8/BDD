@@ -2,8 +2,8 @@
 # ACTIVITAT CLUSTERING #
 **Index**
 * [Clustering](#clustering)
-* [Clustering MySQL](#clustering-mysql)
-* [Balancejador / Proxy](#balancejador-/-proxy)
+* [Clustering MySQL](#clustering--mysql)
+* [Balancejador / Proxy](#balancejador--proxy)
 
 
 # CLUSTERING
