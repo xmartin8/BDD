@@ -45,6 +45,15 @@ Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clu
 Cal repartir els nodes com a mínim en 3 màquines físiques
 Pots saber quines particions hi ha en una taula concreta?
 
+| Server | IP | Color Terminal |  
+| :---------- | :----------: | :----------: |  
+| Managment node (1)  | 10.92.254.107  | Negre  |  
+| Data node (2)  | 10.92.255.74  | Blanc  |  
+| Data node (3)  | 10.92.255.73  | Gris  |  
+| SQL node (4)  | 10.92.255.72  | Blau  |  
+| SQL node (5)  | 10.92.255.71  | Cian  |  
+
+
 ## ENTREGA
 Realitza la documentació de la instal·lació i configuració que has hagut de dur a terme per pereparar el Clúster. Mostra al professor la funcionalitat del Cluster.
 Intenta de provar una parada d'una màquina i veure com es recupera de la parada.
