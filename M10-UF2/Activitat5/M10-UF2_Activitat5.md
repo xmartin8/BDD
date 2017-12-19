@@ -1,13 +1,12 @@
 **Sara Caparrós Torres i Patricia López López (ASIX 2 - Curs 2017/18)**  
 # ACTIVITAT CLUSTERING #
 **Index**
-* [Binlog](#replicaci%C3%93-via-binlog-3-punts)
-* [GTID](#replicaci%C3%93-via-gtid-4-punts)
-* [Opcionals](#punts-opcionals-m%C3%A0x-6-punts)
-* [Preguntes](#respon-a-les-seg%C3%BCents-preguntes-en-el-cas-de-binlog-i-gtid)
+* [Clustering](#clustering)
+* [Clustering MySQL](#clustering-mysql)
+* [Balancejador / Proxy](#balancejador-/-proxy)
 
 
-# CLUSTERING (6 punts)
+# CLUSTERING
 
 Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clustering  mitjançant Percona XtraDB Cluster.  
 **Documentació a on podeu trobar certa informació:**  
@@ -35,7 +34,7 @@ Intenta de provar una parada d'una màquina i veure com es recupera de la parada
 
  
 
-# CLUSTERING  MySQL (8 punts)
+# CLUSTERING  MySQL
 
 Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clustering  mitjançant MySQL
 
@@ -53,7 +52,7 @@ Pots saber quines particions hi ha en una taula concreta?
 Realitza la documentació de la instal·lació i configuració que has hagut de dur a terme per pereparar el Clúster. Mostra al professor la funcionalitat del Cluster.
 Intenta de provar una parada d'una màquina i veure com es recupera de la parada.
 
-# Balancejador / Proxy (3 punts)
+# Balancejador / Proxy
 Hi ha moltes eines que poden actuar de balancejadors o proxys per estar entre la nostra aplicació i un backend de MySQLs (Nodes).
 
 Diagrames d'exemple:
