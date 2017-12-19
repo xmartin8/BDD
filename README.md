@@ -14,3 +14,6 @@ En aquest repositori hi pujarem totes les activitats d'aquest mòdul.
 
 [Activitat4](https://github.com/saracaparros/BBDD/blob/master/M10-UF2/Activitat4/M10-UF2_Activitat4.md)  
 >**Creació:** Sara i Patricia  
+
+[Activitat5](https://github.com/saracaparros/BBDD/blob/master/M10-UF2/Activitat5/M10-UF2_Activitat5.md)  
+>**Creació:** Sara i Patricia  
