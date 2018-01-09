@@ -30,9 +30,14 @@ Explica El Bootstrapping the cluster i el concepte split-brain
 Realitza la documentació de la instal·lació i configuració que has hagut de dur a terme per pereparar un Percona XtraDB Cluster. Mostra al professor la funcionalitat del Cluster.  
 Intenta de provar una parada d'una màquina i veure com es recupera de la parada.  
 
+<<<<<<< HEAD
 # CLUSTERING  MySQL  
 ![Logo MySQL][1]  
 Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clustering  mitjançant MySQL  
+=======
+# CLUSTERING  MySQL
+![Logo MySQL][1]  
+>>>>>>> 7d4675c3e046d6b8a4e95f50f7ba530f9623bb8a
 
 ## CONFIGURACIÓ MYSQL CLUSTER  
 *	Esquema d'instal·lació d'un MySQL Cluster amb 5 màquines virtuals amb 0,5/1 GB de RAM i CentOS 7  
