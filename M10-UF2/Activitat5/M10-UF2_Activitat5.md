@@ -7,7 +7,7 @@
 
 
 # CLUSTERING
-![Logo PerconaXDB cluster][2]
+![Logo PerconaXDB cluster][2]  
 Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clustering  mitjançant Percona XtraDB Cluster.  
 **Documentació a on podeu trobar certa informació:**  
 https://www.percona.com/software/mysql-database/percona-xtradb-cluster  
@@ -31,7 +31,7 @@ Realitza la documentació de la instal·lació i configuració que has hagut de 
 Intenta de provar una parada d'una màquina i veure com es recupera de la parada.
 
 # CLUSTERING  MySQL
-![Logo MySQL][1]
+![Logo MySQL][1]  
 
 Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clustering  mitjançant MySQL
 
