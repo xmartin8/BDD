@@ -5,7 +5,6 @@
 * [Clustering MySQL](#clustering--mysql)  
 * [Balancejador / Proxy](#balancejador--proxy)  
   
-
 # CLUSTERING
 ![Logo PerconaXDB cluster][2]  
 Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clustering  mitjançant Percona XtraDB Cluster.  
@@ -30,14 +29,9 @@ Explica El Bootstrapping the cluster i el concepte split-brain
 Realitza la documentació de la instal·lació i configuració que has hagut de dur a terme per pereparar un Percona XtraDB Cluster. Mostra al professor la funcionalitat del Cluster.  
 Intenta de provar una parada d'una màquina i veure com es recupera de la parada.  
 
-<<<<<<< HEAD
 # CLUSTERING  MySQL  
 ![Logo MySQL][1]  
 Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clustering  mitjançant MySQL  
-=======
-# CLUSTERING  MySQL
-![Logo MySQL][1]  
->>>>>>> 7d4675c3e046d6b8a4e95f50f7ba530f9623bb8a
 
 ## CONFIGURACIÓ MYSQL CLUSTER  
 *	Esquema d'instal·lació d'un MySQL Cluster amb 5 màquines virtuals amb 0,5/1 GB de RAM i CentOS 7  
@@ -84,3 +78,40 @@ Realitza la documentació de l'arquitectura escollida, de la instal·lació i co
 
 [1]: imgs/MySQL.png
 [2]: imgs/pxdbc-logo.png
+[M1-1]: imgs/m1-1.png
+[M1-2]: imgs/m1-2.png
+[M1-3]: imgs/m1-3.png
+[M1-4]: imgs/m1-4.png
+[M1-5]: imgs/m1-5.png
+[M1-6]: imgs/m1-6.png
+[M1-7]: imgs/m1-7.png
+[M1-8]: imgs/m1-8.png
+[M1-9]: imgs/m1-9.png
+[M1-10]: imgs/m1-10.png
+[M1-11]: imgs/m1-11.png
+[M1-12]: imgs/m1-12.png
+[M1-13]: imgs/m1-13.png
+[M1-14]: imgs/m1-14.png
+[M1-15]: imgs/m1-15.png
+[M1-16]: imgs/m1-16.png
+[M1-17]: imgs/m1-17.png
+[M1-18]: imgs/m1-18.png
+[M1-19]: imgs/m1-19.png
+[M1-20]: imgs/m1-20.png
+[M1-21]: imgs/m1-21.png
+[M1-22]: imgs/m1-22.png
+[M1-23]: imgs/m1-23.png
+[M1-24]: imgs/m1-24.png
+[M1-25]: imgs/m1-25.png
+[M1-26]: imgs/m1-26.png
+[M1-27]: imgs/m1-27.png
+[M1-28]: imgs/m1-28.png
+[M1-29]: imgs/m1-29.png
+[M1-30]: imgs/m1-30.png
+[M1-31]: imgs/m1-31.png
+[M1-32]: imgs/m1-32.png
+
+
+
+
+
