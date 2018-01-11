@@ -92,10 +92,10 @@ rpm -Uvh MySQL-Cluster-shared-gpl-7.4.10-1.el7.x86_64.rpm
 ### Configuració del managment node:
 
 Create a new directory for the configuration files. I will use the "/var/lib/mysql-cluster" directory.
-mkdir -p /var/lib/mysql-cluster
+`mkdir -p /var/lib/mysql-cluster`
 Then create new configuration file for the cluster management named "config.ini" in the mysql-cluster directory.
-cd /var/lib/mysql-cluster
-nano config.ini
+`cd /var/lib/mysql-cluster`
+`nano config.ini`
 Paste the configuration below:
 ```
 [ndb_mgmd default] 
@@ -129,22 +129,56 @@ HostName=10.92.255.72
 #SQL Node5
 HostName=10.92.255.71
 ```
+![M1-7][M1-7]  
+![M1-8][M1-8]  
 
+Guardem i sortim.
 
+### Iniciem el Managment Node
 
+Next start the management node with the command below:  
+`ndb_mgmd --config-file=/var/lib/mysql-cluster/config.ini  `
+The result should be similar to this:  
+```
+MySQL Cluster Management Server mysql-5.6.28 ndb-7.4.10  
+2016-03-22 19:26:08 [MgmtSrvr] INFO 	-- The default config directory '/usr/mysql-cluster' does not exist. Trying to create it...
+2016-03-22 19:26:08 [MgmtSrvr] INFO 	-- Successfully created config directory
+```
+![M1-9][M1-9]  
 
+The management node is started, now you can use command "ndb_mgm" to monitor the node:  
+```
+ndb_mgm
+show
+```
 
+You can see the management node has been started with: mysql-6.6 and ndb-7.4. 
 
+### Configuració dels data nodes:
+Create a new configuration file in the /etc directory with the vi editor:  
+`nano /etc/my.cnf`
+Paste configuration below:  
+```
+[mysqld]
+ndbcluster
+ndb-connectstring=10.92.254.107 	# IP del Management Node
+ 
+[mysql_cluster]
+ndb-connectstring=10.92.254.107 	# IP del Management Node
+Save the file and exit.
+```
+![M1-10][M1-10]  
+![M1-11][M1-11]  
 
-
-
-
-
-
-
-
-
-
+Then create the new directory for the database data that we defined in the management node config file "config.ini".  
+`mkdir -p /var/lib/mysql-cluster`
+Now start the data node/ndbd:  
+`ndbd`
+results:  
+```
+2016-03-22 19:35:56 [ndbd] INFO 	-- Angel connected to '192.168.1.120:1186'
+2016-03-22 19:35:56 [ndbd] INFO 	-- Angel allocated nodeid: 2
+```
 
 
 ## ENTREGA
