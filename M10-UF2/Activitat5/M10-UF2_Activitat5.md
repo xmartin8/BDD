@@ -84,9 +84,9 @@ rpm -Uvh MySQL-Cluster-server-gpl-7.4.10-1.el7.x86_64.rpm
 rpm -Uvh MySQL-Cluster-shared-gpl-7.4.10-1.el7.x86_64.rpm
 ```
 ![M1-4][M1-4]  
-`sudo yum install net-tools`
+`sudo yum install net-tools`  
 ![M1-5][M1-5]  
-`rpm -Uvh MySQL-Cluster-server-gpl-7.4.10-1.el7.x86_64.rpm`
+`rpm -Uvh MySQL-Cluster-server-gpl-7.4.10-1.el7.x86_64.rpm`  
 ![M1-6][M1-6]  
 
 ### Configuració del managment node:
@@ -97,40 +97,7 @@ Then create new configuration file for the cluster management named "config.ini"
 cd /var/lib/mysql-cluster
 nano config.ini
 Paste the configuration below:
-[ndb_mgmd default]
-#Directory for MGM node log files
-DataDir=/var/lib/mysql-cluster
- 
-[ndb_mgmd]
-#Management Node db1
-HostName=10.92.254.107	
- 
-[ndbd default]
-NoOfReplicas=2  	# Number of replicas
-DataMemory=256M 	# Memory allocate for data storage
-IndexMemory=128M	# Memory allocate for index storage
-#Directory for Data Node
-DataDir=/var/lib/mysql-cluster
- 
-[ndbd]
-#Data Node db2
-HostName=10.92.255.74
- 
-[ndbd]
-#Data Node db3
-HostName=10.92.255.73	
- 
-[mysqld]
-#SQL Node db4
-HostName=10.92.255.72
- 
-[mysqld]
-#SQL Node db5
-HostName=10.92.255.71
-
-------
-
-
+```
 [ndb_mgmd default] 
 #Directori del managment node per fitxers de log
 DataDir=/var/lib/mysql-cluster
@@ -161,7 +128,7 @@ HostName=10.92.255.72
 [mysqld]
 #SQL Node5
 HostName=10.92.255.71
-
+```
 
 
 
