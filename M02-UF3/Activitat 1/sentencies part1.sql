@@ -1,23 +1,51 @@
 #1. Obtenir el nom i l’adreça dels hotels de 4 estrelles.
-
+SELECT nom AS 'Nom de l\'hotel', 
+	   adreca AS 'Adreça' 
+	FROM hotels 
+WHERE categoria=4;
 
 #2. Obtenir el nom dels clients (Nom i cognom) que el seu cognom comenci per vocal (sense tenir en compte els accents).
-
+SELECT concat(nom, ' ',cognom1) AS 'Nom i Cognom' 
+	FROM clients 
+WHERE left(cognom1,1) = 'A';
 
 #3. Quina és la reserva_id que té més nits. Indica també la quantitat de nits.
+SELECT reserva_id AS 'Reserva ID', 
+	   data_inici AS 'Data d\'inici', 
+       data_fi AS 'Data fi', 
+       MAX(TIMESTAMPDIFF(DAY,data_inici,data_fi)) AS Dies 
+	FROM reserves 
+GROUP BY reserva_id 
+ORDER BY Dies DESC 
+LIMIT 1;
+
 
 
 #4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
-
+SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves',
+	   h.nom AS 'Nom de l\'hotel'
+  FROM reserves as r
+INNER JOIN habitacions as hab ON hab.hab_id = r.hab_id
+INNER JOIN hotels as h ON h.hotel_id = hab.hotel_id
+WHERE h.nom = 'Catalonia Ramblas';
 
 #5. Obtenir el nom i cognoms dels clients que varen néixer el mes de Març.
+SELECT concat(nom, ' ',cognom1) AS 'Nom i Cognom'
+	FROM clients 
+WHERE substring(data_naix,6,2)=03;
 
 
 #6. Quantitat d’hotels de 4 estrelles de la població de Barcelona.
-
+SELECT COUNT(h.hotel_id) 
+	FROM hotels h 
+    INNER JOIN poblacions p ON p.poblacio_id = h.poblacio_id
+WHERE p.nom = 'Barcelona';
 
 #7. De l’any 2015 volem obtenir els seu histograma de reserves. És a dir volem saber el número de reserves de cadascun dels mesos. Una reserva pertany a un mes si la alguna nit d’aquella reserva cau a dins de l’any 2015.
-
+SELECT *
+	FROM reserves r
+    INNER JOIN habitacions hab ON hab.hab_id = r.hab_id
+    INNER JOIN hotels h ON h.hotel_id = hab.hotel_id;
 
 #8. El nom dels hotels que tenen com a mínim una habitació lliure durant les dates ‘2015-05-01’ i ‘2015-05-17’.
 
