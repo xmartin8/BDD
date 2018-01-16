@@ -11,9 +11,9 @@ Disposem d'una base de dades que guarda informació relacionada amb les reserves
 Part 1. Escriu les sentències SQL per tal d’obtenir els que se’ns demana. A més a més si creus que la sentència es pot millorar amb la incorporació d’un índex i/o modificació de l’esquema (sense alterar-ne el comportament),etc... Afegeix la sentència DDL i l’_output_ de **EXPLAIN mostrant la millora (EXPLAIN sense índex i EXPLAIN amb índex)**. Si creus que la consulta no es pot millorar mitjançant índexs justifica el perquè. ( 2 punts )
 **Nota: No milloreu les sentències amb índexs complerts**
 
-**Important:
-* Configureu la màquina virtual amb 512MB de RAM
-* Crea només els índex necessaris! Si hi ha índexs que es poden reaprofitar per diferents sentències fes-ho.**
+**Important:**
+* **Configureu la màquina virtual amb 512MB de RAM**
+* **Crea només els índex necessaris! Si hi ha índexs que es poden reaprofitar per diferents sentències fes-ho.**
 
 1. Obtenir el nom i l’adreça dels hotels de 4 estrelles.
 2. Obtenir el nom dels clients (Nom i cognom) que el seu cognom comenci per vocal (sense tenir en compte els accents).
