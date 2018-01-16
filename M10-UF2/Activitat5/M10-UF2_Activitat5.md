@@ -165,8 +165,9 @@ ndb-connectstring=10.92.254.107 	# IP del Management Node
  
 [mysql_cluster]
 ndb-connectstring=10.92.254.107 	# IP del Management Node
-Save the file and exit.
 ```
+Save the file and exit.
+
 ![M1-10][M1-10]  
 ![M1-11][M1-11]  
 
@@ -179,7 +180,74 @@ results:
 2016-03-22 19:35:56 [ndbd] INFO 	-- Angel connected to '192.168.1.120:1186'
 2016-03-22 19:35:56 [ndbd] INFO 	-- Angel allocated nodeid: 2
 ```
+![M1-12][M1-12]  
+![M1-13][M1-13]  
 
+Data Node db2 connected to the management node ip 192.168.1.120.  
+
+Un cop acabada aquesta configuració en un dels nodes la fem a l'altre.
+
+### Configuració dels SQL nodes:
+Creem un nou fitxer dintre del directori **/etc**, s’ha de dir **my.cnf**  
+`sudo nano /etc/my.cnf` 
+  
+I dintre li escribim:  
+```
+[mysqld]
+ndbcluster
+ndb-connectstring=10.92.254.107   	# IP del management node
+default_storage_engine=ndbcluster 	# Defineix el Storage Engine predeterminat utilitzat per MySQL
+ 
+[mysql_cluster]
+ndb-connectstring=10.92.254.107   	# IP del management node
+```
+  
+Guardem el fitxer i sortim.  
+![M1-14][M1-14]  
+![M1-15][M1-15]  
+Iniciem el SQL Node, iniciant el MySQL server:  
+`service mysql start`  
+![M1-16][M1-16]  
+![M1-17][M1-17]  
+
+## Monitorització del clúster
+Amb la comanda `show` mostrem que estan totes les màquines connectades al clúster.
+![M1-18][M1-18]  
+
+
+### Testejem el cluster
+
+Iniciem sessió en el node 4.
+Canviem la contrasenya per defecte del MYSQL que es troba a directori .mysql_secret
+![M1-19][M1-19]  
+Canviem la contrasenya amb la següent comanda:
+`mysql_secure_installation`
+![M1-20][M1-20]  
+![M1-21][M1-21]  
+Un cop canviada, iniciem sessió en el MYSQL. Creem un nou usuari root que pugui accedir a MYSQL des de fora.  
+![M1-22][M1-22]   
+![M1-23][M1-23]  
+Podem veure el nou usuari creat en la llista d’usuaris de MYSQL:
+`SELECT user, host, password FROM mysql.user;`
+![M1-24][M1-24]  
+Donem permisos a aquest usuari root de llegir i escriure.  
+![M1-25][M1-25]  
+Per últim creem una base de dades en el node4 i la veurem replicada en el node5.  
+![M1-26][M1-26]  
+Mostrem la contrassenya del node 5 del mysql
+![M1-27][M1-27]  
+iniciem al mysql amb la contrasenya que ens ha sortit
+![M1-28][M1-28]  
+A continuació fem el `SET PASSWORD = PASSWORD(‘patata’);`
+![M1-29][M1-29]  
+Comprovem que es replica tot
+![M1-30][M1-30]  
+
+#### Desconnexió sobtada d’una màquina NODE 4
+![M1-31][M1-31]  
+un cop s’ha tornat a iniciar el node 4, tornem a comprovar que estigui connectat.
+![M1-32][M1-32]  
+En el cas que es desconnectés un DataNode, s'ha de tornar a fer el `ndbd` i ja es tornaria a connectar.
 
 ## ENTREGA
 Realitza la documentació de la instal·lació i configuració que has hagut de dur a terme per pereparar el Clúster. Mostra al professor la funcionalitat del Cluster.
