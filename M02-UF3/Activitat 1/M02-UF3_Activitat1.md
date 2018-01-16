@@ -2,8 +2,9 @@
 # ACTIVITAT OPTIMITZACIÓ #
 **Index**  
 * [Part 1](#part-1)  
-* [Clustering MySQL](#clustering--mysql)  
-* [Balancejador / Proxy](#balancejador--proxy)  
+* [Part 2 – Query Cache](#part-2--query-cache)  
+* [Part 3 – Benchmarking](#part-3--benchmarking)  
+![Hotels][hotel]
 # Part 1
 Disposem d'una base de dades que guarda informació relacionada amb les reserves dels hotels de 4 i 5 estrelles de tot Catalunya.  
 
@@ -62,3 +63,6 @@ Afegeix els índexs de  la part 1
 Activa la CACHE (també fes que les consultes passin per aquesta CACHE)
 ## Realitza una comparativa mostrant els resultats obtinguts dels tres benchmarks.
 ## En el tercer cas indica quin ha estat el valor de CacheHitRatio.
+
+
+[hotel]: imgs/hotel.png
