@@ -180,6 +180,7 @@ Els resutats:
 2016-03-22 19:35:56 [ndbd] INFO 	-- Angel allocated nodeid: 2
 ```
 
+![M1-33][M1-33] 
 ![M1-13][M1-13]  
 
 Un cop acabada aquesta configuració en un dels nodes la fem a l'altre.
@@ -296,7 +297,7 @@ Realitza la documentació de l'arquitectura escollida, de la instal·lació i co
 [M1-30]: imgs/m1-30.png
 [M1-31]: imgs/m1-31.png
 [M1-32]: imgs/m1-32.png
-
+[M1-33]: imgs/m1-33.png
 
 
 
