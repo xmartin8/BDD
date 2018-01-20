@@ -46,7 +46,7 @@ Cal repartir els nodes com a mínim en 3 màquines físiques
 ### PRE-REQUISITS:
 
 - Tots els nodes han de tenir la mateixa versió de Centos.  
-- El Firewall ha d’estar desactivat o ha de permetre els ports 3306, 4444, 4567 i 4568 
+- El Firewall ha d’estar desactivat o ha de permetre els ports 3306, 4444, 4567 i 4568  
     `systemctl disable firewalld`  
     `service firewalld stop`  
 
@@ -89,17 +89,17 @@ rpm -Uvh MySQL-Cluster-shared-gpl-7.4.10-1.el7.x86_64.rpm
 `rpm -Uvh MySQL-Cluster-server-gpl-7.4.10-1.el7.x86_64.rpm`  
 ![M1-6][M1-6]  
 
-### Configuració del managment node:
+### Configuració del management node:
 
-Create a new directory for the configuration files. I will use the "/var/lib/mysql-cluster" directory.
-`mkdir -p /var/lib/mysql-cluster`
-Then create new configuration file for the cluster management named "config.ini" in the mysql-cluster directory.
+Creem un nou directori pels fitxers de configuració.  
+`mkdir -p /var/lib/mysql-cluster`  
+Creem un nou fitxer de configuració per el cluster del management anomenat **config.ini** en el directori **mysql-cluster**.  
 `cd /var/lib/mysql-cluster`
 `nano config.ini`
-Paste the configuration below:
+Copiem el següent:  
 ```
 [ndb_mgmd default] 
-#Directori del managment node per fitxers de log
+#Directori del management node per fitxers de log
 DataDir=/var/lib/mysql-cluster
 
 [ndb_mgmd]
@@ -134,11 +134,11 @@ HostName=10.92.255.71
 
 Guardem i sortim.
 
-### Iniciem el Managment Node
+### Iniciem el Management Node
 
-Next start the management node with the command below:  
+El següent serà iniciar al management node amb la següent comanda:  
 `ndb_mgmd --config-file=/var/lib/mysql-cluster/config.ini  `
-The result should be similar to this:  
+El resultat ha de ser similar a això:   
 ```
 MySQL Cluster Management Server mysql-5.6.28 ndb-7.4.10  
 2016-03-22 19:26:08 [MgmtSrvr] INFO 	-- The default config directory '/usr/mysql-cluster' does not exist. Trying to create it...
@@ -146,18 +146,17 @@ MySQL Cluster Management Server mysql-5.6.28 ndb-7.4.10
 ```
 ![M1-9][M1-9]  
 
-The management node is started, now you can use command "ndb_mgm" to monitor the node:  
+El management node està iniciat, ara es pot escriure la comanda `ndb_mgm` per controlar el node:  
 ```
 ndb_mgm
 show
 ```
 
-You can see the management node has been started with: mysql-6.6 and ndb-7.4. 
 
-### Configuració dels data nodes:
-Create a new configuration file in the /etc directory with the vi editor:  
+### Configuració dels data nodes:  
+Creem un nou fitxer de configuració en el directori **/etc/**:  
 `nano /etc/my.cnf`
-Paste configuration below:  
+Copiem el següent:   
 ```
 [mysqld]
 ndbcluster
@@ -166,24 +165,22 @@ ndb-connectstring=10.92.254.107 	# IP del Management Node
 [mysql_cluster]
 ndb-connectstring=10.92.254.107 	# IP del Management Node
 ```
-Save the file and exit.
+Guardem el fitxer i sortim.  
 
 ![M1-10][M1-10]  
 ![M1-11][M1-11]  
 
-Then create the new directory for the database data that we defined in the management node config file "config.ini".  
+Creem un nou directori per les dades de la base de dades que vàrem definir al fitxer **config.ini**:  
 `mkdir -p /var/lib/mysql-cluster`
-Now start the data node/ndbd:  
+Iniciem el node:  
 `ndbd`
-results:  
+Els resutats:   
 ```
 2016-03-22 19:35:56 [ndbd] INFO 	-- Angel connected to '192.168.1.120:1186'
 2016-03-22 19:35:56 [ndbd] INFO 	-- Angel allocated nodeid: 2
 ```
 ![M1-12][M1-12]  
 ![M1-13][M1-13]  
-
-Data Node db2 connected to the management node ip 192.168.1.120.  
 
 Un cop acabada aquesta configuració en un dels nodes la fem a l'altre.
 
