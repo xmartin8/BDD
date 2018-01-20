@@ -94,9 +94,9 @@ rpm -Uvh MySQL-Cluster-shared-gpl-7.4.10-1.el7.x86_64.rpm
 Creem un nou directori pels fitxers de configuració.  
 `mkdir -p /var/lib/mysql-cluster`  
 Creem un nou fitxer de configuració per el cluster del management anomenat **config.ini** en el directori **mysql-cluster**.  
-`cd /var/lib/mysql-cluster`
-`nano config.ini`
-Copiem el següent:  
+`cd /var/lib/mysql-cluster`  
+`nano config.ini`  
+Copiem el següent:    
 ```
 [ndb_mgmd default] 
 #Directori del management node per fitxers de log
@@ -137,7 +137,7 @@ Guardem i sortim.
 ### Iniciem el Management Node
 
 El següent serà iniciar al management node amb la següent comanda:  
-`ndb_mgmd --config-file=/var/lib/mysql-cluster/config.ini  `
+`ndb_mgmd --config-file=/var/lib/mysql-cluster/config.ini  `  
 El resultat ha de ser similar a això:   
 ```
 MySQL Cluster Management Server mysql-5.6.28 ndb-7.4.10  
@@ -151,11 +151,11 @@ El management node està iniciat, ara es pot escriure la comanda `ndb_mgm` per c
 ndb_mgm
 show
 ```
-
+![M1-10][M1-10]  
 
 ### Configuració dels data nodes:  
 Creem un nou fitxer de configuració en el directori **/etc/**:  
-`nano /etc/my.cnf`
+`nano /etc/my.cnf`  
 Copiem el següent:   
 ```
 [mysqld]
@@ -167,19 +167,19 @@ ndb-connectstring=10.92.254.107 	# IP del Management Node
 ```
 Guardem el fitxer i sortim.  
 
-![M1-10][M1-10]  
 ![M1-11][M1-11]  
+![M1-12][M1-12]  
 
 Creem un nou directori per les dades de la base de dades que vàrem definir al fitxer **config.ini**:  
-`mkdir -p /var/lib/mysql-cluster`
+`mkdir -p /var/lib/mysql-cluster`  
 Iniciem el node:  
-`ndbd`
+`ndbd`  
 Els resutats:   
 ```
 2016-03-22 19:35:56 [ndbd] INFO 	-- Angel connected to '192.168.1.120:1186'
 2016-03-22 19:35:56 [ndbd] INFO 	-- Angel allocated nodeid: 2
 ```
-![M1-12][M1-12]  
+
 ![M1-13][M1-13]  
 
 Un cop acabada aquesta configuració en un dels nodes la fem a l'altre.
