@@ -247,20 +247,46 @@ un cop s’ha tornat a iniciar el node 4, tornem a comprovar que estigui connect
 ![M1-32][M1-32]  
 En el cas que es desconnectés un DataNode, s'ha de tornar a fer el `ndbd` i ja es tornaria a connectar.
 
-## ENTREGA
-Realitza la documentació de la instal·lació i configuració que has hagut de dur a terme per pereparar el Clúster. Mostra al professor la funcionalitat del Cluster.
-Intenta de provar una parada d'una màquina i veure com es recupera de la parada.
 
 
 # Balancejador / Proxy
-Hi ha moltes eines que poden actuar de balancejadors o proxys per estar entre la nostra aplicació i un backend de MySQLs (Nodes).
+Hi ha moltes eines que poden actuar de balancejadors o proxys per estar entre la nostra aplicació i un backend de MySQLs (Nodes).  
 
-Diagrames d'exemple:
+Diagrames d'exemple:  
 
-Escull un dels més coneguts (ProxySQL, HAProxy, MySQL Router,...), proposa una arquitectura i documenta la seva instal·lació. Apropita't dels nodes creats en aquesta activitat de clustering o en l'activitat anterior de rèplica.
+Escull un dels més coneguts (ProxySQL, HAProxy, MySQL Router,...), proposa una arquitectura i documenta la seva instal·lació. Apropita't dels nodes creats en aquesta activitat de clustering o en l'activitat anterior de rèplica.  
 
-## ENTREGA
-Realitza la documentació de l'arquitectura escollida, de la instal·lació i configuració que has hagut de dur a terme. Mostra al professor la seva funcionalitat
+## HAProxy
+[Documentacio](https://www.digitalocean.com/community/tutorials/how-to-use-haproxy-to-set-up-mysql-load-balancing--3)  
+
+### Utilitzarem:
+Un Load Balancer, i dos SQL Nodes, que són els que hem utilitzat abans.  
+
+| Server | IP | Color Terminal |  
+| :---------- | :----------: | :----------: |  
+| Load balancer (1)  | 10.92.255.126  | Negre  |  
+| SQL node (4)  | 10.92.255.72  | Blau  |  
+| SQL node (5)  | 10.92.255.71  | Cian  |  
+
+### LoadBalancer
+Actualitzem els paquets amb `yum -y update`   
+Instal·lem el client MySQL amb `yum install mysql-client`
+
+
+Instal·lem el HAProxy
+`yum -y install haproxy`
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 [1]: imgs/MySQL.png
