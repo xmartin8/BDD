@@ -325,7 +325,7 @@ Modifiquem el **SELINUX**, posant-ho a disabled (**/etc/selinux/config**). Els n
 S’ha d’activar el `haproxy_connect_any`, s’ha de posar el boleà a **1**, que per defecte està desactivat. Aquest serveix per activar tots els ports TCP.  
 `setsebool -P haproxy_connect_any=1`  
 
-###SQL NODES  
+### SQL NODES  
 
 Als nodes hem creat aquests usuaris, per que el balancejador es pugui connectar  
 ```
@@ -340,7 +340,7 @@ FLUSH PRIVILEGES;
 ![B-7][B-7]  
 ![B-8][B-8]  
 
-###Comprovacions
+### Comprovacions
 
 Per connectar-se a algun dels dos nodes (.72 és el node 4, i el .71 és el 5):  
 `mysql -h 10.92.255.72 -u haproxy_root -p -e "show variables like 'server_id'"`  
