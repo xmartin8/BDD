@@ -19,8 +19,6 @@ GROUP BY reserva_id
 ORDER BY Dies DESC 
 LIMIT 1;
 
-
-
 #4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
 SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves',
 	   h.nom AS 'Nom de l\'hotel'
