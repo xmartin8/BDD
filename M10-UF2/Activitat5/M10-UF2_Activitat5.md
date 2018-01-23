@@ -303,6 +303,8 @@ Realitza la documentació de l'arquitectura escollida, de la instal·lació i co
 [M1-31]: imgs/m1-31.png
 [M1-32]: imgs/m1-32.png
 [M1-33]: imgs/m1-33.png
+[M1-34]: imgs/m1-34.png
+[M1-35]: imgs/m1-35.png
 
 
 
