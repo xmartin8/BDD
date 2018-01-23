@@ -275,19 +275,95 @@ Un Load Balancer, i dos SQL Nodes, que són els que hem utilitzat abans.
 
 ### LoadBalancer
 Actualitzem els paquets amb `yum -y update`   
-Instal·lem el client MySQL amb `yum install mysql-client`
-
+Instal·lem el client MySQL amb `yum install mysql-client`  
+![B-1][B-1]  
 
 Instal·lem el HAProxy
-`yum -y install haproxy`
+`yum -y install haproxy`  
+![B-2][B-2]  
+
+L’habilitem perquè s’iniciï al iniciar la màquina  
+`systemctl enable haproxy`  
+![B-3][B-3]  
+
+Iniciem el servei  
+`service haproxy start`  
+![B-4][B-4]  
+
+Renombrem el fitxer `haproxy.cfg` dins el directori **/etc/haproxy/**  
+![B-5][B-5]  
+
+Creem un nou fitxer `haproxy.cfg` i afegim el següent  
+```
+global
+    log 127.0.0.1 local0 notice
+    user haproxy
+    group haproxy
+
+defaults
+    log global
+    retries 2
+    timeout connect 3000
+    timeout server 5000
+    timeout client 5000
+
+listen mysql-cluster
+    bind 127.0.0.1:3306
+    mode tcp
+    option mysql-check
+    balance roundrobin
+    server node4 10.92.255.72:3306 check
+    server node5 10.92.255.71:3306 check
+```
+
+Reiniciem el servei haproxy  
+`service haproxy restart`  
+
+Modifiquem el **SELINUX**, posant-ho a disabled (**/etc/selinux/config**). Els nodes SQL el tenen a permissive.  
+![B-6][B-6]
+
+S’ha d’activar el `haproxy_connect_any`, s’ha de posar el boleà a **1**, que per defecte està desactivat. Aquest serveix per activar tots els ports TCP.  
+`setsebool -P haproxy_connect_any=1`  
+
+###SQL NODES  
+
+Als nodes hem creat aquests usuaris, per que el balancejador es pugui connectar  
+```
+CREATE USER 'haproxy_check'@'10.92.255.126' IDENTIFIED BY 'P@ssw0rd';
+CREATE USER 'haproxy_root'@'10.92.255.126' IDENTIFIED BY 'P@ssw0rd';
+
+GRANT ALL PRIVILEGES ON *.* TO 'haproxy_check'@'10.92.255.126' IDENTIFIED BY 'P@ssw0rd' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'haproxy_root'@'10.92.255.126' IDENTIFIED BY 'P@ssw0rd' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+```
+![B-7][B-7]  
+![B-8][B-8]  
+
+###Comprovacions
+
+Per connectar-se a algun dels dos nodes (.72 és el node 4, i el .71 és el 5):  
+`mysql -h 10.92.255.72 -u haproxy_root -p -e "show variables like 'server_id'"`  
+![B-9][B-9]  
+
+Per eliminar el registre de hosts que hi ha als servidors mysql:  
+`mysqladmin -uroot -ppatata flush-hosts;`  
 
 
+Per comprovar a quin servidor es connecta:  
+`mysql -h 127.0.0.1 -u haproxy_root -p -e "show variables like 'server_id'"`  
 
+Fem un petit `script.sh` per que s’executi la comanda anterior sis vegades:  
+```
+for i in ‘seq 1 6’
+do
+mysql -h 127.0.0.1 -u haproxy_root -pP@ssw0rd -e "show variables like 'server_id'"
+done
+```  
+![B-10][B-10]  
 
-
-
-
-
+Si per exemple un dels nodes cau, el balancejador només es connectarà al que estigui actiu:  
+![B-11][B-11]  
 
 
 
@@ -331,7 +407,15 @@ Instal·lem el HAProxy
 [M1-33]: imgs/m1-33.png
 [M1-34]: imgs/m1-34.png
 [M1-35]: imgs/m1-35.png
-
-
-
+[B-1]: imgs/b-1.png
+[B-2]: imgs/b-2.png
+[B-3]: imgs/b-3.png
+[B-4]: imgs/b-4.png
+[B-5]: imgs/b-5.png
+[B-6]: imgs/b-6.png
+[B-7]: imgs/b-7.png
+[B-8]: imgs/b-8.png
+[B-9]: imgs/b-9.png
+[B-10]: imgs/b-10.png
+[B-11]: imgs/b-11.png
 
