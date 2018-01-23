@@ -42,6 +42,11 @@ Donada  la configuració d'un MySQL Cluster es vol muntar un entron SGBD amb clu
 
 Cal repartir els nodes com a mínim en 3 màquines físiques  
 **Pots saber quines particions hi ha en una taula concreta?**  
+`ndb_mgm -e "all status"`  
+![M1-34][M1-34]  
+`ndb_mgm -e "all report memory"`  
+![M1-35][M1-35]  
+
 
 ### PRE-REQUISITS:
 
