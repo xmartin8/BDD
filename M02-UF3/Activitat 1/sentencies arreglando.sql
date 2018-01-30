@@ -32,6 +32,7 @@ ALTER TABLE reserves
 	ADD KEY covered(reserva_id, data_inici, data_fi, hab_id, client_id);
 
 #4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
+EXPLAIN
 SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves',
 	   h.nom AS 'Nom de l\'hotel'
   FROM reserves AS r
@@ -40,9 +41,10 @@ INNER JOIN hotels AS h ON h.hotel_id = hab.hotel_id
 WHERE h.nom = 'Catalonia Ramblas';
 
 #5. Obtenir el nom i cognoms dels clients que varen néixer el mes de Març.
+explain
 SELECT CONCAT(nom, ' ',cognom1) AS 'Nom i Cognom'
 	FROM clients 
-WHERE SUBSTRING(data_naix,6,2)=03;
+WHERE mes_naix=3;
 
 
 #6. Quantitat d’hotels de 4 estrelles de la població de Barcelona.
