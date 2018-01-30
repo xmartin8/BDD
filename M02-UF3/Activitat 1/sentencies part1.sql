@@ -5,9 +5,9 @@ SELECT nom AS 'Nom de l\'hotel',
 WHERE categoria=4;
 
 #2. Obtenir el nom dels clients (Nom i cognom) que el seu cognom comenci per vocal (sense tenir en compte els accents).
-SELECT concat(nom, ' ',cognom1) AS 'Nom i Cognom' 
+SELECT CONCAT(nom, ' ',cognom1) AS 'Nom i Cognom' 
 	FROM clients 
-WHERE left(cognom1,1) = 'A';
+WHERE LEFT(cognom1,1) = 'A';
 
 #3. Quina és la reserva_id que té més nits. Indica també la quantitat de nits.
 SELECT reserva_id AS 'Reserva ID', 
@@ -22,15 +22,15 @@ LIMIT 1;
 #4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
 SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves',
 	   h.nom AS 'Nom de l\'hotel'
-  FROM reserves as r
-INNER JOIN habitacions as hab ON hab.hab_id = r.hab_id
-INNER JOIN hotels as h ON h.hotel_id = hab.hotel_id
+  FROM reserves AS r
+INNER JOIN habitacions AS hab ON hab.hab_id = r.hab_id
+INNER JOIN hotels AS h ON h.hotel_id = hab.hotel_id
 WHERE h.nom = 'Catalonia Ramblas';
 
 #5. Obtenir el nom i cognoms dels clients que varen néixer el mes de Març.
-SELECT concat(nom, ' ',cognom1) AS 'Nom i Cognom'
+SELECT CONCAT(nom, ' ',cognom1) AS 'Nom i Cognom'
 	FROM clients 
-WHERE substring(data_naix,6,2)=03;
+WHERE SUBSTRING(data_naix,6,2)=03;
 
 
 #6. Quantitat d’hotels de 4 estrelles de la població de Barcelona.
@@ -40,7 +40,7 @@ SELECT COUNT(h.hotel_id)
 WHERE p.nom = 'Barcelona';
 
 #7. De l’any 2015 volem obtenir els seu histograma de reserves. És a dir volem saber el número de reserves de cadascun dels mesos. Una reserva pertany a un mes si la alguna nit d’aquella reserva cau a dins de l’any 2015.
-SELECT count(r.reserva_id) AS 'Quantitat Reserves', 
+SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves', 
 	   h.nom AS Nom
 	FROM reserves r
     INNER JOIN habitacions hab ON hab.hab_id = r.hab_id
@@ -90,7 +90,7 @@ SELECT p.nom AS Pais,
 INNER JOIN clients AS c ON p.pais_id = c.pais_origen_id
 INNER JOIN reserves AS r ON c.client_id = r.client_id
 WHERE r.data_fi >= '2016-01-01' AND r.data_fi <= '2016-12-31'
-GROUP By Pais
+GROUP BY Pais
 ORDER BY Reserves DESC
 LIMIT 5;
 
@@ -125,27 +125,38 @@ WHERE cognom1 = 'Bahi';
 
 
 #20. Quin és l’hotel de 4 estrelles amb més reserves durant tot el 2015 ( una reserva pertany el 2015 si alguna de les nits hi pertany).
-select COUNT(r.reserva_id), h.nom
-from reserves r 
-inner join habitacions hab ON hab.hab_id = r.hab_id
-inner join hotels h ON h.hotel_id = hab.hotel_id
-where r.data_inici >= '2015-01-01' AND r.data_fi <= '2015-12-31'
+SELECT COUNT(r.reserva_id), h.nom
+FROM reserves r 
+INNER JOIN habitacions hab ON hab.hab_id = r.hab_id
+INNER JOIN hotels h ON h.hotel_id = hab.hotel_id
+WHERE r.data_inici >= '2015-01-01' AND r.data_fi <= '2015-12-31'
 	AND h.categoria = 4 
-group by h.nom
-order by COUNT(r.reserva_id) DESC
-limit 1;
+GROUP BY h.nom
+ORDER BY COUNT(r.reserva_id) DESC
+LIMIT 1;
 
 #21. Quin és l’hotel amb més reserves (tota la BD).
 
 
 #22. Quin és el país amb més reserves? (tots els anys) O sigui, quin és el país d’on han vingut més turistes.
-select p.nom from paisos p;
+SELECT p.nom FROM paisos p;
 
-select COUNT(r.reserva_id), p.nom
-from reserves r 
-inner join clients c ON c.client_id = r.client_id
-inner join paisos p ON p.pais_id = c.pais_origen_id
-group by p.nom
-order by COUNT(r.reserva_id) DESC
-limit 1;
+
+SELECT COUNT(r.reserva_id),p.nom
+FROM reserves r 
+INNER JOIN clients c ON c.client_id = r.client_id
+INNER JOIN paisos p ON p.pais_id = c.pais_origen_id
+GROUP BY p.nom
+ORDER BY COUNT(r.reserva_id) DESC
+LIMIT 1;
+
+
+SELECT p.nom
+FROM reserves r 
+INNER JOIN clients c ON c.client_id = r.client_id
+INNER JOIN paisos p ON p.pais_id = c.pais_origen_id
+WHERE (SELECT COUNT(reserva_id) FROM reserves)
+GROUP BY p.nom
+ORDER BY COUNT(r.reserva_id) DESC
+LIMIT 1;
 
