@@ -17,7 +17,7 @@ WHERE LEFT(cognom1,1) IN ('a', 'e', 'i', 'o', 'u');
 ALTER table clients
 	ADD INDEX nom_complet(nom, cognom1);
 
-#3. Quina és la reserva_id que té més nits. Indica també la quantitat de nits.
+# MIRAAAAAR 3. Quina és la reserva_id que té més nits. Indica també la quantitat de nits.
 EXPLAIN
 SELECT reserva_id AS 'Reserva ID', 
 	   data_inici AS 'Data d\'inici', 
@@ -29,7 +29,7 @@ ORDER BY Dies DESC
 LIMIT 1;
 
 ALTER TABLE reserves
-
+	ADD KEY covered(reserva_id, data_inici, data_fi, hab_id, client_id);
 
 #4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
 SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves',
