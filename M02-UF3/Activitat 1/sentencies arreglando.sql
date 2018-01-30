@@ -1,4 +1,4 @@
-#1. Obtenir el nom i l’adreça dels hotels de 4 estrelles.
+#ok 1. Obtenir el nom i l’adreça dels hotels de 4 estrelles.
 EXPLAIN 
 SELECT nom AS 'Nom de l\'hotel', 
 	   adreca AS 'Adreça' 
@@ -8,7 +8,7 @@ WHERE categoria=4;
 ALTER TABLE hotels
 	ADD INDEX categoria(categoria, nom, adreca);
 
-#2. Obtenir el nom dels clients (Nom i cognom) que el seu cognom comenci per vocal (sense tenir en compte els accents).
+#ok 2. Obtenir el nom dels clients (Nom i cognom) que el seu cognom comenci per vocal (sense tenir en compte els accents).
 EXPLAIN
 SELECT CONCAT(nom, ' ',cognom1) AS 'Nom i Cognom' 
 	FROM clients 
@@ -41,7 +41,7 @@ INNER JOIN hotels AS h ON h.hotel_id = hab.hotel_id
 WHERE h.nom = 'Catalonia Ramblas'
 AND r.data_inici >= '2015-01-01' AND r.data_fi <= '2015-12-31';
 
-#5. Obtenir el nom i cognoms dels clients que varen néixer el mes de Març.
+#ok 5. Obtenir el nom i cognoms dels clients que varen néixer el mes de Març.
 EXPLAIN
 SELECT CONCAT(nom, ' ',cognom1) AS 'Nom i Cognom'
 	FROM clients 
@@ -54,7 +54,7 @@ ALTER TABLE clients
 ADD KEY mes (mes_naix);
 
 
-#6. Quantitat d’hotels de 4 estrelles de la població de Barcelona.
+#ok 6. Quantitat d’hotels de 4 estrelles de la població de Barcelona.
 EXPLAIN
 SELECT COUNT(h.hotel_id) 
 	FROM hotels h 
@@ -86,7 +86,7 @@ WHERE data_inici >= "2016-01-01"
       AND data_fi <= "2016-12-31"
 GROUP BY ELT(WEEKDAY(data_inici)+1,'Dilluns','Dimarts','Dimecres','Dijous','Divendres','Disabte','Diumenge');
 
-#10. Durant 2014 qui va realitzar més reserves? Els homes o les dones? Mostra el sexe i el número de reserves.
+#ok 10. Durant 2014 qui va realitzar més reserves? Els homes o les dones? Mostra el sexe i el número de reserves.
 EXPLAIN
 SELECT c.sexe AS 'Genere', count(r.reserva_id) AS 'Quantitat Reserves'
 	FROM clients as c
