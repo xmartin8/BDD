@@ -1,4 +1,5 @@
 #1. Obtenir el nom i l’adreça dels hotels de 4 estrelles.
+EXPLAIN 
 SELECT nom AS 'Nom de l\'hotel', 
 	   adreca AS 'Adreça' 
 	FROM hotels 
