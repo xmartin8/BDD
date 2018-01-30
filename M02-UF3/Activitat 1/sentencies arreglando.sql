@@ -165,7 +165,7 @@ SELECT p.nom AS 'Nom del pais', COUNT(c.pais_origen_id) AS 'Total de clients del
   FROM paisos AS p
 INNER JOIN clients c ON p.pais_id = c.pais_origen_id
 GROUP BY p.nom
-ORDER BY COUNT(c.pais_origen_id)
+ORDER BY 'Total de clients del pais'
 LIMIT 1;
 
 #17. Quina és la mitjana de nits dels clients provinents d’‘HOLANDA’ per l’any 2016?
