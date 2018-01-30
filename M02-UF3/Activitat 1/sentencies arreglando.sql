@@ -5,12 +5,20 @@ SELECT nom AS 'Nom de l\'hotel',
 	FROM hotels 
 WHERE categoria=4;
 
+ALTER TABLE hotels
+	ADD INDEX categoria(categoria, nom, adreca);
+
 #2. Obtenir el nom dels clients (Nom i cognom) que el seu cognom comenci per vocal (sense tenir en compte els accents).
+EXPLAIN
 SELECT CONCAT(nom, ' ',cognom1) AS 'Nom i Cognom' 
 	FROM clients 
 WHERE LEFT(cognom1,1) IN ('a', 'e', 'i', 'o', 'u');
 
+ALTER table clients
+	ADD INDEX nom_complet(nom, cognom1);
+
 #3. Quina és la reserva_id que té més nits. Indica també la quantitat de nits.
+EXPLAIN
 SELECT reserva_id AS 'Reserva ID', 
 	   data_inici AS 'Data d\'inici', 
        data_fi AS 'Data fi', 
@@ -19,6 +27,9 @@ SELECT reserva_id AS 'Reserva ID',
 GROUP BY reserva_id 
 ORDER BY Dies DESC 
 LIMIT 1;
+
+ALTER TABLE reserves
+
 
 #4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
 SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves',
