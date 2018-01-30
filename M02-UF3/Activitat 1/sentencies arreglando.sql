@@ -136,7 +136,7 @@ GROUP BY Pais
 ORDER BY Reserves DESC
 LIMIT 5;
 
-#14. Codi client, Nom, Cognom, del client que ha realitzat més reserves de tota la BD.
+#ok 14. Codi client, Nom, Cognom, del client que ha realitzat més reserves de tota la BD.
 EXPLAIN
 SELECT c.client_id, c.nom, c.cognom1, COUNT(r.client_id) AS 'Numero de reserves'
   FROM reserves r
