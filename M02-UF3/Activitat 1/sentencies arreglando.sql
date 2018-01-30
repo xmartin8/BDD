@@ -98,11 +98,13 @@ SELECT c.sexe AS 'Genere', count(r.reserva_id) AS 'Quantitat Reserves'
 EXPLAIN
 SELECT AVG(DAY(r.data_inici))
   FROM reserves r
-INNER JOIN habitacions h ON r.hab_id = h.hab_id
-INNER JOIN hotels ho ON ho.hotel_id = h.hotel_id
-WHERE ho.nom = 'HTOP Royal Star'
+INNER JOIN habitacions hab ON r.hab_id = hab.hab_id
+INNER JOIN hotels h ON h.hotel_id = hab.hotel_id
+WHERE h.nom = 'HTOP Royal Star'
   AND r.data_inici >= "2016-01-01"
   AND r.data_fi <= "2016-12-31";
+
+
 
 #12. El nom, categoria, adreça i número d’habitacions de l’hotel amb més habitacions de la BD.
 EXPLAIN

@@ -69,9 +69,9 @@ SELECT c.sexe AS 'Genere', count(r.reserva_id) AS 'Quantitat Reserves'
 #11. Quina és la mitjana de dies de reserva per l’hotel «HTOP Royal Star» de Blanes durant l’any 2016? (Una reserva pertany el 2016 si alguna nit cau en aquest any).
 SELECT AVG(DAY(r.data_inici))
   FROM reserves r
-INNER JOIN habitacions h ON r.hab_id = h.hab_id
-INNER JOIN hotels ho ON ho.hotel_id = h.hotel_id
-WHERE ho.nom = 'HTOP Royal Star'
+INNER JOIN habitacions hab ON r.hab_id = hab.hab_id
+INNER JOIN hotels h ON h.hotel_id = hab.hotel_id
+WHERE h.nom = 'HTOP Royal Star'
   AND r.data_inici >= "2016-01-01"
   AND r.data_fi <= "2016-12-31";
 
