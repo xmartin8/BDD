@@ -138,7 +138,7 @@ LIMIT 5;
 
 #14. Codi client, Nom, Cognom, del client que ha realitzat més reserves de tota la BD.
 EXPLAIN
-SELECT r.client_id, c.nom, c.cognom1, COUNT(c.client_id) AS 'Numero de reserves'
+SELECT c.client_id, c.nom, c.cognom1, COUNT(r.client_id) AS 'Numero de reserves'
   FROM reserves r
 INNER JOIN clients c ON c.client_id = r.client_id
 GROUP BY c.client_id
