@@ -44,6 +44,13 @@ SELECT CONCAT(nom, ' ',cognom1) AS 'Nom i Cognom'
 	FROM clients 
 WHERE SUBSTRING(data_naix,6,2)=03;
 
+ALTER TABLE clients
+ADD COLUMN mes_naix SMALLINT UNSIGNED AS (MONTH(data_naix)) VIRTUAL;
+
+ALTER TABLE clients
+ADD KEY mes (mes_naix);
+
+
 
 #6. Quantitat d’hotels de 4 estrelles de la població de Barcelona.
 SELECT COUNT(h.hotel_id) 
