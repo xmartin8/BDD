@@ -78,7 +78,7 @@ SELECT h.nom AS 'Nom de l\'hotel'
 GROUP BY h.nom;
       
 
-#9. Obtenir la quantitat de reserves que s’inicien en cadascun dels dies de la setmana. Tenint en compte només l’any 2016.
+#MIRAR 9. Obtenir la quantitat de reserves que s’inicien en cadascun dels dies de la setmana. Tenint en compte només l’any 2016.
 EXPLAIN
 SELECT  ELT(WEEKDAY(data_inici)+1,'Dilluns','Dimarts','Dimecres','Dijous','Divendres','Disabte','Diumenge') AS DIA, COUNT(data_inici)
     FROM reserves
