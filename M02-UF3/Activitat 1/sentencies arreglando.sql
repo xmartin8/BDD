@@ -31,7 +31,7 @@ LIMIT 1;
 ALTER TABLE reserves
 	ADD KEY covered(reserva_id, data_inici, data_fi, hab_id, client_id);
 
-#4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
+#MIRAAAAAAARR 4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
 EXPLAIN
 SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves',
 	   h.nom AS 'Nom de l\'hotel'
