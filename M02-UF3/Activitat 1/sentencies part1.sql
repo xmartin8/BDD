@@ -39,13 +39,6 @@ SELECT COUNT(h.hotel_id)
     INNER JOIN poblacions p ON p.poblacio_id = h.poblacio_id
 WHERE p.nom = 'Barcelona';
 
-#7. De l’any 2015 volem obtenir els seu histograma de reserves. És a dir volem saber el número de reserves de cadascun dels mesos. Una reserva pertany a un mes si la alguna nit d’aquella reserva cau a dins de l’any 2015.
-SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves', 
-	   h.nom AS Nom
-	FROM reserves r
-    INNER JOIN habitacions hab ON hab.hab_id = r.hab_id
-    INNER JOIN hotels h ON h.hotel_id = hab.hotel_id
-GROUP BY h.nom;
 
 #ARREGLAR 8. El nom dels hotels que tenen com a mínim una habitació lliure durant les dates ‘2015-05-01’ i ‘2015-05-17’.
 SELECT h.nom AS 'Nom de l\'hotel'
