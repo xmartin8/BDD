@@ -173,13 +173,16 @@ FROM (
       GROUP BY Anys
       ) b;
 
-#18. Digues el nom i cognoms dels clients que el seu cognom sigui ‘Bahi’.
+#ok 18. Digues el nom i cognoms dels clients que el seu cognom sigui ‘Bahi’.
 EXPLAIN
 SELECT nom, cognom1
 	FROM clients
 WHERE cognom1 = 'Bahi';
 
-#19. Quins clients (nom, cognoms) segueixen el patró de que el seu cognom comenci per la lletra ‘p’  i seguida d’una vocal.
+ALTER TABLE clients
+	ADD INDEX cognom (cognom1, nom);
+
+#ok 19. Quins clients (nom, cognoms) segueixen el patró de que el seu cognom comenci per la lletra ‘p’  i seguida d’una vocal.
 EXPLAIN
 SELECT nom AS Nom,
        cognom1 AS Cognom
