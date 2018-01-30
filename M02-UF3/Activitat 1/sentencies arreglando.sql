@@ -38,10 +38,11 @@ SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves',
   FROM reserves AS r
 INNER JOIN habitacions AS hab ON hab.hab_id = r.hab_id
 INNER JOIN hotels AS h ON h.hotel_id = hab.hotel_id
-WHERE h.nom = 'Catalonia Ramblas';
+WHERE h.nom = 'Catalonia Ramblas'
+AND r.data_inici >= '2015-01-01' AND r.data_fi <= '2015-12-31';
 
 #5. Obtenir el nom i cognoms dels clients que varen néixer el mes de Març.
-explain
+EXPLAIN
 SELECT CONCAT(nom, ' ',cognom1) AS 'Nom i Cognom'
 	FROM clients 
 WHERE mes_naix=3;
@@ -51,7 +52,6 @@ ADD COLUMN mes_naix SMALLINT UNSIGNED AS (MONTH(data_naix)) VIRTUAL;
 
 ALTER TABLE clients
 ADD KEY mes (mes_naix);
-
 
 
 #6. Quantitat d’hotels de 4 estrelles de la població de Barcelona.
