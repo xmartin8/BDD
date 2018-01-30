@@ -112,7 +112,7 @@ WHERE h.nom = 'HTOP Royal Star'
 
 
 
-#12. El nom, categoria, adreça i número d’habitacions de l’hotel amb més habitacions de la BD.
+#ok 12. El nom, categoria, adreça i número d’habitacions de l’hotel amb més habitacions de la BD.
 EXPLAIN
 SELECT nom,
        categoria,
@@ -120,6 +120,9 @@ SELECT nom,
   FROM hotels
 WHERE habitacions = (SELECT MAX(habitacions)
                       FROM hotels);
+                      
+ALTER TABLE hotels
+ADD INDEX hotels (nom, categoria, habitacions);
 
 #13. Rànquing de 5 països amb més reserves durant l’any 2016. Per cada país mostrar el nom del país i el número de reserves.
 EXPLAIN
