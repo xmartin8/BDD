@@ -48,30 +48,51 @@ SELECT count(r.reserva_id) AS 'Quantitat Reserves',
 GROUP BY h.nom;
 
 #ARREGLAR 8. El nom dels hotels que tenen com a mínim una habitació lliure durant les dates ‘2015-05-01’ i ‘2015-05-17’.
-SELECT r.data_inici,r.data_fi,hab.hab_id, hab.hotel_id
-  FROM reserves AS r
-INNER JOIN habitacions AS hab ON hab.hab_id = r.hab_id
-WHERE r.data_inici > "2015-05-01"
-      AND r.data_fi < "2015-05-17";
+SELECT h.nom AS 'Nom de l\'hotel'
+  FROM hotels AS h
+  INNER JOIN habitacions AS hab ON hab.hotel_id = h.hotel_id
+  WHERE hab.hab_id NOT IN (SELECT hab.hab_id
+                              FROM reserves AS r
+                            INNER JOIN habitacions AS hab ON hab.hab_id = r.hab_id
+                            WHERE r.data_fi >= "2015-05-01"
+                                  AND r.data_inici <= "2015-05-17")
+GROUP BY h.nom;
       
 
 #9. Obtenir la quantitat de reserves que s’inicien en cadascun dels dies de la setmana. Tenint en compte només l’any 2016.
 
 
 #10. Durant 2014 qui va realitzar més reserves? Els homes o les dones? Mostra el sexe i el número de reserves.
-
+SELECT COUNT(r.reserva_id) AS Homes,
+       (SELECT COUNT(r.reserva_id)
+          FROM clients AS c
+        INNER JOIN reserves AS r ON r.client_id = c.client_id
+        WHERE c.sexe = 'F' AND YEAR(r.data_inici)= 2014) AS Dones
+  FROM clients AS c
+INNER JOIN reserves AS r ON r.client_id = c.client_id
+WHERE c.sexe = 'M' AND YEAR(r.data_inici)= 2014;
 
 #11. Quina és la mitjana de dies de reserva per l’hotel «HTOP Royal Star» de Blanes durant l’any 2016? (Una reserva pertany el 2016 si alguna nit cau en aquest any).
 
 
 #12. El nom, categoria, adreça i número d’habitacions de l’hotel amb més habitacions de la BD.
-
+SELECT nom,
+       categoria,
+       habitacions
+  FROM hotels
+WHERE habitacions = (SELECT MAX(habitacions)
+                      FROM hotels);
 
 #13. Rànquing de 5 països amb més reserves durant l’any 2016. Per cada país mostrar el nom del país i el número de reserves.
 
 
 #14. Codi client, Nom, Cognom, del client que ha realitzat més reserves de tota la BD.
-
+SELECT r.client_id, c.nom, c.cognom1, COUNT(c.client_id) AS 'Numero de reserves'
+  FROM reserves r
+INNER JOIN clients c ON c.client_id = r.client_id
+GROUP BY c.client_id
+ORDER BY COUNT('Numero de reserves') DESC
+LIMIT 1; 
 
 #15. Codi client, Nom, Cognom, del client que ha realitzat més reserves durant el mes d’agost de l’any 2016. Les reserves a comptabilitzar són totes aquelles que en algun dia del seu període cau en el mes d’agost.
 
