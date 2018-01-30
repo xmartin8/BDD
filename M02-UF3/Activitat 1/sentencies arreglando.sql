@@ -55,10 +55,14 @@ ADD KEY mes (mes_naix);
 
 
 #6. Quantitat d’hotels de 4 estrelles de la població de Barcelona.
+EXPLAIN
 SELECT COUNT(h.hotel_id) 
 	FROM hotels h 
     INNER JOIN poblacions p ON p.poblacio_id = h.poblacio_id
 WHERE p.nom = 'Barcelona';
+
+ALTER TABLE poblacions
+ADD INDEX nom (nom, poblacio_id);
 
 #7. De l’any 2015 volem obtenir els seu histograma de reserves. És a dir volem saber el número de reserves de cadascun dels mesos. Una reserva pertany a un mes si la alguna nit d’aquella reserva cau a dins de l’any 2015.
 SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves', 
