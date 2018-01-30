@@ -88,14 +88,11 @@ GROUP BY ELT(WEEKDAY(data_inici)+1,'Dilluns','Dimarts','Dimecres','Dijous','Dive
 
 #10. Durant 2014 qui va realitzar més reserves? Els homes o les dones? Mostra el sexe i el número de reserves.
 EXPLAIN
-SELECT COUNT(r.reserva_id) AS Homes,
-       (SELECT COUNT(r.reserva_id)
-          FROM clients AS c
-        INNER JOIN reserves AS r ON r.client_id = c.client_id
-        WHERE c.sexe = 'F' AND YEAR(r.data_inici)= 2014) AS Dones
-  FROM clients AS c
-INNER JOIN reserves AS r ON r.client_id = c.client_id
-WHERE c.sexe = 'M' AND YEAR(r.data_inici)= 2014;
+SELECT c.sexe AS 'Genere', count(r.reserva_id) AS 'Quantitat Reserves'
+	FROM clients as c
+    INNER JOIN reserves r ON r.client_id = c.client_id
+    WHERE r.data_inici >= '2014-01-01' AND r.data_fi <= '2014-12-31'
+    GROUP BY c.sexe;
 
 #11. Quina és la mitjana de dies de reserva per l’hotel «HTOP Royal Star» de Blanes durant l’any 2016? (Una reserva pertany el 2016 si alguna nit cau en aquest any).
 EXPLAIN
