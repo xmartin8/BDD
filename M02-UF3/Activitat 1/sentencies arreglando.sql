@@ -78,13 +78,19 @@ SELECT h.nom AS 'Nom de l\'hotel'
 GROUP BY h.nom;
       
 
-#MIRAR 9. Obtenir la quantitat de reserves que s’inicien en cadascun dels dies de la setmana. Tenint en compte només l’any 2016.
+#ok 9. Obtenir la quantitat de reserves que s’inicien en cadascun dels dies de la setmana. Tenint en compte només l’any 2016.
 EXPLAIN
-SELECT  ELT(WEEKDAY(data_inici)+1,'Dilluns','Dimarts','Dimecres','Dijous','Divendres','Disabte','Diumenge') AS DIA, COUNT(data_inici)
+SELECT diasetmana AS DIA, COUNT(data_inici)
     FROM reserves
 WHERE data_inici >= "2016-01-01"
       AND data_fi <= "2016-12-31"
-GROUP BY ELT(WEEKDAY(data_inici)+1,'Dilluns','Dimarts','Dimecres','Dijous','Divendres','Disabte','Diumenge');
+GROUP BY DIA;
+
+ALTER TABLE reserves
+ADD COLUMN diasetmana SMALLINT UNSIGNED AS (WEEKDAY(data_inici)+1) VIRTUAL;
+
+ALTER TABLE reserves
+ADD INDEX diasetmana (diasetmana, data_inici, data_fi);
 
 #ok 10. Durant 2014 qui va realitzar més reserves? Els homes o les dones? Mostra el sexe i el número de reserves.
 EXPLAIN
