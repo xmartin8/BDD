@@ -84,7 +84,15 @@ WHERE habitacions = (SELECT MAX(habitacions)
                       FROM hotels);
 
 #13. Rànquing de 5 països amb més reserves durant l’any 2016. Per cada país mostrar el nom del país i el número de reserves.
-
+SELECT p.nom AS Pais,
+       COUNT(r.reserva_id) AS Reserves
+  FROM paisos AS p
+INNER JOIN clients AS c ON p.pais_id = c.pais_origen_id
+INNER JOIN reserves AS r ON c.client_id = r.client_id
+WHERE r.data_fi >= '2016-01-01' AND r.data_fi <= '2016-12-31'
+GROUP By Pais
+ORDER BY Reserves DESC
+LIMIT 5;
 
 #14. Codi client, Nom, Cognom, del client que ha realitzat més reserves de tota la BD.
 SELECT r.client_id, c.nom, c.cognom1, COUNT(c.client_id) AS 'Numero de reserves'
@@ -98,23 +106,46 @@ LIMIT 1;
 
 
 #16. Quin és el país que en tenim menys clients?
-
+SELECT p.nom AS 'Nom del pais', COUNT(c.pais_origen_id) AS 'Total de clients del pais'
+  FROM paisos AS p
+INNER JOIN clients c ON p.pais_id = c.pais_origen_id
+GROUP BY p.nom
+ORDER BY COUNT(c.pais_origen_id)
+LIMIT 1;
 
 #17. Quina és la mitjana de nits dels clients provinents d’‘HOLANDA’ per l’any 2016?
 
 
 #18. Digues el nom i cognoms dels clients que el seu cognom sigui ‘Bahi’.
-
+SELECT nom, cognom1
+	FROM clients
+WHERE cognom1 = 'Bahi';
 
 #19. Quins clients (nom, cognoms) segueixen el patró de que el seu cognom comenci per la lletra ‘p’  i seguida d’una vocal.
 
 
 #20. Quin és l’hotel de 4 estrelles amb més reserves durant tot el 2015 ( una reserva pertany el 2015 si alguna de les nits hi pertany).
-
+select COUNT(r.reserva_id), h.nom
+from reserves r 
+inner join habitacions hab ON hab.hab_id = r.hab_id
+inner join hotels h ON h.hotel_id = hab.hotel_id
+where r.data_inici >= '2015-01-01' AND r.data_fi <= '2015-12-31'
+	AND h.categoria = 4 
+group by h.nom
+order by COUNT(r.reserva_id) DESC
+limit 1;
 
 #21. Quin és l’hotel amb més reserves (tota la BD).
 
 
 #22. Quin és el país amb més reserves? (tots els anys) O sigui, quin és el país d’on han vingut més turistes.
+select p.nom from paisos p;
 
+select COUNT(r.reserva_id), p.nom
+from reserves r 
+inner join clients c ON c.client_id = r.client_id
+inner join paisos p ON p.pais_id = c.pais_origen_id
+group by p.nom
+order by COUNT(r.reserva_id) DESC
+limit 1;
 
