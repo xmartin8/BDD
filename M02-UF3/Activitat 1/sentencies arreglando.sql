@@ -142,7 +142,7 @@ SELECT r.client_id, c.nom, c.cognom1, COUNT(c.client_id) AS 'Numero de reserves'
   FROM reserves r
 INNER JOIN clients c ON c.client_id = r.client_id
 GROUP BY c.client_id
-ORDER BY COUNT('Numero de reserves') DESC
+ORDER BY 'Numero de reserves' DESC
 LIMIT 1; 
 
 #15. Codi client, Nom, Cognom, del client que ha realitzat més reserves durant el mes d’agost de l’any 2016. Les reserves a comptabilitzar són totes aquelles que en algun dia del seu període cau en el mes d’agost.
