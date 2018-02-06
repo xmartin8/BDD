@@ -136,6 +136,17 @@ GROUP BY Pais
 ORDER BY Reserves DESC
 LIMIT 5;
 
+#idea-> hacer un nuevo campo con el total de las reservas del anño 2016
+ALTER TABLE paisos
+	ADD COLUMN total_reserves2016 INT UNSIGNED AS ( select abaix ) VIRTUAL;
+    
+SELECT COUNT(r.reserva_id), p.nom
+  FROM paisos AS p
+INNER JOIN clients AS c ON p.pais_id = c.pais_origen_id
+INNER JOIN reserves AS r ON c.client_id = r.client_id
+WHERE r.data_inici >= '2016-01-01' AND r.data_fi <= '2016-12-31'
+GROUP BY p.nom;
+
 #ok 14. Codi client, Nom, Cognom, del client que ha realitzat més reserves de tota la BD.
 EXPLAIN
 SELECT c.client_id, c.nom, c.cognom1, COUNT(r.client_id) AS 'Numero de reserves'
@@ -145,8 +156,7 @@ GROUP BY c.client_id
 ORDER BY 'Numero de reserves' DESC
 LIMIT 1; 
 
-#15. Codi client, Nom, Cognom, del client que ha realitzat més reserves durant el mes d’agost de l’any 2016. Les reserves a comptabilitzar són totes aquelles que en algun dia del seu període cau en el mes d’agost.
-#MIRARLO
+#ok 15. Codi client, Nom, Cognom, del client que ha realitzat més reserves durant el mes d’agost de l’any 2016. Les reserves a comptabilitzar són totes aquelles que en algun dia del seu període cau en el mes d’agost.
 EXPLAIN
 SELECT c.client_id AS 'Codi Client',
        CONCAT (c.nom," ",c.cognom1) AS 'Nom i Cognom',
@@ -215,12 +225,12 @@ LIMIT 1;
 #MIRARLO
 EXPLAIN
 SELECT COUNT(r.reserva_id) AS 'Numero de reserves',
-       ho.nom AS Hotel
+       h.nom AS Hotel
   FROM reserves r
-INNER JOIN habitacions AS h ON h.hab_id = r.hab_id
-INNER JOIN hotels AS ho ON ho.hotel_id = h.hotel_id
-GROUP BY ho.nom
-ORDER BY COUNT('Numero de reserves') DESC
+INNER JOIN habitacions AS hab ON hab.hab_id = r.hab_id
+INNER JOIN hotels AS h ON h.hotel_id = hab.hotel_id
+GROUP BY h.nom
+ORDER BY 'Numero de reserves' DESC
 LIMIT 1; 
 
 EXPLAIN
@@ -230,7 +240,7 @@ INNER JOIN habitacions AS h ON h.hab_id = r.hab_id
 INNER JOIN hotels AS ho ON ho.hotel_id = h.hotel_id
 WHERE (SELECT COUNT(reserva_id) FROM reserves)
 GROUP BY ho.nom
-ORDER BY COUNT('Numero de reserves') DESC
+ORDER BY COUNT(reserva_id) DESC
 LIMIT 1; 
 
 
