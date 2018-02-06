@@ -29,13 +29,19 @@ create table reserves_pais (
     nom_pais varchar(40) DEFAULT NULL
 );
 
-truncate table reserves_pais;
-select * from reserves_pais;
-
-
-insert into reserves_pais (any, nom_reserves, nom_pais);
-select year(r.data_fi) as 'Any', count(r.reserva_id) as 'num reserves', p.nom
+insert into reserves_pais (any, num_reserves, nom_pais)
+select year(r.data_fi), count(r.reserva_id), p.nom
 from reserves r
 inner join clients c on c.client_id = r.client_id
 inner join paisos p on p.pais_id = c.pais_origen_id
+group by p.nom, year(r.data_fi);
+
+truncate table reserves_pais;
+select * from reserves_pais;
+
+select year(r.data_fi), count(r.reserva_id), p.nom
+from reserves r
+inner join clients c on c.client_id = r.client_id
+inner join paisos p on p.pais_id = c.pais_origen_id
+where p.nom = "Alemania"
 group by p.nom, year(r.data_fi);

@@ -124,28 +124,27 @@ WHERE habitacions = (SELECT MAX(habitacions)
 ALTER TABLE hotels
 ADD INDEX hotels (nom, categoria, habitacions);
 
-#13. Rànquing de 5 països amb més reserves durant l’any 2016. Per cada país mostrar el nom del país i el número de reserves.
-EXPLAIN
-SELECT p.nom AS Pais,
-       COUNT(r.reserva_id) AS Reserves
-  FROM paisos AS p
-INNER JOIN clients AS c ON p.pais_id = c.pais_origen_id
-INNER JOIN reserves AS r ON c.client_id = r.client_id
-WHERE r.data_fi >= '2016-01-01' AND r.data_fi <= '2016-12-31'
-GROUP BY Pais
-ORDER BY Reserves DESC
-LIMIT 5;
+#ok 13. Rànquing de 5 països amb més reserves durant l’any 2016. Per cada país mostrar el nom del país i el número de reserves.
 
-#idea-> hacer un nuevo campo con el total de las reservas del anño 2016
-ALTER TABLE paisos
-	ADD COLUMN total_reserves2016 INT UNSIGNED AS ( select abaix ) VIRTUAL;
-    
-SELECT COUNT(r.reserva_id), p.nom
-  FROM paisos AS p
-INNER JOIN clients AS c ON p.pais_id = c.pais_origen_id
-INNER JOIN reserves AS r ON c.client_id = r.client_id
-WHERE r.data_inici >= '2016-01-01' AND r.data_fi <= '2016-12-31'
-GROUP BY p.nom;
+EXPLAIN
+SELECT nom_pais, num_reserves FROM reserves_pais WHERE any=2016 ORDER BY num_reserves DESC LIMIT 5;
+
+CREATE TABLE reserves_pais (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    any INT,
+    num_reserves INT,
+    nom_pais VARCHAR(40) DEFAULT NULL
+);
+
+INSERT INTO reserves_pais (any, num_reserves, nom_pais)
+SELECT YEAR(r.data_fi), COUNT(r.reserva_id), p.nom
+FROM reserves r
+INNER JOIN clients c ON c.client_id = r.client_id
+INNER JOIN paisos p ON p.pais_id = c.pais_origen_id
+GROUP BY p.nom, YEAR(r.data_fi);
+
+ALTER TABLE reserves_pais
+	ADD INDEX pais_reserves(any, num_reserves, nom_pais);
 
 #ok 14. Codi client, Nom, Cognom, del client que ha realitzat més reserves de tota la BD.
 EXPLAIN
@@ -244,15 +243,10 @@ ORDER BY COUNT(reserva_id) DESC
 LIMIT 1; 
 
 
-#22. Quin és el país amb més reserves? (tots els anys) O sigui, quin és el país d’on han vingut més turistes.
-
+#ok 22. Quin és el país amb més reserves? (tots els anys) O sigui, quin és el país d’on han vingut més turistes.
 EXPLAIN
-SELECT COUNT(r.reserva_id) AS Reserves, p.nom
-FROM reserves r 
-INNER JOIN clients c ON c.client_id = r.client_id
-INNER JOIN paisos p ON p.pais_id = c.pais_origen_id
-GROUP BY p.nom
-ORDER BY Reserves DESC
+SELECT nom_pais, SUM(num_reserves) AS 'Total Reserves'
+FROM reserves_pais
+GROUP BY nom_pais
+ORDER BY SUM(num_reserves) DESC
 LIMIT 1;
-
-#idea-> hacer una columna por cada año del total de reservas/año, y por lo tanto cogerlas y sumarlas
