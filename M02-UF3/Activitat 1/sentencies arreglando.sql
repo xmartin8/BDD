@@ -222,7 +222,7 @@ ORDER BY Reserves DESC
 LIMIT 1;
 
 #21. Quin és l’hotel amb més reserves (tota la BD).
-#MIRARLO
+#Sara-> creo que la 1a mejor
 EXPLAIN
 SELECT COUNT(r.reserva_id) AS 'Numero de reserves',
        h.nom AS Hotel
@@ -247,11 +247,12 @@ LIMIT 1;
 #22. Quin és el país amb més reserves? (tots els anys) O sigui, quin és el país d’on han vingut més turistes.
 
 EXPLAIN
-SELECT COUNT(r.reserva_id), p.nom
+SELECT COUNT(r.reserva_id) AS Reserves, p.nom
 FROM reserves r 
 INNER JOIN clients c ON c.client_id = r.client_id
 INNER JOIN paisos p ON p.pais_id = c.pais_origen_id
 GROUP BY p.nom
-ORDER BY COUNT(r.reserva_id) DESC
+ORDER BY Reserves DESC
 LIMIT 1;
 
+#idea-> hacer una columna por cada año del total de reservas/año, y por lo tanto cogerlas y sumarlas
