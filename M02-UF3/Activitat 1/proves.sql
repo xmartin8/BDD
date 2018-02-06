@@ -21,12 +21,11 @@ INNER JOIN hotels h ON h.hotel_id = hab.hotel_id
 WHERE r.data_inici >= '2015-01-01' AND r.data_fi <= '2015-12-31'
 	AND h.categoria = 4;
     
-
+drop table reserves_pais;
 create table reserves_pais (
 	id int auto_increment primary key,
-    reserves_any14 int,
-    reserves_any15 int,
-    reserves_any16 int,
+    any int,
+    num_reserves int,
     nom_pais varchar(40) DEFAULT NULL
 );
 
@@ -34,26 +33,9 @@ truncate table reserves_pais;
 select * from reserves_pais;
 
 
-insert into reserves_pais (reserves_any14, reserves_any15, reserves_any16, nom_pais);
-select count(r.reserva_id) as '2014',null as '2015',null as '2016', p.nom
+insert into reserves_pais (any, nom_reserves, nom_pais);
+select year(r.data_fi) as 'Any', count(r.reserva_id) as 'num reserves', p.nom
 from reserves r
 inner join clients c on c.client_id = r.client_id
 inner join paisos p on p.pais_id = c.pais_origen_id
-where year(r.data_fi) = 2014
-group by p.nom
-union
-select null as '2014',count(r.reserva_id) as '2015',null as '2016', p.nom
-from reserves r
-inner join clients c on c.client_id = r.client_id
-inner join paisos p on p.pais_id = c.pais_origen_id
-where year(r.data_fi) = 2015
-group by p.nom
-union
-select null as '2014', null as '2015', count(r.reserva_id) as '2016', p.nom
-from reserves r
-inner join clients c on c.client_id = r.client_id
-inner join paisos p on p.pais_id = c.pais_origen_id
-where year(r.data_fi) = 2016
-group by p.nom;
-
-
+group by p.nom, year(r.data_fi);
