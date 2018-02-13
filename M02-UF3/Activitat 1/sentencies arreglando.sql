@@ -223,19 +223,15 @@ SELECT nom AS Nom,
 WHERE cognom1 REGEXP 'P[aeiuo]'
   AND LEFT(cognom1,1) = 'P';
 
-#20. Quin és l’hotel de 4 estrelles amb més reserves durant tot el 2015 ( una reserva pertany el 2015 si alguna de les nits hi pertany).
+#ok 20. Quin és l’hotel de 4 estrelles amb més reserves durant tot el 2015 ( una reserva pertany el 2015 si alguna de les nits hi pertany).
+
 EXPLAIN
-SELECT COUNT(r.reserva_id) AS Reserves, h.nom AS 'Nom hotel'
-FROM reserves r 
-INNER JOIN habitacions hab ON hab.hab_id = r.hab_id
-INNER JOIN hotels h ON h.hotel_id = hab.hotel_id
-WHERE r.data_inici >= '2015-01-01' AND r.data_fi <= '2015-12-31'
-	AND h.categoria = 4 
-GROUP BY h.nom
-ORDER BY Reserves DESC
+SELECT nom_hotel, num_reserves 
+FROM hotel_reserves 
+INNER JOIN hotels ON nom = nom_hotel
+WHERE any=2015 AND categoria = 4
+ORDER BY num_reserves DESC
 LIMIT 1;
-
-
 
 #ok 21. Quin és l’hotel amb més reserves (tota la BD).
 EXPLAIN
