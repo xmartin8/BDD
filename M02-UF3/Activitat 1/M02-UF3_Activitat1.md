@@ -355,6 +355,9 @@ Amb un `RESET query cache` es neteja la memòria cache.
 Mitjançant la eina Sysbench prepara un joc de proves mitjançant les sentències SQL anteriors o d’altres que creguis que puguin anar bé per realitzar les proves.
 Documenta la instal·lació de l'eina, la creació dels scripts de prova i l’execució de les proves.  
 [Documentació](https://www.howtoforge.com/how-to-benchmark-your-system-cpu-file-io-mysql-with-sysbench)  
+Instal·lació sysbench amb `yum install sysbench`  
+![b-1][b-1]  
+
 ## Test 1
 Treu tots els índexs de la Part 1 i desactiva la CACHE i realitza el benchmark
 ## Test 2
@@ -389,3 +392,4 @@ Activa la CACHE (també fes que les consultes passin per aquesta CACHE)
 [qc-21]: imgs/qc-21.png
 [qc-22]: imgs/qc-22.png
 [qc-23]: imgs/qc-23.png
+[b-1]: imgs/b-1.png
