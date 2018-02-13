@@ -95,11 +95,11 @@ GROUP BY h.nom;
 
 #ok 9. Obtenir la quantitat de reserves que s’inicien en cadascun dels dies de la setmana. Tenint en compte només l’any 2016.
 EXPLAIN
-SELECT diasetmana AS DIA, COUNT(data_inici)
+SELECT diasetmana, COUNT(data_inici)
     FROM reserves
 WHERE data_inici >= "2016-01-01"
       AND data_fi <= "2016-12-31"
-GROUP BY DIA;
+GROUP BY diasetmana;
 
 ALTER TABLE reserves
 ADD COLUMN diasetmana SMALLINT UNSIGNED AS (WEEKDAY(data_inici)+1) VIRTUAL;
