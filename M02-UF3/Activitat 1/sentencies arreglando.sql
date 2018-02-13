@@ -34,15 +34,27 @@ ALTER TABLE reserves
 ALTER TABLE reserves
 	ADD KEY covered(reserva_id, data_inici, data_fi, hab_id, client_id);
 
-#MIRAAAAAAARR 4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
+#ok 4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
 EXPLAIN
-SELECT COUNT(r.reserva_id) AS 'Quantitat Reserves',
-	   h.nom AS 'Nom de l\'hotel'
-  FROM reserves AS r
-INNER JOIN habitacions AS hab ON hab.hab_id = r.hab_id
-INNER JOIN hotels AS h ON h.hotel_id = hab.hotel_id
-WHERE h.nom = 'Catalonia Ramblas'
-AND r.data_inici >= '2015-01-01' AND r.data_fi <= '2015-12-31';
+SELECT num_reserves, nom_hotel 
+	FROM hotel_reserves 
+WHERE any=2015 
+AND nom_hotel = 'Catalonia Ramblas';
+
+CREATE TABLE hotel_reserves(
+	id	INT AUTO_INCREMENT PRIMARY KEY,
+	any	INT,
+	num_reserves	INT,
+	nom_hotel	VARCHAR(50)
+);
+SELECT * FROM hotel_reserves;
+
+INSERT INTO hotel_reserves (any, num_reserves, nom_hotel)
+SELECT YEAR(r.data_fi), COUNT(r.reserva_id), h.nom
+FROM reserves r
+INNER JOIN habitacions hab ON hab.hab_id = r.hab_id
+INNER JOIN hotels h ON h.hotel_id = hab.hotel_id
+GROUP BY h.nom, YEAR(r.data_fi);
 
 #ok 5. Obtenir el nom i cognoms dels clients que varen néixer el mes de Març.
 EXPLAIN
@@ -222,6 +234,8 @@ WHERE r.data_inici >= '2015-01-01' AND r.data_fi <= '2015-12-31'
 GROUP BY h.nom
 ORDER BY Reserves DESC
 LIMIT 1;
+
+
 
 #ok 21. Quin és l’hotel amb més reserves (tota la BD).
 EXPLAIN
