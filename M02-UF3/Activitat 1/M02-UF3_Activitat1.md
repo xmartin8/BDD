@@ -301,7 +301,7 @@ LIMIT 1;
 
 # Part 3 – Benchmarking
 Mitjançant la eina Sysbench prepara un joc de proves mitjançant les sentències SQL anteriors o d’altres que creguis que puguin anar bé per realitzar les proves.
-Documenta la instal·lació de l'eina, la creació dels scripts de prova i l’execució de les proves.
+Documenta la instal·lació de l'eina, la creació dels scripts de prova i l’execució de les proves.  
 [Documentació](https://www.howtoforge.com/how-to-benchmark-your-system-cpu-file-io-mysql-with-sysbench)  
 ## Test 1
 Treu tots els índexs de la Part 1 i desactiva la CACHE i realitza el benchmark
