@@ -17,16 +17,19 @@ WHERE LEFT(cognom1,1) IN ('a', 'e', 'i', 'o', 'u');
 ALTER table clients
 	ADD INDEX nom_complet(nom, cognom1);
 
-# MIRAAAAAR 3. Quina és la reserva_id que té més nits. Indica també la quantitat de nits.
+#ok 3. Quina és la reserva_id que té més nits. Indica també la quantitat de nits.
 EXPLAIN
 SELECT reserva_id AS 'Reserva ID', 
 	   data_inici AS 'Data d\'inici', 
        data_fi AS 'Data fi', 
-       MAX(TIMESTAMPDIFF(DAY,data_inici,data_fi)) AS Dies 
+       MAX(dies) AS Dies 
 	FROM reserves 
 GROUP BY reserva_id 
 ORDER BY Dies DESC 
 LIMIT 1;
+
+ALTER TABLE reserves
+  ADD COLUMN dies SMALLINT UNSIGNED AS (TIMESTAMPDIFF(DAY,data_inici,data_fi)) VIRTUAL;
 
 ALTER TABLE reserves
 	ADD KEY covered(reserva_id, data_inici, data_fi, hab_id, client_id);
