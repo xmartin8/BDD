@@ -168,7 +168,7 @@ GROUP BY c.client_id, CONCAT (c.nom, " ", c.cognom1)
 ORDER BY Reserves DESC
 LIMIT 1;
 
-#16. Quin és el país que en tenim menys clients?
+#ok 16. Quin és el país que en tenim menys clients?
 EXPLAIN
 SELECT p.nom AS 'Nom del pais', COUNT(c.pais_origen_id) AS 'Total de clients del pais'
   FROM paisos AS p
@@ -220,8 +220,7 @@ GROUP BY h.nom
 ORDER BY Reserves DESC
 LIMIT 1;
 
-#21. Quin és l’hotel amb més reserves (tota la BD).
-#Sara-> creo que la 1a mejor
+#ok 21. Quin és l’hotel amb més reserves (tota la BD).
 EXPLAIN
 SELECT COUNT(r.reserva_id) AS 'Numero de reserves',
        h.nom AS Hotel
@@ -230,16 +229,6 @@ INNER JOIN habitacions AS hab ON hab.hab_id = r.hab_id
 INNER JOIN hotels AS h ON h.hotel_id = hab.hotel_id
 GROUP BY h.nom
 ORDER BY 'Numero de reserves' DESC
-LIMIT 1; 
-
-EXPLAIN
-SELECT ho.nom AS Hotel
-  FROM reserves r
-INNER JOIN habitacions AS h ON h.hab_id = r.hab_id
-INNER JOIN hotels AS ho ON ho.hotel_id = h.hotel_id
-WHERE (SELECT COUNT(reserva_id) FROM reserves)
-GROUP BY ho.nom
-ORDER BY COUNT(reserva_id) DESC
 LIMIT 1; 
 
 
