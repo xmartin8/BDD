@@ -288,7 +288,7 @@ LIMIT 1;
 
 # Part 2 – Query Cache
 **Escull 5 sentències SQL de la Part 1 (intenta que els temps d’execució siguin significatius)**
-## Quins temps d'execució t'han sortit per cada consulta?  
+## * Quins temps d'execució t'han sortit per cada consulta?  
 
 ## Activa la Query Cache (ON)
 ### Reexecuta les consultes anteriors 2 vegades seguides. Ha millorat el temps d'execució?
