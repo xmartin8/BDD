@@ -16,6 +16,16 @@ Part 1. Escriu les sentències SQL per tal d’obtenir els que se’ns demana. A
 * **Crea només els índex necessaris! Si hi ha índexs que es poden reaprofitar per diferents sentències fes-ho.**
 
 1. Obtenir el nom i l’adreça dels hotels de 4 estrelles.
+```
+EXPLAIN 
+SELECT nom AS 'Nom de l\'hotel', 
+	   adreca AS 'Adreça' 
+	FROM hotels 
+WHERE categoria=4;
+
+ALTER TABLE hotels
+	ADD INDEX categoria(categoria, nom, adreca);
+```
 2. Obtenir el nom dels clients (Nom i cognom) que el seu cognom comenci per vocal (sense tenir en compte els accents).
 3. Quina és la reserva_id que té més nits. Indica també la quantitat de nits.
 4. Quantes reserves va rebre l’hotel ‘Catalonia Ramblas’ de Barcelona durant tot  l’any 2015 (una reserva pertany al 2015 si alguna nit d’aquesta reserva era del 2015).
