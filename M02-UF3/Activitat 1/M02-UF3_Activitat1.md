@@ -65,7 +65,6 @@ CREATE TABLE hotel_reserves(
 	num_reserves	INT,
 	nom_hotel	VARCHAR(50)
 );
-SELECT * FROM hotel_reserves;
 
 INSERT INTO hotel_reserves (any, num_reserves, nom_hotel)
 SELECT YEAR(r.data_fi), COUNT(r.reserva_id), h.nom
