@@ -288,16 +288,67 @@ LIMIT 1;
 
 # Part 2 – Query Cache
 **Escull 5 sentències SQL de la Part 1 (intenta que els temps d’execució siguin significatius)**
-## * Quins temps d'execució t'han sortit per cada consulta?  
+## Quins temps d'execució t'han sortit per cada consulta?  
+Sentència número 3  
+![qc-1][qc-1]  
+Sentència número 9  
+![qc-2][qc-2]  
+Sentència número 10  
+![qc-3][qc-3]  
+Sentència número 15  
+![qc-4][qc-4]  
+Sentència número 21  
+![qc-5][qc-5]  
 
-## Activa la Query Cache (ON)
-### Reexecuta les consultes anteriors 2 vegades seguides. Ha millorat el temps d'execució?
-### Quina modificació hem de fer perquè la consulta no passi per Cache? (reescriu una consulta amb els canvis)
-## Activa la Query Cache (ON DEMAND)
-### Posa un exemple d'execució sota demanda.
-### Quina modificació hem de fer perquè la consulta passi per Cache?(reescriu la consulta amb els canvis)
-## Un cop acabats els punts anteriors mostra quin ha estat el teu CacheHitRatio? Com has obtingut els valors de cache_hits i cache_misses?
-## Demostra quines sentències DML (INSERT, UPDATE, DELETE) provoquen que es buidi la cache de les taules implicades amb aquestes sentències.
+## Activa la Query Cache (ON)  
+Per activar la cache, entrem al **Mysql** i li assignem un tamany de 16Mb a la cache:  
+![qc-6][qc-6]  
+![qc-7][qc-7]   
+Un cop fet, des del fitxer `/etc/my.cnf` es pot configurar alguns paràmetres de la cache:  
+![qc-8][qc-8]   
+També es pot activar dins del **Mysql**:  
+![qc-9][qc-9]  
+
+### Reexecuta les consultes anteriors 2 vegades seguides. Ha millorat el temps d'execució?  
+Sentència número 3  
+![qc-10][qc-10]  
+Sentència número 9  
+![qc-11][qc-11]  
+Sentència número 10  
+![qc-12][qc-12]  
+Sentència número 15  
+![qc-13][qc-13]  
+Sentència número 21  
+![qc-14][qc-14]  
+
+Ha millorat considerablement el temps.  
+
+### Quina modificació hem de fer perquè la consulta no passi per Cache? (reescriu una consulta amb els canvis)  
+Per que una sentència no pasi per cache, hem d’afegir el paràmetre `SQL_NO_CACHE` després del `SELECT`:  
+![qc-15][qc-15]  
+
+## Activa la Query Cache (ON DEMAND)  
+![qc-16][qc-16]  
+
+També es pot amb `query_cache_type=2`.  
+
+### Posa un exemple d'execució sota demanda.  
+![qc-17][qc-17]  
+
+### Quina modificació hem de fer perquè la consulta passi per Cache?(reescriu la consulta amb els canvis)  
+Per que una consulta pasi per cache hem d’escriure `SQL_CACHE` després del `SELECT`:  
+![qc-18][qc-18]  
+
+## Un cop acabats els punts anteriors mostra quin ha estat el teu CacheHitRatio? Com has obtingut els valors de cache_hits i cache_misses?  
+Per veure el **CacheHitRadio** hem d’aplicar la següent fórmula:  
+![qc-19][qc-19]  
+![qc-20][qc-20]  
+![qc-21][qc-21]  
+![qc-22][qc-22]  
+
+## Demostra quines sentències DML (INSERT, UPDATE, DELETE) provoquen que es buidi la cache de les taules implicades amb aquestes sentències.  
+![qc-23][qc-23]  
+Amb un `RESET query cache` es neteja la memòria cache.  
 
 
 # Part 3 – Benchmarking
@@ -315,3 +366,26 @@ Activa la CACHE (també fes que les consultes passin per aquesta CACHE)
 
 
 [hotel]: imgs/hotel.png
+[qc-1]: imgs/qc-1.png
+[qc-2]: imgs/qc-2.png
+[qc-3]: imgs/qc-3.png
+[qc-4]: imgs/qc-4.png
+[qc-5]: imgs/qc-5.png
+[qc-6]: imgs/qc-6.png
+[qc-7]: imgs/qc-7.png
+[qc-8]: imgs/qc-8.png
+[qc-9]: imgs/qc-9.png
+[qc-10]: imgs/qc-10.png
+[qc-11]: imgs/qc-11.png
+[qc-12]: imgs/qc-12.png
+[qc-13]: imgs/qc-13.png
+[qc-14]: imgs/qc-14.png
+[qc-15]: imgs/qc-15.png
+[qc-16]: imgs/qc-16.png
+[qc-17]: imgs/qc-17.png
+[qc-18]: imgs/qc-18.png
+[qc-19]: imgs/qc-19.png
+[qc-20]: imgs/qc-20.png
+[qc-21]: imgs/qc-21.png
+[qc-22]: imgs/qc-22.png
+[qc-23]: imgs/qc-23.png
