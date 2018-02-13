@@ -19,7 +19,7 @@ Part 1. Escriu les sentències SQL per tal d’obtenir els que se’ns demana. A
 ```
 EXPLAIN 
 SELECT nom AS 'Nom de l\'hotel', 
-	   adreca AS 'Adreça' 
+       adreca AS 'Adreça' 
 	FROM hotels 
 WHERE categoria=4;
 
@@ -38,7 +38,7 @@ ALTER table clients
 3. Quina és la reserva_id que té més nits. Indica també la quantitat de nits.
 ```
 SELECT reserva_id AS 'Reserva ID', 
-	   data_inici AS 'Data d\'inici', 
+       data_inici AS 'Data d\'inici', 
        data_fi AS 'Data fi', 
        MAX(dies) AS Dies 
 	FROM reserves 
@@ -168,7 +168,7 @@ ORDER BY num_reserves DESC
 LIMIT 5;
 
 CREATE TABLE reserves_pais (
-	id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     any INT,
     num_reserves INT,
     nom_pais VARCHAR(40) DEFAULT NULL
@@ -236,7 +236,8 @@ FROM (
 ```
 18. Digues el nom i cognoms dels clients que el seu cognom sigui ‘Bahi’.
 ```
-SELECT nom, cognom1
+SELECT nom, 
+       cognom1
 	FROM clients
 WHERE cognom1 = 'Bahi';
 
