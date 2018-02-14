@@ -1,5 +1,5 @@
 # Mòdul 10 - Administració de Base de dades
-# Unitat Formativa 2 - Instal·lació i ajustament de SGBD corporatiuç
+## Unitat Formativa 2 - Instal·lació i ajustament de SGBD corporatius
 
 **Index de les activitats**
 * [Activitat 1 - Instal·lació d'un SGBD](https://github.com/saracaparros/BBDD/blob/master/M10-UF2/Activitat1/M10-UF2_Activitat1.md)
