@@ -414,9 +414,9 @@ Activa la CACHE (també fes que les consultes passin per aquesta CACHE)
 [qc-22]: imgs/qc-22.png
 [qc-23]: imgs/qc-23.png
 [b-1]: imgs/b-1.png
-[b-2]: imgs/b-2.png
-[b-3]: imgs/b-3.png
-[b-4]: imgs/b-4.png
+[b-2]: imgs/b-2.PNG
+[b-3]: imgs/b-3.PNG
+[b-4]: imgs/b-4.PNG
 [b-5]: imgs/b-5.png
 [b-6]: imgs/b-6.png
 [b-7]: imgs/b-7.png
@@ -424,4 +424,4 @@ Activa la CACHE (també fes que les consultes passin per aquesta CACHE)
 [b-9]: imgs/b-9.png
 [b-10]: imgs/b-10.png
 [b-11]: imgs/b-11.png
-[b-12]: imgs/b-12.png
+[b-12]: imgs/b-12.PNG
