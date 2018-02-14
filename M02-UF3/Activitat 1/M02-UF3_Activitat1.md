@@ -356,16 +356,37 @@ Mitjançant la eina Sysbench prepara un joc de proves mitjançant les sentèncie
 Documenta la instal·lació de l'eina, la creació dels scripts de prova i l’execució de les proves.  
 [Documentació](https://www.howtoforge.com/how-to-benchmark-your-system-cpu-file-io-mysql-with-sysbench)  
 Instal·lació sysbench amb `yum install sysbench`  
-![b-1][b-1]  
+![b-1][b-1]   
+Fem una prova per veure el funcionament d'aquesta eina:  
+![b-2][b-2]  
+**Prepare**: realitza accions preparatòries per a aquelles proves que les necessiten, per exemple creant els fitxers necessaris en el disc per a la prova del fitxer, o omplint la base de dades de prova per als punts de referència de la base de dades.  
+![b-3][b-3]  
+**Run**: executa la prova real especificada amb l'argument de nom de la prova. Aquesta comanda és proporcionada per totes les proves.  
 
 ## Test 1
-Treu tots els índexs de la Part 1 i desactiva la CACHE i realitza el benchmark
+Treu tots els índexs de la Part 1 i desactiva la CACHE i realitza el benchmark  
+![b-4][b-4]  
+![b-5][b-5]  
+![b-6][b-6]  
+
 ## Test 2
-Afegeix els [índexs](https://github.com/saracaparros/BBDD/blob/master/M02-UF3/Activitat%201/indexos.sql) de  la part 1
+Afegeix els [índexs](https://github.com/saracaparros/BBDD/blob/master/M02-UF3/Activitat%201/indexos.sql) de  la part 1  
+![b-7][b-7]  
+
 ## Test 3
-Activa la CACHE (també fes que les consultes passin per aquesta CACHE)
-## Realitza una comparativa mostrant els resultats obtinguts dels tres benchmarks.
-## En el tercer cas indica quin ha estat el valor de CacheHitRatio.
+Activa la CACHE (també fes que les consultes passin per aquesta CACHE)  
+![b-8][b-8]  
+![b-9][b-9]  
+
+## Realitza una comparativa mostrant els resultats obtinguts dels tres benchmarks.  
+-En sentències realitzades, en el test 2 (amb índexs) és menor.  
+-En estadístiques generals, tots tres triguen un temps semblant. En quant al nombre d’events, en el test 2 és molt menor que en els altres.  
+-La latència és menor en el test 3 (amb la cache activa) i en el test 2 és major amb els índexs afegits.  
+
+## En el tercer cas indica quin ha estat el valor de CacheHitRatio.  
+![b-10][b-10]  
+![b-11][b-11]  
+![b-12][b-12]  
 
 
 [hotel]: imgs/hotel.png
@@ -393,3 +414,14 @@ Activa la CACHE (també fes que les consultes passin per aquesta CACHE)
 [qc-22]: imgs/qc-22.png
 [qc-23]: imgs/qc-23.png
 [b-1]: imgs/b-1.png
+[b-2]: imgs/b-2png
+[b-3]: imgs/b-3.png
+[b-4]: imgs/b-4.png
+[b-5]: imgs/b-5.png
+[b-6]: imgs/b-6.png
+[b-7]: imgs/b-7.png
+[b-8]: imgs/b-8.png
+[b-9]: imgs/b-9.png
+[b-10]: imgs/b-10.png
+[b-11]: imgs/b-11.png
+[b-12]: imgs/b-12.png
