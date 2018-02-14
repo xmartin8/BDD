@@ -379,9 +379,9 @@ Activa la CACHE (també fes que les consultes passin per aquesta CACHE)
 ![b-9][b-9]  
 
 ## Realitza una comparativa mostrant els resultats obtinguts dels tres benchmarks.  
--En sentències realitzades, en el test 2 (amb índexs) és menor.  
--En estadístiques generals, tots tres triguen un temps semblant. En quant al nombre d’events, en el test 2 és molt menor que en els altres.  
--La latència és menor en el test 3 (amb la cache activa) i en el test 2 és major amb els índexs afegits.  
+- En sentències realitzades, en el test 2 (amb índexs) és menor.  
+- En estadístiques generals, tots tres triguen un temps semblant. En quant al nombre d’events, en el test 2 és molt menor que en els altres.  
+- La latència és menor en el test 3 (amb la cache activa) i en el test 2 és major amb els índexs afegits.  
 
 ## En el tercer cas indica quin ha estat el valor de CacheHitRatio.  
 ![b-10][b-10]  
