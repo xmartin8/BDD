@@ -8,3 +8,5 @@
 * [Activitat 5](https://github.com/saracaparros/BBDD/blob/master/M10-UF2/Activitat3/M10-UF2_Activitat3.md#activitat-5-redolog-realitza-els-seg%C3%9Cents-apartats)
 * [Activitat 6](https://github.com/saracaparros/BBDD/blob/master/M10-UF2/Activitat3/M10-UF2_Activitat3.md#activitat-6-implementar-bd-distribu%C3%AFdes)
 * [Activitat 7](https://github.com/saracaparros/BBDD/blob/master/M10-UF2/Activitat3/M10-UF2_Activitat3.md#activitat-7-storage-engine-csv)
+
+![Storage Engines](http://wfarm4.dataknet.com/static/resources/icons/set86/e14701bb.png)
