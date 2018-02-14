@@ -361,7 +361,7 @@ Instal·lació sysbench amb `yum install sysbench`
 ## Test 1
 Treu tots els índexs de la Part 1 i desactiva la CACHE i realitza el benchmark
 ## Test 2
-Afegeix els índexs de  la part 1
+Afegeix els [índexs](https://github.com/saracaparros/BBDD/blob/master/M02-UF3/Activitat%201/indexos.sql) de  la part 1
 ## Test 3
 Activa la CACHE (també fes que les consultes passin per aquesta CACHE)
 ## Realitza una comparativa mostrant els resultats obtinguts dels tres benchmarks.
