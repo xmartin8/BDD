@@ -1,4 +1,4 @@
-**Sara Caparrós Torres i Patricia López López (ASIX 2 - Curs 2017/18)**  
+**Xavier MArtin (ASIX 2 - Curs 2017/18)**  
 # ACTIVITAT OPTIMITZACIÓ #
 **Index**  
 * [Part 1](https://github.com/saracaparros/BBDD/blob/master/M02-UF3/Activitat%201/M02-UF3_Activitat1.md#part-1)  
